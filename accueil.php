@@ -1,7 +1,7 @@
-<h1> Hello World </h1>
+include "vue/pied.html.php";
+include "vue/entete.html.php";
+$titre = "Mon profil";
 
 <?php
 
-$titre = "Mon profil";
-include "vue/entete.html.php";
-include "vue/pied.html.php";
+<h1> Hello World </h1>
