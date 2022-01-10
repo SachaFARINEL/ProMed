@@ -6,18 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        form {
-            width: 50%;
-            text-align: center;
-            margin: auto;
-        }
-
-        button {
-            margin: auto;
-
-        }
-    </style>
+    <?php
+    include "getRacine.php";
+    include "$racine/vue/entete.html.php";
+    ?>
 </head>
 
 <body>
