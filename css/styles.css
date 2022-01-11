@@ -4,3 +4,11 @@ a {
 nav {
   text-align: center;
 }
+.test {
+  display: flex;
+  justify-content: center;
+}
+.test img {
+  width: 40%;
+  padding: 10px;
+}

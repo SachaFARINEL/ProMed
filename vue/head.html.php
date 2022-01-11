@@ -5,8 +5,6 @@
     	<meta name="googlebot" content="noindex" />
     	<meta name="description" content="" />
     	<meta name="author" content="" />
-    	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" />
-    	<link href="asset/font/awesome/css/font-awesome.min.css" rel="stylesheet" />
     	<!-- static local -->
     	<link href="css/styles.css" rel="stylesheet" />
     	<title><?php echo $titre ?></title>
