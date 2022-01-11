@@ -1,20 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <?php
-    include "getRacine.php";
-    include "$racine/vue/entete.html.php";
-    ?>
-</head>
-
-<body>
-
-    <form id=form>
         <fieldset>
             <legend>Formulaire d'inscription praticien</legend><br>
 
@@ -42,10 +25,3 @@
         <div class="button">
             <button id='button' onclick="sendMe();" type="submit" style="background-color: lightblue;"><strong>Envoyer le
                     message</strong></button>
-    </form>
-
-
-    </div>
-</body>
-
-</html>
