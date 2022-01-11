@@ -11,4 +11,10 @@ nav {
 .test img {
   width: 40%;
   padding: 10px;
+  transition: 1s ease;
+}
+.test img:hover {
+  transform: translate(200px);
+  transform: translate(10%);
+  transition: 1s ease;
 }
