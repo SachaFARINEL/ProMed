@@ -11,10 +11,11 @@ nav {
 .test img {
   width: 40%;
   padding: 10px;
-  transition: 1s ease;
+  transition: transform 1s ease-in-out;
 }
-.test img:hover {
-  transform: translate(200px);
-  transform: translate(10%);
-  transition: 1s ease;
+img#patient:hover {
+  transform: translateX(10%);
+}
+img#praticien:hover {
+  transform: translateX(-10%);
 }

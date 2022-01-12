@@ -4,6 +4,6 @@
 
 
 <div class="test">
-    <img src="images/medecin.png" alt="logo" />
-    <img src="images/patient.png" alt="logo" />
+    <img id='praticien' src="images/praticien1.png" alt="logo" />
+    <img id='patient' src="images/patient1.png" alt="logo" />
 </div>
