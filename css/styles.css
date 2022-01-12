@@ -2,7 +2,11 @@ a {
   text-decoration: none;
 }
 nav {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2%;
+  font-family: "Raleway", sans-serif;
 }
 .test {
   display: flex;
@@ -20,4 +24,8 @@ img#patient:hover {
 }
 img#praticien:hover {
   transform: translateX(-10%) scale(1.1);
+}
+img#logo {
+  width: 50px;
+  margin-right: 0.4%;
 }
