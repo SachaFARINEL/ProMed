@@ -49,7 +49,7 @@ $(function () {
             i = i - 1
         }
 
-          if ($("#prenom").val() === "") {
+        if ($("#prenom").val() === "") {
             $("#prenom").css("border", "1px solid red");
             $("#prenom1").text("(obligatoire)");
             $("#prenom1").css("color", "red");
@@ -60,35 +60,35 @@ $(function () {
             i = i - 1
         }
 
-          if ($("#activite").val() === "") {
+        if ($("#activite").val() === "") {
             $("#activite").css("border", "1px solid red");
             $("#activite1").text("(obligatoire)");
             $("#activite1").css("color", "red");
             $("#activite1").css("float", "right");
         } else {
-              $("#activite1").hide();
+            $("#activite1").hide();
             $("#activite").css("border", "1px solid green");
             i = i - 1
         }
 
-          if ($("#adresse").val() === "") {
+        if ($("#adresse").val() === "") {
             $("#adresse").css("border", "1px solid red");
             $("#adresse1").text("(obligatoire)");
             $("#adresse1").css("color", "red");
             $("#adresse1").css("float", "right");
         } else {
-              $("#adresse1").hide();
+            $("#adresse1").hide();
             $("#adresse").css("border", "1px solid green");
             i = i - 1
         }
 
-           if ($("#numero").val() === "") {
+        if ($("#numero").val() === "") {
             $("#numero").css("border", "1px solid red");
             $("#numero1").text("(obligatoire)");
             $("#numero1").css("color", "red");
             $("#numero1").css("float", "right");
         } else {
-              $("#numero1").hide();
+            $("#numero1").hide();
             $("#numero").css("border", "1px solid green");
             i = i - 1
         }
@@ -139,22 +139,22 @@ $(function () {
             "mdp": $('#mdp').val()
         };
 
-        $.ajax({
-            url: 'php/formulaire.php',
-            type: 'POST',
-            data: valeurs,
-            error: function () {
-                alert('Erreur sur PHP !');
-            },
-            success: function (retour) {
-                if (retour === 'err') {
-                    $('.testAjax').html("Erreur de traitement !");
-                } else {
-                    $('.testAjax').html(retour);
-                }
-            },
-        });
-        }
+        // $.ajax({
+        //     url: 'php/formulaire.php',
+        //     type: 'POST',
+        //     data: valeurs,
+        //     error: function () {
+        //         alert('Erreur sur PHP !');
+        //     },
+        //     success: function (retour) {
+        //         if (retour === 'err') {
+        //             $('.testAjax').html("Erreur de traitement !");
+        //         } else {
+        //             $('.testAjax').html(retour);
+        //         }
+        //     },
+        // });
+    }
 
 
     );
