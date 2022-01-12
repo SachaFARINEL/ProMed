@@ -9,9 +9,12 @@ nav {
   justify-content: center;
 }
 .test img {
-  width: 40%;
-  padding: 10px;
-  transition: transform 1s ease-in-out;
+  width: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+.test a {
+  width: 30%;
+  padding: 0.5%;
 }
 img#patient:hover {
   transform: translateX(10%);
