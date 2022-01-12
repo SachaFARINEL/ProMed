@@ -14,7 +14,6 @@ nav {
 }
 .test a {
   width: 30%;
-  padding: 0.5%;
 }
 img#patient:hover {
   transform: translateX(10%);
