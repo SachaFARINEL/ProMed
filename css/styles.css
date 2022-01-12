@@ -16,8 +16,8 @@ nav {
   width: 30%;
 }
 img#patient:hover {
-  transform: translateX(10%);
+  transform: translateX(10%) scale(1.1);
 }
 img#praticien:hover {
-  transform: translateX(-10%);
+  transform: translateX(-10%) scale(1.1);
 }
