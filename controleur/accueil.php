@@ -1,7 +1,6 @@
 <?php
-if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
-    $racine = "..";
-}
+require_once "libraries/utils.php";
+
 
 
     // recuperation des donnees GET, POST, et SESSION
@@ -14,8 +13,5 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 ;
 
 // appel du script de vue qui permet de gerer l'affichage des donnees
-$titre = "Bienvenue sur notre accueil";
-include "$racine/vue/entete.html.php";
-
-include "$racine/vue/accueil.html.php";
-include "$racine/vue/pied.html.php";
+$pageTitle = 'Accueil';
+render('accueil', compact('pageTitle'));
