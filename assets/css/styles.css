@@ -4,7 +4,7 @@ a {
   text-decoration: none;
 }
 
-/* Mise en page vue : entete.html.php */
+/* Mise en page templates : layout.html.php --> Entête de notre site */
 
 nav {
   display: flex;
@@ -42,7 +42,7 @@ nav a strong {
   transition: transform 0.5s ease-in-out;
 }
 .test a {
-  width: 30%;
+  width: 35%;
 }
 img#patient:hover {
   transform: translateX(10%) scale(1.1);

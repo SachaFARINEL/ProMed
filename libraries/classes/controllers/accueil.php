@@ -1,5 +1,6 @@
 <?php
-require_once "libraries/utils.php";
+require_once "libraries/classes/Renderer.php";
+
 
 
     // recuperation des donnees GET, POST, et SESSION
@@ -12,5 +13,5 @@ require_once "libraries/utils.php";
 ;
 
 // appel du script de vue qui permet de gerer l'affichage des donnees
-$pageTitle = 'Espace praticien';
-render('praticien', compact('pageTitle'));
+$pageTitle = 'Accueil';
+render('accueil', compact('pageTitle'));
