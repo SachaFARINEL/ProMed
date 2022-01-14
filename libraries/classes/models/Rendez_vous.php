@@ -9,34 +9,49 @@ class Rendez_vous
      * @return array
      */
 
-    function findAll(): array
+    public function findAll(): array
     {
-        $pdo = getPdo();
-        $resultats = $pdo->query('SELECT * FROM rendez_vous ORDER BY id ');
-        // On fouille le résultat pour en extraire les données réelles
-        $rendez_vous = $resultats->fetchAll();
+        try {
+            $pdo = getPdo();
+            $resultats = $pdo->query('SELECT * FROM rendez_vous ORDER BY id ');
+            // On fouille le résultat pour en extraire les données réelles
+            $rendez_vous = $resultats->fetchAll();
 
-        return $rendez_vous;
+            return $rendez_vous;
+
+            echo 'Tous les rendez-vous trouvés';
+        } catch (PDOException $e) {
+
+            die('Erreur : ' . $e->getMessage());
+        }
     }
 
     /** 
      * Retourne un rendez-vous grâce à son identifiant
      * 
+     * @param integer $id
      * @return array
      */
 
     public function find(int $id)
     {
-        $pdo = getPdo();
-        $query = $pdo->prepare("SELECT * FROM rendez_vous WHERE id = :rendez_vous_id");
+        try {
+            $pdo = getPdo();
+            $query = $pdo->prepare("SELECT * FROM rendez_vous WHERE id = :id_rendez_vous");
 
-        // On exécute la requête en précisant le paramètre :rendez_vous_id
-        $query->execute(['rendez_vous_id' => $id]);
+            // On exécute la requête en précisant le paramètre :id_rendez_vous
+            $query->execute(['id_rendez_vous' => $id]);
 
-        //On fouille le résultat pour en extraire les données réelles du rendez_vous
-        $rendez_vous = $query->fetch();
+            //On fouille le résultat pour en extraire les données réelles du rendez_vous
+            $rendez_vous = $query->fetch();
 
-        return $rendez_vous;
+            return $rendez_vous;
+
+            echo 'Rendez-vous trouvé';
+        } catch (PDOException $e) {
+
+            die('Erreur : ' . $e->getMessage());
+        }
     }
 
     /**
@@ -48,8 +63,15 @@ class Rendez_vous
 
     public function delete(int $id): void
     {
-        $pdo = getPdo();
-        $query = $pdo->prepare('DELETE FROM rendez_vous WHERE id = :id');
-        $query->execute(['id' => $id]);
+        try {
+            $pdo = getPdo();
+            $query = $pdo->prepare('DELETE FROM rendez_vous WHERE id = :id');
+            $query->execute(['id' => $id]);
+
+            echo 'Rendez-vous supprimé';
+        } catch (PDOException $e) {
+
+            die('Erreur : ' . $e->getMessage());
+        }
     }
 }

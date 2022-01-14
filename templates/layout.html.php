@@ -9,15 +9,20 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400&display=swap" rel="stylesheet">
 
     <link href="/assets/css/styles.css" rel="stylesheet" />
 
+    <!-- Bootstrap -->
 
+
+    <!-- Formulaire François -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="/assets/scripts/formulaireP.js"></script>
+
+    <!-- Formulaire Sacha -->
+
+
     <title>proMED - <?= $pageTitle ?></title>
 </head>
 
