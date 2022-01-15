@@ -9,34 +9,49 @@ class Prestation
      * @return array
      */
 
-    function findAll(): array
+    public function findAll(): array
     {
-        $pdo = getPdo();
-        $resultats = $pdo->query('SELECT * FROM prestation ORDER BY id ');
-        // On fouille le résultat pour en extraire les données réelles
-        $prestations = $resultats->fetchAll();
+        try {
+            $pdo = getPdo();
+            $resultats = $pdo->query('SELECT * FROM prestation ORDER BY id ');
+            // On fouille le résultat pour en extraire les données réelles
+            $prestations = $resultats->fetchAll();
 
-        return $prestations;
+            return $prestations;
+
+            echo 'Toutes les prestations trouvées';
+        } catch (PDOException $e) {
+
+            die('Erreur : ' . $e->getMessage());
+        }
     }
 
     /** 
      * Retourne une prestation grâce à son identifiant
      * 
+     * @param integer $id
      * @return array
      */
 
     public function find(int $id)
     {
-        $pdo = getPdo();
-        $query = $pdo->prepare("SELECT * FROM prestation WHERE id = :prestation_id");
+        try {
+            $pdo = getPdo();
+            $query = $pdo->prepare("SELECT * FROM prestation WHERE id = :id_prestation");
 
-        // On exécute la requête en précisant le paramètre :prestation_id
-        $query->execute(['prestation_id' => $id]);
+            // On exécute la requête en précisant le paramètre :id_prestation
+            $query->execute(['id_prestation' => $id]);
 
-        //On fouille le résultat pour en extraire les données réelles de la prestation
-        $prestation = $query->fetch();
+            //On fouille le résultat pour en extraire les données réelles de la prestation
+            $prestation = $query->fetch();
 
-        return $prestation;
+            return $prestation;
+
+            echo 'Prestation trouvée';
+        } catch (PDOException $e) {
+
+            die('Erreur : ' . $e->getMessage());
+        }
     }
 
     /**
@@ -48,8 +63,15 @@ class Prestation
 
     public function delete(int $id): void
     {
-        $pdo = getPdo();
-        $query = $pdo->prepare('DELETE FROM prestation WHERE id = :id');
-        $query->execute(['id' => $id]);
+        try {
+            $pdo = getPdo();
+            $query = $pdo->prepare('DELETE FROM prestation WHERE id = :id');
+            $query->execute(['id' => $id]);
+
+            echo 'Prestation supprimée';
+        } catch (PDOException $e) {
+
+            die('Erreur : ' . $e->getMessage());
+        }
     }
 }

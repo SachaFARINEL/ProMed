@@ -15,13 +15,17 @@
     </p>
 </div>
 
+</p>
+<p><a href="./?action=inscriptionPatient">Test</a></p>
+<p>
 
 
-<?php
 
-/**
- * Extraction de toutes les données de table patient par colonne
- */
+    <?php
+
+    /**
+     * Extraction de toutes les données de table patient par colonne
+     */
 /*
 foreach ($patients as $patient) : ?>
     <h2>id : <?= $patient['id'] ?></h2>
