@@ -1,4 +1,7 @@
 <?php
+
+namespace Models;
+
 require_once "libraries/classes/models/Model.php";
 
 
@@ -81,7 +84,7 @@ class Patient extends Model
             ));
 
             echo 'Entrée ajoutée dans la table';
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
 
             die('Erreur : ' . $e->getMessage());
         }

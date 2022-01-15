@@ -1,4 +1,7 @@
 <?php
+
+namespace Models;
+
 require_once "libraries/classes/Database.php";
 
 abstract class Model
@@ -28,7 +31,7 @@ abstract class Model
 
     public function find(int $id)
     {
-        try {
+        try { /* Essayer si cela fonctionne */
 
             $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE id =:id");
 
@@ -43,7 +46,9 @@ abstract class Model
 
             //On affiche à l'écran un message (pour le développement)
             echo "$this->table trouvé";
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) { /* Sinon afficher l'erreur en question */
+            /* Dans ce cas j'utilise '\PDOException' à la place de 'PDOException' car 
+            nous sommes dans un namespace. PDOException n'est donc pas défini ici*/
 
             die('Erreur : ' . $e->getMessage());
         }
@@ -64,7 +69,7 @@ abstract class Model
             $query->execute(['id' => $id]);
 
             echo "$this->table supprimé";
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
 
             die('Erreur : ' . $e->getMessage());
         }
@@ -76,7 +81,8 @@ abstract class Model
      * @return array
      */
 
-    public function findAll(?string $order = ""): array /* ?string signifie variable string non obligatoire */
+    public function findAll(?string $order = ""): array
+    /* ?string signifie variable string non obligatoire, utile ici si l'on n'a pas besoin de classer nos résultats */
     {
         $sql = "SELECT * FROM {$this->table}";
 
@@ -93,7 +99,7 @@ abstract class Model
             return $items;
 
             echo "Toute la table $this->table trouvé";
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
 
             die('Erreur : ' . $e->getMessage());
         }
