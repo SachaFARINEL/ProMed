@@ -42,7 +42,7 @@ $prenom_generaliste = $_POST['prenom_generaliste'];
 
 $mail_generaliste = $_POST['mail_generaliste'];
 
-$$num_generaliste = $_POST['$num_generaliste'];
+$tel_generaliste = $_POST['tel_generaliste'];
 
 $model->insert(
     $nom,
@@ -63,7 +63,7 @@ $model->insert(
     $nom_generaliste,
     $prenom_generaliste,
     $mail_generaliste,
-    $num_generaliste
+    $tel_generaliste
 );
 // appel des fonctions permettant de recuperer les donnees utiles a l'affichage 
 

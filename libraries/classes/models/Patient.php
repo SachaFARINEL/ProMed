@@ -103,7 +103,7 @@ class Patient
         string $nom_generaliste,
         string $prenom_generaliste,
         string $mail_generaliste,
-        string $num_generaliste
+        string $tel_generaliste
     ): void {
 
         try {
@@ -118,18 +118,18 @@ class Patient
         mot_de_passe =:mot_de_passe, 
         activite =:activite, 
         num_secu =:num_secu, 
-        mutelle =:mutuelle, 
+        mutuelle =:mutuelle, 
         caisse =:caisse, 
         date_naissance =:date_naissance, 
         sexe =:sexe, 
-        num_tuteur =:nom_tuteur, 
+        nom_tuteur =:nom_tuteur, 
         prenom_tuteur =:prenom_tuteur, 
         mail_tuteur =:mail_tuteur, 
         tel_tuteur =:tel_tuteur, 
         nom_generaliste =:nom_generaliste, 
         prenom_generaliste =:prenom_generaliste,
         mail_generaliste =:mail_generaliste, 
-        num_generaliste =:num_generaliste, 
+        tel_generaliste =:tel_generaliste, 
         date_inscription = NOW()');
 
             $query->execute(compact(
@@ -144,7 +144,6 @@ class Patient
                 'caisse',
                 'date_naissance',
                 'sexe',
-                'num_tuteur',
                 'nom_tuteur',
                 'prenom_tuteur',
                 'mail_tuteur',
@@ -152,7 +151,7 @@ class Patient
                 'nom_generaliste',
                 'prenom_generaliste',
                 'mail_generaliste',
-                'nom_generaliste'
+                'tel_generaliste'
             ));
 
             echo 'Entrée ajoutée dans la table';

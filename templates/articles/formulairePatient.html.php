@@ -1,4 +1,4 @@
-<form action="./?action=inscriptionPatient" method="POST">
+<form action="http://promed/?action=inscriptionPatient" method="POST">
     <fieldset>
 
         <!-- Nom du formulaire -->
@@ -8,8 +8,8 @@
         <!-- Nom -->
 
         <div class="form-example">
-            <label for="name"> Nom : </label>
-            <input type="text" name="name" id="name" required>
+            <label for="nom"> Nom : </label>
+            <input type="text" name="nom" id="nom" required>
         </div>
 
         <!-- Prénom -->
@@ -18,7 +18,7 @@
             <label for="prenom"> Prénom : </label>
             <input type="text" name="prenom" id="prenom" required>
         </div>
-        libraries\classes\controllers\inscriptionPatient.php
+
         <!-- Adresse e-mail -->
 
         <div class="form-example">
@@ -79,9 +79,9 @@
 
         <div class="form-example">
             <label for="mot de passe"> Sexe : </label>
-            <input type="radio" name="m" value="m" /> Homme
+            <input type="radio" name="sexe" value="m" /> Homme
 
-            <input type="radio" name="f" value="f" /> Femme
+            <input type="radio" name="sexe" value="f" /> Femme
         </div>
 
         <!-- Nom du tuteur -->
@@ -115,28 +115,28 @@
         <!-- Nom du médecin généraliste -->
 
         <div class="form-example">
-            <label for="mot de passe"> Nom du médecin généraliste : </label>
+            <label for="nom_generaliste"> Nom du médecin généraliste : </label>
             <input type="text" name="nom_generaliste" id="nom_generaliste">
         </div>
 
         <!-- Prénom du médecin généraliste  -->
 
         <div class="form-example">
-            <label for="mot de passe"> Prénom du médecin généraliste : </label>
+            <label for="prenom_generaliste"> Prénom du médecin généraliste : </label>
             <input type="text" name="prenom_generaliste" id="prenom_generaliste">
         </div>
 
         <!-- Mail du médecin généraliste -->
 
         <div class="form-example">
-            <label for="mot de passe"> Mail du médecin généraliste : </label>
+            <label for="mail_generaliste"> Mail du médecin généraliste : </label>
             <input type="email" name="mail_generaliste" id="mail_generaliste">
         </div>
 
         <!-- Numéro de téléphone du médecin généraliste  -->
 
         <div class="form-example">
-            <label for="mot de passe"> Numéro de téléphone du médecin généraliste : </label>
+            <label for="tel_generaliste"> Numéro de téléphone du médecin généraliste : </label>
             <input type="tel" name="tel_generaliste" id="tel_generaliste">
         </div>
 

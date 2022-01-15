@@ -9,6 +9,7 @@ function controleurPrincipal($action)
     $lesActions["praticien"] = "praticien.php";
     $lesActions["inscriptionPraticien"] = "inscriptionPraticien.php";
     $lesActions["inscriptionPatient"] = "inscriptionPatient.php";
+    $lesActions["formulaireInscriptionPatient"] = "formulaireInscriptionPatient.php";
 
 
     if (array_key_exists($action, $lesActions)) {

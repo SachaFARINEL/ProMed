@@ -16,8 +16,9 @@
 </div>
 
 </p>
-<p><a href="./?action=inscriptionPatient">Test</a></p>
+<p><a href="./?action=formulaireInscriptionPatient">Test inscription patient</a></p>
 <p>
+
 
 
 
