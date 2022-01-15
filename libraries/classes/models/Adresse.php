@@ -1,7 +1,7 @@
 <?php
-require_once "libraries/classes/Database.php";
+require_once "libraries/classes/models/Model.php";
 
-class Adresse
+class Adresse extends Model
 {
     /**
      * Retourne la liste des adresses classés par leurs identifiants
@@ -12,8 +12,9 @@ class Adresse
     public function findAll(): array
     {
         try {
-            $pdo = getPdo();
-            $resultats = $pdo->query('SELECT * FROM adresse ORDER BY id ');
+
+            $resultats = $this->pdo->query('SELECT * FROM adresse ORDER BY id ');
+
             // On fouille le résultat pour en extraire les données réelles
             $adresses = $resultats->fetchAll();
 
@@ -36,8 +37,8 @@ class Adresse
     public function find(int $id)
     {
         try {
-            $pdo = getPdo();
-            $query = $pdo->prepare("SELECT * FROM adresse WHERE id = :id_adresse");
+
+            $query = $this->pdo->prepare("SELECT * FROM adresse WHERE id = :id_adresse");
 
             // On exécute la requête en précisant le paramètre :id_adresse
             $query->execute(['id_adresse' => $id]);
@@ -64,8 +65,8 @@ class Adresse
     public function delete(int $id): void
     {
         try {
-            $pdo = getPdo();
-            $query = $pdo->prepare('DELETE FROM adresse WHERE id = :id');
+
+            $query = $this->pdo->prepare('DELETE FROM adresse WHERE id = :id');
             $query->execute(['id' => $id]);
 
             echo 'Adresse supprimée ';

@@ -3,9 +3,17 @@ require_once "libraries/classes/Renderer.php";
 require_once "libraries/classes/models/Patient.php";
 
 
+/**
+ * Création d'un nouvel objet model, de la classe Patient.
+ */
 
 $model = new Patient;
-// recuperation des donnees GET, POST, et SESSION
+
+/**
+ * Récupération des donnés POST de notre formulaire Patient
+ * Une méthode sera plus simple par la suite, mais j'ai pas encore regardé la vidéo lol
+ */
+
 $nom = $_POST['nom'];
 
 $prenom = $_POST['prenom'];
@@ -44,6 +52,10 @@ $mail_generaliste = $_POST['mail_generaliste'];
 
 $tel_generaliste = $_POST['tel_generaliste'];
 
+/**
+ * Insertion de toutes les variables dans ma requète SQL INSERT (Patient)
+ */
+
 $model->insert(
     $nom,
     $prenom,
@@ -65,12 +77,13 @@ $model->insert(
     $mail_generaliste,
     $tel_generaliste
 );
-// appel des fonctions permettant de recuperer les donnees utiles a l'affichage 
 
 
-// traitement si necessaire des donnees recuperees
+/**
+ * Appel du script de vue qui permet de gerer l'affichage des donnees
+ * 
+ */
 
 
-// appel du script de vue qui permet de gerer l'affichage des donnees
 $pageTitle = "Formulaire d'inscription Patient";
 render('formulairePatient', compact('pageTitle'));

@@ -1,7 +1,7 @@
 <?php
-require_once "libraries/classes/Database.php";
+require_once "libraries/classes/models/Model.php";
 
-class Prestation
+class Prestation extends Model
 {
     /**
      * Retourne la liste des prestations classés par leurs identifiants
@@ -12,8 +12,9 @@ class Prestation
     public function findAll(): array
     {
         try {
-            $pdo = getPdo();
-            $resultats = $pdo->query('SELECT * FROM prestation ORDER BY id ');
+
+            $resultats = $this->pdo->query('SELECT * FROM prestation ORDER BY id ');
+
             // On fouille le résultat pour en extraire les données réelles
             $prestations = $resultats->fetchAll();
 
@@ -36,8 +37,8 @@ class Prestation
     public function find(int $id)
     {
         try {
-            $pdo = getPdo();
-            $query = $pdo->prepare("SELECT * FROM prestation WHERE id = :id_prestation");
+
+            $query = $this->pdo->prepare("SELECT * FROM prestation WHERE id = :id_prestation");
 
             // On exécute la requête en précisant le paramètre :id_prestation
             $query->execute(['id_prestation' => $id]);
@@ -64,8 +65,8 @@ class Prestation
     public function delete(int $id): void
     {
         try {
-            $pdo = getPdo();
-            $query = $pdo->prepare('DELETE FROM prestation WHERE id = :id');
+
+            $query = $this->pdo->prepare('DELETE FROM prestation WHERE id = :id');
             $query->execute(['id' => $id]);
 
             echo 'Prestation supprimée';

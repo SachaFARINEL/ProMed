@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Le controleur principal gère la redirection des pages
+ * 
+ */
+
+
 function controleurPrincipal($action)
 {
     $lesActions = array();

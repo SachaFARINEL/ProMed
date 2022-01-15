@@ -1,8 +1,8 @@
 <?php
-require_once "libraries/classes/Database.php";
-// require_once "libraries/classes/controllers/inscriptionPatient.php";
+require_once "libraries/classes/models/Model.php";
 
-class Patient
+
+class Patient extends Model
 {
     /**
      * Retourne la liste des patients classés par leurs identifiants
@@ -13,8 +13,8 @@ class Patient
     public function findAll(): array
     {
         try {
-            $pdo = getPdo();
-            $resultats = $pdo->query('SELECT * FROM patient ORDER BY id ');
+
+            $resultats = $this->pdo->query('SELECT * FROM patient ORDER BY id ');
 
             // On fouille le résultat pour en extraire les données réelles
             $patients = $resultats->fetchAll();
@@ -39,8 +39,7 @@ class Patient
     {
         try {
 
-            $pdo = getPdo();
-            $query = $pdo->prepare("SELECT * FROM patient WHERE id = :id_patient");
+            $query = $this->pdo->prepare("SELECT * FROM patient WHERE id = :id_patient");
 
             // On exécute la requête en précisant le paramètre :id_patient
             $query->execute(['id_patient' => $id]);
@@ -67,8 +66,8 @@ class Patient
     public function delete(int $id): void
     {
         try {
-            $pdo = getPdo();
-            $query = $pdo->prepare('DELETE FROM patient WHERE id = :id');
+
+            $query = $this->pdo->prepare('DELETE FROM patient WHERE id = :id');
             $query->execute(['id' => $id]);
 
             echo 'Entrée ajoutée dans la table';
@@ -108,9 +107,7 @@ class Patient
 
         try {
 
-            $pdo = getPdo();
-
-            $query = $pdo->prepare('INSERT INTO patient SET 
+            $query = $this->pdo->prepare('INSERT INTO patient SET 
         nom = :nom, 
         prenom = :prenom, 
         mail = :mail, 

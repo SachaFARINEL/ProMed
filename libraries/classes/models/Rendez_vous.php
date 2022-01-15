@@ -1,7 +1,7 @@
 <?php
-require_once "libraries/classes/Database.php";
+require_once "libraries/classes/models/Model.php";
 
-class Rendez_vous
+class Rendez_vous extends Model
 {
     /**
      * Retourne la liste des rendez-vous classés par leurs identifiants
@@ -12,8 +12,9 @@ class Rendez_vous
     public function findAll(): array
     {
         try {
-            $pdo = getPdo();
-            $resultats = $pdo->query('SELECT * FROM rendez_vous ORDER BY id ');
+
+            $resultats = $this->pdo->query('SELECT * FROM rendez_vous ORDER BY id ');
+
             // On fouille le résultat pour en extraire les données réelles
             $rendez_vous = $resultats->fetchAll();
 
@@ -36,8 +37,8 @@ class Rendez_vous
     public function find(int $id)
     {
         try {
-            $pdo = getPdo();
-            $query = $pdo->prepare("SELECT * FROM rendez_vous WHERE id = :id_rendez_vous");
+
+            $query = $this->pdo->prepare("SELECT * FROM rendez_vous WHERE id = :id_rendez_vous");
 
             // On exécute la requête en précisant le paramètre :id_rendez_vous
             $query->execute(['id_rendez_vous' => $id]);
@@ -64,8 +65,8 @@ class Rendez_vous
     public function delete(int $id): void
     {
         try {
-            $pdo = getPdo();
-            $query = $pdo->prepare('DELETE FROM rendez_vous WHERE id = :id');
+
+            $query = $this->pdo->prepare('DELETE FROM rendez_vous WHERE id = :id');
             $query->execute(['id' => $id]);
 
             echo 'Rendez-vous supprimé';

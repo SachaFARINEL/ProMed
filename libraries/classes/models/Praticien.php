@@ -1,9 +1,8 @@
 <?php
-require_once "libraries/classes/Database.php";
+require_once "libraries/classes/models/Model.php";
 
-class Praticien
+class Praticien extends Model
 {
-
     /**
      * Retourne la liste des praticiens classés par leurs identifiants
      * 
@@ -13,8 +12,9 @@ class Praticien
     public function findAll(): array
     {
         try {
-            $pdo = getPdo();
-            $resultats = $pdo->query('SELECT * FROM praticien ORDER BY id ');
+
+            $resultats = $this->pdo->query('SELECT * FROM praticien ORDER BY id ');
+
             // On fouille le résultat pour en extraire les données réelles
             $praticiens = $resultats->fetchAll();
 
@@ -37,8 +37,8 @@ class Praticien
     public function find(int $id)
     {
         try {
-            $pdo = getPdo();
-            $query = $pdo->prepare("SELECT * FROM praticien WHERE id = :id_praticien");
+
+            $query = $this->pdo->prepare("SELECT * FROM praticien WHERE id = :id_praticien");
 
             // On exécute la requête en précisant le paramètre :id_praticien
             $query->execute(['id_praticien' => $id]);
@@ -65,8 +65,8 @@ class Praticien
     public function delete(int $id): void
     {
         try {
-            $pdo = getPdo();
-            $query = $pdo->prepare('DELETE FROM praticien WHERE id = :id');
+
+            $query = $this->pdo->prepare('DELETE FROM praticien WHERE id = :id');
             $query->execute(['id' => $id]);
 
             echo 'Praticien supprimé';
