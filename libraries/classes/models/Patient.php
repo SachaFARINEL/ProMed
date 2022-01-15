@@ -4,78 +4,7 @@ require_once "libraries/classes/models/Model.php";
 
 class Patient extends Model
 {
-    /**
-     * Retourne la liste des patients classés par leurs identifiants
-     * 
-     * @return array
-     */
-
-    public function findAll(): array
-    {
-        try {
-
-            $resultats = $this->pdo->query('SELECT * FROM patient ORDER BY id ');
-
-            // On fouille le résultat pour en extraire les données réelles
-            $patients = $resultats->fetchAll();
-
-            return $patients;
-
-            echo 'Tous les patients trouvés';
-        } catch (PDOException $e) {
-
-            echo 'Erreur : ' . $e->getMessage();
-        }
-    }
-
-    /** 
-     * Retourne un patient grâce à son identifiant
-     * 
-     * @param integer $id
-     * @return array
-     */
-
-    public function find(int $id)
-    {
-        try {
-
-            $query = $this->pdo->prepare("SELECT * FROM patient WHERE id = :id_patient");
-
-            // On exécute la requête en précisant le paramètre :id_patient
-            $query->execute(['id_patient' => $id]);
-
-            //On fouille le résultat pour en extraire les données réelles du patient
-            $patient = $query->fetch();
-
-            return $patient;
-
-            echo 'Patient trouvé';
-        } catch (PDOException $e) {
-
-            die('Erreur : ' . $e->getMessage());
-        }
-    }
-
-    /**
-     * Supprime un patient dans la base grâce à son identifiant
-     * 
-     * @param integer $id
-     * @return void
-     */
-
-    public function delete(int $id): void
-    {
-        try {
-
-            $query = $this->pdo->prepare('DELETE FROM patient WHERE id = :id');
-            $query->execute(['id' => $id]);
-
-            echo 'Entrée ajoutée dans la table';
-        } catch (PDOException $e) {
-
-            die('Erreur : ' . $e->getMessage());
-        }
-    }
+    protected $table = 'patient';
 
     /**
      * Insère un patient dans la base de données

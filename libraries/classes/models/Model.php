@@ -1,13 +1,14 @@
 <?php
 require_once "libraries/classes/Database.php";
 
-class Model
+abstract class Model
 {
 
     /**
-     * Déclaration de mon attribut proteced (héritage pour les classes) $pdo afin de gérer l'accès à la base de donné dans toutes mes Classes
+     * Déclaration de mes attributs protected (héritage pour les classes) 
      */
-    protected $pdo;
+    protected $pdo; // Connexion à la base de donnée
+    protected $table; // Indiquer sur quelle table nous voulons SELECT / INSERT INTO
 
     /**
      * Création de mon constructeur
@@ -16,5 +17,85 @@ class Model
     public function __construct()
     {
         $this->pdo = getPdo();
+    }
+
+    /** 
+     * Retourne un item grâce à son identifiant
+     * 
+     * @param integer $id
+     * 
+     */
+
+    public function find(int $id)
+    {
+        try {
+
+            $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE id =:id");
+
+            // On exécute la requête en précisant le paramètre :id
+            $query->execute(['id' => $id]);
+
+            //On fouille le résultat pour en extraire les données réelles de la table
+            $item = $query->fetch();
+
+            // On retourne (principe d'une fonction) ce que l'on à trouvé.
+            return $item;
+
+            //On affiche à l'écran un message (pour le développement)
+            echo "$this->table trouvé";
+        } catch (PDOException $e) {
+
+            die('Erreur : ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Supprime une entrée dans la base grâce à son identifiant
+     * 
+     * @param integer $id
+     * @return void
+     */
+
+    public function delete(int $id): void
+    {
+        try {
+
+            $query = $this->pdo->prepare("DELETE FROM {$this->table} WHERE id =:id");
+            $query->execute(['id' => $id]);
+
+            echo "$this->table supprimé";
+        } catch (PDOException $e) {
+
+            die('Erreur : ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Retourne la liste des item classés ou non par $order.
+     * 
+     * @return array
+     */
+
+    public function findAll(?string $order = ""): array /* ?string signifie variable string non obligatoire */
+    {
+        $sql = "SELECT * FROM {$this->table}";
+
+        if ($order) {
+            $sql .= " ORDER BY " . $order;
+        }
+        try {
+
+            $resultats = $this->pdo->query($sql);
+
+            // On fouille le résultat pour en extraire les données réelles
+            $items = $resultats->fetchAll();
+
+            return $items;
+
+            echo "Toute la table $this->table trouvé";
+        } catch (PDOException $e) {
+
+            die('Erreur : ' . $e->getMessage());
+        }
     }
 }
