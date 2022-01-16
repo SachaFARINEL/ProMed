@@ -16,7 +16,7 @@
 </div>
 
 </p>
-<p><a href="./?action=formulaireInscriptionPatient">Test inscription patient</a></p>
+<p><a href="./?controller=patient&task=inscription">Test inscription patient</a></p>
 <p>
 
 

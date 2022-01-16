@@ -9,7 +9,7 @@
         <label>Mot de passe :</label>
         <input type="password" name="mot_de_passe">
     </p>
-    <p><a href="./?action=inscriptionPraticien">S'inscrire</a></p>
+    <p><a href="./?controller=praticien&task=inscription">S'inscrire</a></p>
     <p>
         <input type="submit" value="Valider">
     </p>

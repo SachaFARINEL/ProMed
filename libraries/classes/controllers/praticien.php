@@ -1,16 +1,26 @@
 <?php
-require_once "libraries/classes/Renderer.php";
 
+namespace Controllers;
 
-    // recuperation des donnees GET, POST, et SESSION
-;
+class Praticien extends Controller
+{
+    protected $modelName = "Praticien";
 
-    // appel des fonctions permettant de recuperer les donnees utiles a l'affichage 
+    public function show()
+    {
+        $pageTitle = 'Espace praticien';
+        \Renderer::render('praticien', compact('pageTitle'));
+    }
 
+    public function index()
+    {
+        $pageTitle = 'Espace praticien';
+        \Renderer::render('accueil', compact('pageTitle'));
+    }
 
-    // traitement si necessaire des donnees recuperees
-;
-
-// appel du script de vue qui permet de gerer l'affichage des donnees
-$pageTitle = 'Espace praticien';
-render('praticien', compact('pageTitle'));
+    public function inscription()
+    {
+        $pageTitle = "Formulaire d'inscription Praticien";
+        \Renderer::render('formulairePraticien', compact('pageTitle'));
+    }
+}

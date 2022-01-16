@@ -30,7 +30,7 @@
 
     <nav>
 
-        <a href="./?action=accueil">
+        <a href=".?controller=praticien&task=index">
             <img id='logo' src="assets/images/logoEntete.png" alt="logo" />
             <h1>PRO<strong>MED</strong></h1>
         </a>

@@ -1,4 +1,4 @@
-<form action="http://promed/?action=inscriptionPatient" method="POST">
+<form action=".?controller=patient&task=save" method="POST">
     <fieldset>
 
         <!-- Nom du formulaire -->
