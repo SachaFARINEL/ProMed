@@ -1,7 +1,7 @@
 <div class='praticienLogin'>
     <h1>Formulaire PRATICIEN : </h1>
     <p>
-        <label>Votre pseudo :</label>
+        <label>Adresse Mail :</label>
         <input type="text" name="pseudo">
     </p>
 

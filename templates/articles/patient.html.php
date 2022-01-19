@@ -1,7 +1,7 @@
 <div class='patientLogin'>
     <h1>Formulaire Patient : </h1>
     <p>
-        <label>Votre pseudo :</label>
+        <label>Adresse Mail :</label>
         <input type="text" name="pseudo">
     </p>
 
