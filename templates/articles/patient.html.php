@@ -2,7 +2,7 @@
     <h1>Formulaire Patient : </h1>
     <p>
         <label>Adresse Mail :</label>
-        <input type="text" name="pseudo">
+        <input type="text" name="mail">
     </p>
 
     <p>

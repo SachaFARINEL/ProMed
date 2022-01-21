@@ -2,6 +2,9 @@
 
 namespace Controllers;
 
+use Database;
+use PDO;
+
 class Patient extends Controller
 {
     protected $modelName = "Patient";
@@ -86,19 +89,49 @@ class Patient extends Controller
         // 4. Redirection vers l'article en question :
         \Http::redirect('?controller=praticien&task=index');
     }
-}
-function getUtilisateurByMailU($mailU) {
 
-    try {
-        $cnx = connexionPDO();
-        $req = $cnx->prepare("select * from utilisateur where mailU=:mailU");
-        $req->bindValue(':mailU', $mailU, PDO::PARAM_STR);
-        $req->execute();
+    public function getAuth()
+    {
+        $pdo =Database::getPdo();
+        $stmt = $pdo->prepare('SELECT * FROM patient WHERE mail = :mail');
+        $stmt->bindValue(':mail', $_POST['mail'], PDO::PARAM_STR);
+        $stmt->execute();
+        $user = $stmt->fetch();
+
+        if ($user && password_verify($_POST['mot_de_passe'], $user['mot_de_passe'])) {
+            $_SESSION['auth'] = true;
+            echo 'Utilisateur connecté.';
+        } else {
+            echo 'Email/Mot de passe incorrect.';
+        }
         
-        $resultat = $req->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage();
-        die();
+
+        //Si le retour de la requète == $mot_de_passe {
+        //$_SESSION["$mail"]
+
+
+
     }
-    return $resultat;
+
+    //    Si isset Session, -> 
+    //    $pageTitle = 'accueilPatient';
+    //    \Renderer::render('accueilPatient', compact('pageTitle'));
+
+
 }
+
+// function getUtilisateurByMailU($mailU) {
+
+//     try {
+//         $cnx = connexionPDO();
+//         $req = $cnx->prepare("select * from utilisateur where mailU=:mailU");
+//         $req->bindValue(':mailU', $mailU, PDO::PARAM_STR);
+//         $req->execute();
+        
+//         $resultat = $req->fetch(PDO::FETCH_ASSOC);
+//     } catch (PDOException $e) {
+//         print "Erreur !: " . $e->getMessage();
+//         die();
+//     }
+//     return $resultat;
+// }

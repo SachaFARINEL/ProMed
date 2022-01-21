@@ -1,8 +1,8 @@
 <div class='praticienLogin'>
-    <h1>Formulaire PRATICIEN : </h1>
+    <h1>Connexion Praticien : </h1>
     <p>
         <label>Adresse Mail :</label>
-        <input type="text" name="pseudo">
+        <input type="text" name="mail">
     </p>
 
     <p>

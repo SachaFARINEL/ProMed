@@ -75,6 +75,26 @@ abstract class Model
         }
     }
 
+    public function checkAuth(string $mail)
+    {
+        try {
+            $query = $this->pdo->prepare("SELECT mot_de_passe FROM {$this->table} WHERE mail =:mail");
+            $query->execute(['mail' => $mail]);
+            
+            //On fouille le résultat pour en extraire les données réelles de la table
+            $item = $query->fetch();
+
+            // On retourne (principe d'une fonction) ce que l'on à trouvé.
+            return $item;
+            
+
+            echo "Requète trouvée";
+        } catch (\PDOException $e) {
+
+            die('Erreur : ' . $e->getMessage());
+        }
+    }
+
     /**
      * Retourne la liste des item classés ou non par $order.
      * 
