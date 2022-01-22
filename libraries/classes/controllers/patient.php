@@ -17,8 +17,15 @@ class Patient extends Controller
 
     public function showAuth()
     {
-        $pageTitle = 'Authentification patient';
-        \Renderer::render('authentificationPatient', compact('pageTitle'));
+        //La session n'est pas encore enregistré pour skippe l'authentification patient 
+        if (!isset($_SESSION['mail'])) {
+
+            $pageTitle = 'Authentification patient';
+            \Renderer::render('authentificationPatient', compact('pageTitle'));
+        } else {
+            $pageTitle = 'Espace patient';
+            \Renderer::render('espacePatient', compact('pageTitle'));
+        }
     }
 
     /**
@@ -38,6 +45,7 @@ class Patient extends Controller
      */
     public function showEspace(): void
     {
+
         $pageTitle = 'Espace patient';
         \Renderer::render('espacePatient', compact('pageTitle'));
     }
@@ -132,22 +140,35 @@ class Patient extends Controller
         //Apelle de la requète checkAuth avec le mail du patient
         $rechercheMotDePasse = $this->model->checkAuth($mail);
 
+
         /*Compare le mot de passe POST avec le mot de passe trouvé dans le BDD (ATTENTION : la requète retourne un array, nous devons donc transférer notre string patient mail en array pour la comparaison {Meilleure méthode à trouver ?? })
         Si c'est mot de passe son identique : */
         if ($rechercheMotDePasse === compact('mot_de_passe')) {
-            /*Si une session n'éxiste pas on la crée et un ajoute nos variables à la superglobale et on redirige le patient sur son espace.
-            Je n'ai pas encore réussi à utiliser les variables de Session dans l'espace patient */
+            // Si une session n'éxiste pas on la crée et un ajoute nos variables à la superglobale et on redirige le patient sur son espace.
+
             if (!isset($_SESSION)) {
                 session_start();
                 $_SESSION["mail"] = $mail;
                 $_SESSION["mot_de_passe"] = $mot_de_passe;
 
                 //Redirection du patient sur son espace
-                \Http::redirect('?controller=patient&task=showEspace');
+                $pageTitle = 'Espace patient';
+                \Renderer::render('espacePatient', compact('pageTitle', 'mail', 'mot_de_passe'));
             }
             //Sinon on affiche une erreur.
         } else {
             echo 'ERR, mot de passe incorrect';
         }
+    }
+
+    /**
+     * Permet au patient de se déconnecer. Clear les variables de Session : 
+     * @return void
+     */
+    function logout()
+    {
+        unset($_SESSION["mail"]);
+        unset($_SESSION["mot_de_passe"]);
+        \Http::redirect('?controller=praticien&task=index');
     }
 }

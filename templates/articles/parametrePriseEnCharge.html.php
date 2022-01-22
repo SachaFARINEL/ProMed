@@ -11,6 +11,5 @@ foreach ($donnesPraticien as $donnePraticien) : ?>
   <h5>tel : <?= $donnePraticien['tel'] ?></h5>
   <h5>num_adelie : <?= $donnePraticien['num_adelie'] ?></h5>
   <h5>date_inscription : <?= $donnePraticien['date_inscription'] ?></h5>
-
-
 <?php endforeach ?>
+<p><a href="./?controller=praticien&task=showEspace">Retour </a></p>
