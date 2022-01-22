@@ -48,6 +48,18 @@ class Praticien extends Controller
     }
 
     /**
+     * Affiche les données de l'ENSEMBLE des praticiens (Pour choisir lequel affiché, il faudra faire une requète pour avoir l'id de celui qui vient de se connecter, le mettre dans une variable de session, et choisir la requète find et non find all avec ...WHERE id = $_SESSION["id"])
+     * 
+     * @return void
+     */
+    public function afficherMonProfil()
+    {
+        $donnesPraticien = $this->model->findAll();
+        $pageTitle = "Mon profil";
+        \Renderer::render('parametrePriseEnCharge', compact('pageTitle', 'donnesPraticien'));
+    }
+
+    /**
      * Logging du praticien
      * 
      * @return void

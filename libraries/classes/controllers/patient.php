@@ -117,6 +117,7 @@ class Patient extends Controller
         \Http::redirect('?controller=patient&task=index');
     }
 
+
     /**
      * Logging du patient
      * 
