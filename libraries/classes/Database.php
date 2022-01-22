@@ -13,7 +13,7 @@ class Database
      *
      * @param integer $errorMode Une constante de PDO pour le mode d'erreur (par défaut ERRMODE_EXCEPTION)
      * @param integer $fetchMode Une constante de PDO pour le mode d'exploitation (par défaut FETCH_ASSOC)
-     * @param integer $innitCommand Une constante de PDO pour afficher les caractères spéciaux.
+     * @param integer $innitCommand Une constante de PDO pour afficher les caractères spéciaux propre à la langue française.
      * 
      * 
      * @return PDO

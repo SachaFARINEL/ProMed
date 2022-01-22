@@ -9,17 +9,44 @@ class Patient extends Controller
 {
     protected $modelName = "Patient";
 
-    public function show()
+    /**
+     * Affiche authentification patient 
+     * 
+     * @return void
+     */
+
+    public function showAuth()
     {
-        $pageTitle = 'Espace praticien';
-        \Renderer::render('patient', compact('pageTitle'));
+        $pageTitle = 'Authentification patient';
+        \Renderer::render('authentificationPatient', compact('pageTitle'));
     }
 
+    /**
+     * Affiche le formulaire d'inscription du patient
+     * 
+     * @return void
+     */
     public function inscription()
     {
         $pageTitle = 'Formulaire Patient';
         \Renderer::render('formulairePatient', compact('pageTitle'));
     }
+    /**
+     * Redirige le patient sur son espace
+     * 
+     * @return void
+     */
+    public function showEspace(): void
+    {
+        $pageTitle = 'Espace patient';
+        \Renderer::render('espacePatient', compact('pageTitle'));
+    }
+
+    /**
+     * Ajouter un patient dans la base de donnée
+     * 
+     * @return void
+     */
 
     public function save()
     {
@@ -86,52 +113,40 @@ class Patient extends Controller
             'date_inscription'
         ));
 
-        // 4. Redirection vers l'article en question :
-        \Http::redirect('?controller=praticien&task=index');
+        // 4. Redirection vers la page d'accueil pour le moment :
+        \Http::redirect('?controller=patient&task=index');
     }
 
-    public function getAuth()
+    /**
+     * Logging du patient
+     * 
+     * @return void
+     */
+    public function auth()
     {
-        $pdo =Database::getPdo();
-        $stmt = $pdo->prepare('SELECT * FROM patient WHERE mail = :mail');
-        $stmt->bindValue(':mail', $_POST['mail'], PDO::PARAM_STR);
-        $stmt->execute();
-        $user = $stmt->fetch();
+        //Récupération des données du formulaire
+        $mail = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_SPECIAL_CHARS);
+        $mot_de_passe = filter_input(INPUT_POST, 'mot_de_passe');
 
-        if ($user && password_verify($_POST['mot_de_passe'], $user['mot_de_passe'])) {
-            $_SESSION['auth'] = true;
-            echo 'Utilisateur connecté.';
+        //Apelle de la requète checkAuth avec le mail du patient
+        $rechercheMotDePasse = $this->model->checkAuth($mail);
+
+        /*Compare le mot de passe POST avec le mot de passe trouvé dans le BDD (ATTENTION : la requète retourne un array, nous devons donc transférer notre string patient mail en array pour la comparaison {Meilleure méthode à trouver ?? })
+        Si c'est mot de passe son identique : */
+        if ($rechercheMotDePasse === compact('mot_de_passe')) {
+            /*Si une session n'éxiste pas on la crée et un ajoute nos variables à la superglobale et on redirige le patient sur son espace.
+            Je n'ai pas encore réussi à utiliser les variables de Session dans l'espace patient */
+            if (!isset($_SESSION)) {
+                session_start();
+                $_SESSION["mail"] = $mail;
+                $_SESSION["mot_de_passe"] = $mot_de_passe;
+
+                //Redirection du patient sur son espace
+                \Http::redirect('?controller=patient&task=showEspace');
+            }
+            //Sinon on affiche une erreur.
         } else {
-            echo 'Email/Mot de passe incorrect.';
+            echo 'ERR, mot de passe incorrect';
         }
-        
-
-        //Si le retour de la requète == $mot_de_passe {
-        //$_SESSION["$mail"]
-
-
-
     }
-
-    //    Si isset Session, -> 
-    //    $pageTitle = 'accueilPatient';
-    //    \Renderer::render('accueilPatient', compact('pageTitle'));
-
-
 }
-
-// function getUtilisateurByMailU($mailU) {
-
-//     try {
-//         $cnx = connexionPDO();
-//         $req = $cnx->prepare("select * from utilisateur where mailU=:mailU");
-//         $req->bindValue(':mailU', $mailU, PDO::PARAM_STR);
-//         $req->execute();
-        
-//         $resultat = $req->fetch(PDO::FETCH_ASSOC);
-//     } catch (PDOException $e) {
-//         print "Erreur !: " . $e->getMessage();
-//         die();
-//     }
-//     return $resultat;
-// }

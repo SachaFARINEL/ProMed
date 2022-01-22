@@ -78,17 +78,50 @@ abstract class Model
     public function checkAuth(string $mail)
     {
         try {
+
             $query = $this->pdo->prepare("SELECT mot_de_passe FROM {$this->table} WHERE mail =:mail");
+
             $query->execute(['mail' => $mail]);
-            
+
             //On fouille le résultat pour en extraire les données réelles de la table
             $item = $query->fetch();
 
             // On retourne (principe d'une fonction) ce que l'on à trouvé.
             return $item;
-            
+
 
             echo "Requète trouvée";
+        } catch (\PDOException $e) {
+
+            die('Erreur : ' . $e->getMessage());
+        }
+    }
+    public function insert(array $data): void
+    {
+
+        // 1. Création de la chaine SQL
+        // Exemple : INSERT INTO patient (
+        $sql = "INSERT INTO {$this->table} (";
+
+        // 2. Récupération du nom des champs
+        $fields = array_keys($data);
+
+        // 3. On ajoute les fields à la requête
+        // Exemple : INSERT INTO patient (title, slug) VALUES (
+        $sql .= implode(",", $fields) . ") VALUES (";
+
+        // 4. On créé les paramètres PDO
+        $params = array_map(function ($field) {
+            return ":$field";
+        }, $fields);
+        $sql .= implode(", ", $params) . ")";
+
+        // 5. On prépare et on exécute la requête
+        try {
+            $query = $this->pdo->prepare($sql);
+            $query->execute($data);
+
+            echo "$this->table ajouté";
         } catch (\PDOException $e) {
 
             die('Erreur : ' . $e->getMessage());
@@ -119,38 +152,6 @@ abstract class Model
             return $items;
 
             echo "Toute la table $this->table trouvé";
-        } catch (\PDOException $e) {
-
-            die('Erreur : ' . $e->getMessage());
-        }
-    }
-
-    public function insert(array $data): void
-    {
-
-        // 1. Création de la chaine SQL
-        // Exemple : INSERT INTO patient (
-        $sql = "INSERT INTO {$this->table} (";
-
-        // 2. Récupération du nom des champs
-        $fields = array_keys($data);
-
-        // 3. On ajoute les fields à la requête
-        // Exemple : INSERT INTO patient (title, slug) VALUES (
-        $sql .= implode(",", $fields) . ") VALUES (";
-
-        // 4. On créé les paramètres PDO
-        $params = array_map(function ($field) {
-            return ":$field";
-        }, $fields);
-        $sql .= implode(", ", $params) . ")";
-
-        // 5. On prépare et on exécute la requête
-        try {
-            $query = $this->pdo->prepare($sql);
-            $query->execute($data);
-
-            echo "$this->table ajouté";
         } catch (\PDOException $e) {
 
             die('Erreur : ' . $e->getMessage());
