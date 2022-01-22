@@ -1,4 +1,4 @@
 <?php
-echo 'Bienvenue sur votre espace Patient !' . $_SESSION['mail'];
+echo 'Bienvenue sur votre espace' . ' ' . $_SESSION['nom'] . ' ' . $_SESSION['prenom'];
 ?>
-p><a href="./?controller=patient&task=logout">Se déconnecter</a></p>
+<p><a href="./?controller=patient&task=logout">Se déconnecter</a></p>

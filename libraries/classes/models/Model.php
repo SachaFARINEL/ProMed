@@ -79,7 +79,7 @@ abstract class Model
     {
         try {
 
-            $query = $this->pdo->prepare("SELECT mot_de_passe FROM {$this->table} WHERE mail =:mail");
+            $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE mail =:mail");
 
             $query->execute(['mail' => $mail]);
 

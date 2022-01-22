@@ -2,12 +2,12 @@
 
 namespace Controllers;
 
-use Database;
-use PDO;
 
 class Patient extends Controller
 {
     protected $modelName = "Patient";
+
+
 
     /**
      * Affiche authentification patient 
@@ -38,6 +38,7 @@ class Patient extends Controller
         $pageTitle = 'Formulaire Patient';
         \Renderer::render('formulairePatient', compact('pageTitle'));
     }
+
     /**
      * Redirige le patient sur son espace
      * 
@@ -135,25 +136,26 @@ class Patient extends Controller
     {
         //Récupération des données du formulaire
         $mail = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_SPECIAL_CHARS);
-        $mot_de_passe = filter_input(INPUT_POST, 'mot_de_passe');
+        $mdp = filter_input(INPUT_POST, 'mot_de_passe');
 
-        //Apelle de la requète checkAuth avec le mail du patient
-        $rechercheMotDePasse = $this->model->checkAuth($mail);
+        //Extract de la requète checkAuth avec le mail du patient (Le méthode extract est expliqué dans le Renderer)
+        extract($this->model->checkAuth($mail));
 
-
-        /*Compare le mot de passe POST avec le mot de passe trouvé dans le BDD (ATTENTION : la requète retourne un array, nous devons donc transférer notre string patient mail en array pour la comparaison {Meilleure méthode à trouver ?? })
-        Si c'est mot de passe son identique : */
-        if ($rechercheMotDePasse === compact('mot_de_passe')) {
+        // Compare le mot de passe POST avec le mot de passe trouvé dans le BDD
+        // Si c'est mot de passe son identique : 
+        if ($mot_de_passe === $mdp) {
             // Si une session n'éxiste pas on la crée et un ajoute nos variables à la superglobale et on redirige le patient sur son espace.
 
             if (!isset($_SESSION)) {
                 session_start();
                 $_SESSION["mail"] = $mail;
                 $_SESSION["mot_de_passe"] = $mot_de_passe;
+                $_SESSION["nom"] = $nom;
+                $_SESSION["prenom"] = $prenom;
 
                 //Redirection du patient sur son espace
                 $pageTitle = 'Espace patient';
-                \Renderer::render('espacePatient', compact('pageTitle', 'mail', 'mot_de_passe'));
+                \Renderer::render('espacePatient', compact('pageTitle', 'mail', 'mot_de_passe', 'nom', 'prenom'));
             }
             //Sinon on affiche une erreur.
         } else {

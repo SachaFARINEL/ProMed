@@ -6,6 +6,8 @@ class Praticien extends Controller
 {
     protected $modelName = "Praticien";
 
+
+
     /**
      * Affiche authentification Praticien
      * 
@@ -14,9 +16,10 @@ class Praticien extends Controller
 
     public function showAuth(): void
     {
-        $pageTitle = 'Authentification praticien';
+        $pageTitle = 'Authentification Praticien';
         \Renderer::render('authentificationPraticien', compact('pageTitle'));
     }
+
 
     public function showEspace(): void
     {
@@ -71,7 +74,7 @@ class Praticien extends Controller
         $mot_de_passe = filter_input(INPUT_POST, 'mot_de_passe');
 
         //Apelle de la requète checkAuth avec le mail du praticien
-        $rechercheMotDePasse = $this->model->checkAuth($mail);
+        extract($this->model->checkAuth($mail));
 
         /*Compare le mot de passe POST avec le mot de passe trouvé dans le BDD (ATTENTION : la requète retourne un array, nous devons donc transférer notre string patient mail en array pour la comparaison {Meilleure méthode à trouver ?? })
         Si c'est mot de passe son identique : */
@@ -82,9 +85,11 @@ class Praticien extends Controller
                 session_start();
                 $_SESSION["mail"] = $mail;
                 $_SESSION["mot_de_passe"] = $mot_de_passe;
+                $_SESSION["nom"] = $nom;
+                $_SESSION["prenom"] = $prenom;
 
                 //Redirection du praticien sur son espace
-                \Http::redirect('?controller=praticien&task=showEspace');
+                \Renderer::render('espacePraticien', compact('pageTitle', 'mail', 'mot_de_passe', 'nom', 'prenom'));
             }
             //Sinon on affiche une erreur.
         } else {
