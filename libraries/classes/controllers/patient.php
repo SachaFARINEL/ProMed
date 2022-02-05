@@ -67,7 +67,9 @@ class Patient extends Controller
 
         $tel = filter_input(INPUT_POST, 'tel', FILTER_VALIDATE_INT);
 
-        $mot_de_passe = filter_input(INPUT_POST, 'mot_de_passe');
+        $password = filter_input(INPUT_POST, 'mot_de_passe');
+        //Hachage du mot de passe.
+        $mot_de_passe = password_hash($password, PASSWORD_DEFAULT);
 
         $activite = filter_input(INPUT_POST, 'activite', FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -123,7 +125,7 @@ class Patient extends Controller
         ));
 
         // 4. Redirection vers la page d'accueil pour le moment :
-        \Http::redirect('?controller=patient&task=index');
+        \Http::redirect('?controller=praticien&task=afficherMonProfil');
     }
 
 
@@ -137,15 +139,12 @@ class Patient extends Controller
         //Récupération des données du formulaire
         $mail = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_SPECIAL_CHARS);
         $mdp = filter_input(INPUT_POST, 'mot_de_passe');
-
         //Extract de la requète checkAuth avec le mail du patient (Le méthode extract est expliqué dans le Renderer)
         extract($this->model->checkAuth($mail));
-
         // Compare le mot de passe POST avec le mot de passe trouvé dans le BDD
         // Si c'est mot de passe son identique : 
-        if ($mot_de_passe === $mdp) {
+        if (password_verify($mdp, $mot_de_passe)) {
             // Si une session n'éxiste pas on la crée et un ajoute nos variables à la superglobale et on redirige le patient sur son espace.
-
             if (!isset($_SESSION)) {
                 session_start();
                 $_SESSION["mail"] = $mail;

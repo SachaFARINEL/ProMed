@@ -6,8 +6,6 @@ class Praticien extends Controller
 {
     protected $modelName = "Praticien";
 
-
-
     /**
      * Affiche authentification Praticien
      * 
