@@ -1,30 +1,46 @@
-<form action=".?controller=praticien&task=auth" method="POST">
-    <div class='praticienLogin text-center'>
-        <h1>Formulaire PRATICIEN : </h1>
-        <p>
-            <label>Votre mail:</label>
-            <input type="mail" name="mail">
-        </p>
+<section class="vh-20">
+    <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" class="img-fluid" alt="Phone image">
+            </div>
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                <form action=".?controller=praticien&task=auth" method="POST">
+                    <h3 class="py-2">Formulaire Praticien : </h3>
 
-        <p>
-            <label>Mot de passe :</label>
-            <input type="password" name="mot_de_passe">
-            <input type="submit" value="Valider">
-        </p>
-</form>
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="email" name="mail" id="form1Example13" class="form-control form-control-lg" placeholder="Entrez votre adresse e-mail" />
 
-</p>
-<p><a href="./?controller=praticien&task=inscription">S'inscrire</a></p>
-<p>
-</p>
-<p><a href="./?controller=praticien&task=showEspace">Accéder espace Praticien (sans authentification - developpement) </a></p>
-<p>
+                    </div>
 
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" name="mot_de_passe" id="form1Example23" class="form-control form-control-lg" placeholder="Entrez votre mot de passe" />
+
+                    </div>
+
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">S'authentifier</button>
+
+                    <div class="divider d-flex align-items-center my-4">
+                        <p class="text-center fw-bold mx-3 mb-0 text-muted">OU</p>
+                    </div>
+
+                    <a type="button" style="background-color: #55acee" class="btn btn-primary btn-lg btn-block" a href="./?controller=praticien&task=inscription">S'inscrire</a>
+
+                    <a type="button" style="background-color: red" class="btn btn-primary btn-lg btn-block" href="./?controller=praticien&task=showEspace">Mode dev</a>
+
+
+                </form>
+            </div>
+        </div>
     </div>
+</section>
 
 
-
-    <!-- <fieldset>
+<!-- <fieldset>
         <legend>Formulaire d' inscription praticien</legend><br>
 
         <label class=label2 for="nom">Nom : <span id="nom1"></span></label>

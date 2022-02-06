@@ -69,14 +69,14 @@ class Praticien extends Controller
     {
         //Récupération des données du formulaire
         $mail = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_SPECIAL_CHARS);
-        $mot_de_passe = filter_input(INPUT_POST, 'mot_de_passe');
+        $mdp = filter_input(INPUT_POST, 'mot_de_passe');
 
         //Apelle de la requète checkAuth avec le mail du praticien
         extract($this->model->checkAuth($mail));
 
         /*Compare le mot de passe POST avec le mot de passe trouvé dans le BDD (ATTENTION : la requète retourne un array, nous devons donc transférer notre string patient mail en array pour la comparaison {Meilleure méthode à trouver ?? })
         Si c'est mot de passe son identique : */
-        if ($rechercheMotDePasse === compact('mot_de_passe')) {
+        if ($mdp === compact('mot_de_passe')) {
             /*Si une session n'éxiste pas on la crée et un ajoute nos variables à la superglobale et on redirige le patient sur son espace.
             Je n'ai pas encore réussi à utiliser les variables de Session dans l'espace praticien */
             if (!isset($_SESSION)) {
