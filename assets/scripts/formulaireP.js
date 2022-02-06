@@ -1,6 +1,8 @@
 $(function () {
 
-    function ismail(str) {
+
+
+    function isMail(str) {
         //console.log(str);
         let pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
         return str.match(pattern);
@@ -112,7 +114,7 @@ $(function () {
             $("#mail1").text(" (obligatoire)");
             $("#mail1").css("color", "red");
             $("#mail1").css("float", "right");
-        } else if (ismail(emailTest)) {
+        } else if (isMail(emailTest)) {
             $("#mail1").hide();
             $("#mail").css("border", "1px solid green");
             i = i - 1

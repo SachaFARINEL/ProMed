@@ -20,18 +20,18 @@
 
                     </div>
 
+                    <div class="text-center">
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">S'authentifier</button>
 
-                    <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">S'authentifier</button>
+                        <div class="divider d-flex align-items-center my-4 text-center justify-content-center">
+                            <p class="text-center fw-bold mx-3 mb-0 text-muted">OU</p>
+                        </div>
 
-                    <div class="divider d-flex align-items-center my-4">
-                        <p class="text-center fw-bold mx-3 mb-0 text-muted">OU</p>
+                        <a type="button" style="background-color: #55acee" class="btn btn-primary btn-lg btn-block" a href="./?controller=praticien&task=inscription">S'inscrire</a>
+
+                        <a type="button" style="background-color: red" class="btn btn-primary btn-lg btn-block" href="./?controller=praticien&task=showEspace">Mode dev</a>
                     </div>
-
-                    <a type="button" style="background-color: #55acee" class="btn btn-primary btn-lg btn-block" a href="./?controller=praticien&task=inscription">S'inscrire</a>
-
-                    <a type="button" style="background-color: red" class="btn btn-primary btn-lg btn-block" href="./?controller=praticien&task=showEspace">Mode dev</a>
-
 
                 </form>
             </div>

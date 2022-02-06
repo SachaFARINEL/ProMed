@@ -81,7 +81,7 @@ class Patient extends Controller
 
         $date_naissance = filter_input(INPUT_POST, 'date_naissance');
 
-        $sexe = filter_input(INPUT_POST, 'sexe', FILTER_SANITIZE_SPECIAL_CHARS);
+        $genre = filter_input(INPUT_POST, 'genre', FILTER_SANITIZE_SPECIAL_CHARS);
 
         $nom_tuteur = filter_input(INPUT_POST, 'nom_tuteur', FILTER_SANITIZE_SPECIAL_CHARS);
 
