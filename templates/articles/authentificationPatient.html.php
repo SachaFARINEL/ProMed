@@ -1,5 +1,5 @@
 <form action=".?controller=patient&task=auth" method="POST">
-    <div class='patientLogin'>
+    <div class='patientLogin text-center'>
         <h1>Formulaire Patient : </h1>
         <p>
             <label>Votre mail:</label>

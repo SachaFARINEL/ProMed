@@ -15,6 +15,7 @@
     <link href="/assets/css/styles.css" rel="stylesheet" />
 
     <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- Formulaire François -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -29,11 +30,11 @@
 
 <body>
 
-    <nav>
+    <nav class="d-flex justify-content-center align-items-center shadow p-3 mb-5 bg-body">
 
-        <a href=".?controller=praticien&task=index">
-            <img id='logo' src="assets/images/logoEntete.png" alt="logo" />
-            <h1>PRO<strong>MED</strong></h1>
+        <a href=".?controller=praticien&task=index" class="text-decoration-none text-reset d-flex justify-content-center align-items-center ">
+            <img id='logo' src="assets/images/logoEntete.png" alt="logo" class="w-25 p-3" />
+            <h1 class="fs-2 ">PRO<strong class="fs-1 fw-bold font-monospace">MED</strong></h1>
         </a>
 
     </nav>

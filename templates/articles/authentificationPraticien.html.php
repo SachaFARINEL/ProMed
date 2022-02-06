@@ -1,5 +1,5 @@
 <form action=".?controller=praticien&task=auth" method="POST">
-    <div class='praticienLogin'>
+    <div class='praticienLogin text-center'>
         <h1>Formulaire PRATICIEN : </h1>
         <p>
             <label>Votre mail:</label>

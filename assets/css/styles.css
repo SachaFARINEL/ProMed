@@ -1,47 +1,18 @@
 /* Mise en page : global */
 
-a {
-  text-decoration: none;
-}
-
 /* Mise en page templates : layout.html.php --> Entête de notre site */
 
 nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 2%;
-  margin-top: 1%;
   font-family: "Raleway", sans-serif;
-  box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
-}
-nav a {
-  display: flex;
-  margin-bottom: 20px;
-  justify-content: center;
-  align-items: center;
-}
-nav a img#logo {
-  width: 20%;
-  padding-right: 10px;
-}
-nav a strong {
-  font-size: larger;
-  font-weight: 400;
 }
 
 /* Mise en page vue : accueil.html.php */
 
-.test {
-  display: flex;
-  justify-content: center;
-  margin-top: 5%;
-}
-.test img {
+.pictoPraticienPatient img {
   width: 100%;
   transition: transform 0.5s ease-in-out;
 }
-.test a {
+.pictoPraticienPatient a {
   width: 35%;
 }
 img#patient:hover {
@@ -49,18 +20,4 @@ img#patient:hover {
 }
 img#praticien:hover {
   transform: translateX(-10%) scale(1.1);
-}
-
-/* Mise en page vue : praticien.html.php */
-
-.praticienLogin {
-  text-align: center;
-  margin-top: 10%;
-}
-
-/* Mise en page vue : patient.html.php */
-
-.patientLogin {
-  text-align: center;
-  margin-top: 10%;
 }
