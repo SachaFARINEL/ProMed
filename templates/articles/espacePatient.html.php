@@ -1,6 +1,9 @@
 <?php
 echo 'Bienvenue sur votre espace' . ' ' . $_SESSION['nom'] . ' ' . $_SESSION['prenom'];
 ?>
+</p>
+<p><a href="./?controller=patient&task=afficherProfil">Mon profil</a></p>
+<p>
 <p><a href="./?controller=patient&task=logout">Se déconnecter</a></p>
 
 <?php

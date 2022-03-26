@@ -55,7 +55,8 @@ class Praticien extends Controller
      */
     public function afficherMonProfil()
     {
-        $donnesPraticien = $this->model->findAll();
+        session_start();
+        $donnesPraticien = $this->model->find($_SESSION['id']);
         $pageTitle = "Mon profil";
         \Renderer::render('parametrePriseEnCharge', compact('pageTitle', 'donnesPraticien'));
     }
@@ -65,33 +66,38 @@ class Praticien extends Controller
      * 
      * @return void
      */
+
     public function auth()
     {
         //Récupération des données du formulaire
         $mail = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_SPECIAL_CHARS);
         $mdp = filter_input(INPUT_POST, 'mot_de_passe');
+        if (!empty($mail) && !empty($mdp)) {
+            //Extract de la requète checkAuth avec le mail du praticien (Le méthode extract est expliqué dans le Renderer)
+            extract($this->model->checkAuth($mail));
+            // Compare le mot de passe POST avec le mot de passe trouvé dans le BDD
+            // Si c'est mot de passe son identique : 
+            if (password_verify($mdp, $mot_de_passe)) {
+                // Si une session n'existe pas on la crée et un ajoute nos variables à la superglobale et on redirige le praticien sur son espace.
+                if (!isset($_SESSION)) {
+                    session_start();
+                    $_SESSION["id"] = $id;
+                    $_SESSION["mail"] = $mail;
+                    $_SESSION["mot_de_passe"] = $mot_de_passe;
+                    $_SESSION["nom"] = $nom;
+                    $_SESSION["prenom"] = $prenom;
 
-        //Apelle de la requète checkAuth avec le mail du praticien
-        extract($this->model->checkAuth($mail));
-
-        /*Compare le mot de passe POST avec le mot de passe trouvé dans le BDD (ATTENTION : la requète retourne un array, nous devons donc transférer notre string patient mail en array pour la comparaison {Meilleure méthode à trouver ?? })
-        Si c'est mot de passe son identique : */
-        if ($mdp === compact('mot_de_passe')) {
-            /*Si une session n'éxiste pas on la crée et un ajoute nos variables à la superglobale et on redirige le patient sur son espace.
-            Je n'ai pas encore réussi à utiliser les variables de Session dans l'espace praticien */
-            if (!isset($_SESSION)) {
-                session_start();
-                $_SESSION["mail"] = $mail;
-                $_SESSION["mot_de_passe"] = $mot_de_passe;
-                $_SESSION["nom"] = $nom;
-                $_SESSION["prenom"] = $prenom;
-
-                //Redirection du praticien sur son espace
-                \Renderer::render('espacePraticien', compact('pageTitle', 'mail', 'mot_de_passe', 'nom', 'prenom'));
+                    //Redirection du praticien sur son espace
+                    $pageTitle = 'Espace praticien';
+                    \Renderer::render('espacePraticien', compact('pageTitle', 'id', 'mail', 'mot_de_passe', 'nom', 'prenom'));
+                }
+                //Sinon on affiche une erreur.
+            } else {
+                echo 'ERR, mot de passe incorrect';
             }
-            //Sinon on affiche une erreur.
         } else {
-            echo 'ERR, mot de passe incorrect';
+            echo 'Les champs sont vides - JS Check à faire';
         }
+        // return $_SESSION["id"];
     }
 }

@@ -1,3 +1,4 @@
+<p><a href="./?controller=praticien&task=showEspace">Retour </a></p>
 <div class="container">
     <h1 class="mb-5 py-3 text-center border border-dark rounded font-monospace col-sm-6">Création de la fiche patient</h1>
     <main>
@@ -5,7 +6,7 @@
             <div>
                 <form action=".?controller=patient&task=save" method="POST">
                     <div class="row g-3">
-                        <h4 class="font-monospace">Informations personnelles</h4>
+                        <h4 class="font-monospace text-decoration-underline">Informations personnelles</h4>
                         <div class="col-sm-6">
                             <div class="input-group has-validation">
                                 <span class="input-group-text font-monospace font-monospace">Prénom</span>
@@ -25,10 +26,10 @@
                                 <span class="input-group-text font-monospace font-monospace">Genre</span>
                                 <select class="form-select" name="genre" id="genre">
                                     <option value="">Choisir...</option>
-                                    <option value="1">Féminin</option>
-                                    <option value="2">Masculin</option>
-                                    <option value="3">Non binaire</option>
-                                    <option value="4">Autre</option>
+                                    <option value="Féminin">Féminin</option>
+                                    <option value="Masculin">Masculin</option>
+                                    <option value="Non binaire">Non binaire</option>
+                                    <option value="Autre">Autre</option>
                                 </select>
                             </div>
                         </div>
@@ -36,7 +37,7 @@
                         <div class="col-sm-4">
                             <div class="input-group has-validation">
                                 <span class="input-group-text font-monospace font-monospace">Date de naissance</span>
-                                <input type="text" class="form-control" name="date_naissance" id="date_naissance" required>
+                                <input type="date" class="form-control" name="date_naissance" id="date_naissance" required>
                             </div>
                         </div>
 
@@ -45,14 +46,14 @@
                                 <span class="input-group-text font-monospace">Profession</span>
                                 <select class="form-select" name="activite" id="activite">
                                     <option value="">Choisir...</option>
-                                    <option value="1">Agriculteur exploitant</option>
-                                    <option value="2">Artisan, commerçant et chef d'entreprise</option>
-                                    <option value="3">Cadre et profession intellectuelle supérieure</option>
-                                    <option value="4">Profession intermédiaire</option>
-                                    <option value="5">Employé</option>
-                                    <option value="6">Ouvrier</option>
-                                    <option value="7">Retraité</option>
-                                    <option value="8">Sans activité profesionnelle</option>
+                                    <option value="Agriculteur exploitant">Agriculteur exploitant</option>
+                                    <option value="Artisan, commerçant et chef d'entreprise">Artisan, commerçant et chef d'entreprise</option>
+                                    <option value="Cadre et profession intellectuelle supérieure">Cadre et profession intellectuelle supérieure</option>
+                                    <option value="Profession intermédiaire">Profession intermédiaire</option>
+                                    <option value="Employé">Employé</option>
+                                    <option value="Ouvrier">Ouvrier</option>
+                                    <option value="Retraité">Retraité</option>
+                                    <option value="Sans activité profesionnelle">Sans activité profesionnelle</option>
                                 </select>
                             </div>
                         </div>
@@ -87,6 +88,7 @@
                             </div>
                         </div>
 
+
                         <div class="col-sm-4">
                             <div class="input-group has-validation">
                                 <span class="input-group-text font-monospace">Numéro de voie</span>
@@ -99,21 +101,21 @@
                                 <span class="input-group-text font-monospace">Type de voie</span>
                                 <select class="form-select" name="type_de_voie" id="type_de_voie" required>
                                     <option value="">Choisir...</option>
-                                    <option value="1">Allée</option>
-                                    <option value="2">Avenue</option>
-                                    <option value="3">Boulevard</option>
-                                    <option value="4">Chemin</option>
-                                    <option value="5">Gaffe</option>
-                                    <option value="6">Impasse</option>
-                                    <option value="7">Montée</option>
-                                    <option value="8">Parc</option>
-                                    <option value="9">Passage</option>
-                                    <option value="10">Place</option>
-                                    <option value="11">Route</option>
-                                    <option value="12">Rue</option>
-                                    <option value="13">Ruelle</option>
-                                    <option value="14">Quai</option>
-                                    <option value="15">Square</option>
+                                    <option value="Allée">Allée</option>
+                                    <option value="Avenue">Avenue</option>
+                                    <option value="Boulevard">Boulevard</option>
+                                    <option value="Chemin">Chemin</option>
+                                    <option value="Gaffe">Gaffe</option>
+                                    <option value="Impasse">Impasse</option>
+                                    <option value="Montée">Montée</option>
+                                    <option value="Parc">Parc</option>
+                                    <option value="Passage9">Passage</option>
+                                    <option value="Place">Place</option>
+                                    <option value="Route">Route</option>
+                                    <option value="Rue">Rue</option>
+                                    <option value="Ruelle">Ruelle</option>
+                                    <option value="Quai">Quai</option>
+                                    <option value="Square">Square</option>
 
                                 </select>
                             </div>
@@ -259,7 +261,7 @@
 
                         <hr class="mt-5">
 
-                        <h4 class="font-monospace">Données liées aux soins</h4>
+                        <h4 class="font-monospace text-decoration-underline">Données liées aux soins</h4>
 
                         <div class="col-sm-4">
                             <div class="input-group has-validation">
@@ -310,7 +312,7 @@
                         <div class="col-sm-6">
                             <div class="input-group has-validation">
                                 <span class="input-group-text font-monospace">Téléphone</span>
-                                <input type="text" class="form-control" name="tel_tuteur" id="tel_tuteur">
+                                <input type="tel" class="form-control" name="tel_tuteur" id="tel_tuteur">
                             </div>
                         </div>
 
@@ -326,21 +328,21 @@
                                 <span class="input-group-text font-monospace">Type de voie</span>
                                 <select class="form-select" naùe="type_de_voie_tuteur" id="type_de_voie_tuteur">
                                     <option value="">Choisir...</option>
-                                    <option value="1">Allée</option>
-                                    <option value="2">Avenue</option>
-                                    <option value="3">Boulevard</option>
-                                    <option value="4">Chemin</option>
-                                    <option value="5">Gaffe</option>
-                                    <option value="6">Impasse</option>
-                                    <option value="7">Montée</option>
-                                    <option value="8">Parc</option>
-                                    <option value="9">Passage</option>
-                                    <option value="10">Place</option>
-                                    <option value="11">Route</option>
-                                    <option value="12">Rue</option>
-                                    <option value="13">Ruelle</option>
-                                    <option value="14">Quai</option>
-                                    <option value="15">Square</option>
+                                    <option value="Allée">Allée</option>
+                                    <option value="Avenue">Avenue</option>
+                                    <option value="Boulevard">Boulevard</option>
+                                    <option value="Chemin">Chemin</option>
+                                    <option value="Gaffe">Gaffe</option>
+                                    <option value="Impasse">Impasse</option>
+                                    <option value="Montée">Montée</option>
+                                    <option value="Parc">Parc</option>
+                                    <option value="Passage9">Passage</option>
+                                    <option value="Place">Place</option>
+                                    <option value="Route">Route</option>
+                                    <option value="Rue">Rue</option>
+                                    <option value="Ruelle">Ruelle</option>
+                                    <option value="Quai">Quai</option>
+                                    <option value="Square">Square</option>
 
                                 </select>
                             </div>
@@ -486,7 +488,7 @@
 
                         <hr class="mt-5">
 
-                        <h4 class="font-monospace">Contact du médecin généraliste </h4>
+                        <h4 class="font-monospace text-decoration-underline">Contact du médecin généraliste </h4>
 
                         <div class="col-sm-6">
                             <div class="input-group has-validation">
@@ -512,7 +514,7 @@
                         <div class="col-sm-6">
                             <div class="input-group has-validation">
                                 <span class="input-group-text font-monospace">Téléphone</span>
-                                <input type="text" class="form-control" name="tel_generaliste" id="tel_generaliste">
+                                <input type="tel" class="form-control" name="tel_generaliste" id="tel_generaliste">
                             </div>
                         </div>
 

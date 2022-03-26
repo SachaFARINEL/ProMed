@@ -5,5 +5,5 @@
 <p>
 
 </p>
-<p><a href="./?controller=praticien&task=afficherMonProfil">Paramètres et prises en charge </a></p>
+<p><a href="./?controller=praticien&task=afficherMonProfil">Paramètres et prises en charge</a></p>
 <p>
