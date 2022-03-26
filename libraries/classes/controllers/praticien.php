@@ -15,7 +15,7 @@ class Praticien extends Controller
     public function showAuth()
     {
         session_start();
-        if (!isset($_SESSION['id'])) {
+        if (!isset($_SESSION['id_session'])) {
             $pageTitle = 'Authentification praticien';
             \Renderer::render('authentificationPraticien', compact('pageTitle'));
         } else {
@@ -87,6 +87,8 @@ class Praticien extends Controller
                 // Si une session n'existe pas on la crée et un ajoute nos variables à la superglobale et on redirige le praticien sur son espace.
                 if (!isset($_SESSION)) {
                     session_start();
+                    $id_session = session_id();
+                    $_SESSION['id_session'] = $id_session;
                     $_SESSION["id"] = $id;
                     $_SESSION["mail"] = $mail;
                     $_SESSION["mot_de_passe"] = $mot_de_passe;
@@ -95,7 +97,7 @@ class Praticien extends Controller
 
                     //Redirection du praticien sur son espace
                     $pageTitle = 'Espace praticien';
-                    \Renderer::render('espacePraticien', compact('pageTitle', 'id', 'mail', 'mot_de_passe', 'nom', 'prenom'));
+                    \Renderer::render('espacePraticien', compact('pageTitle', 'id_session', 'id', 'mail', 'mot_de_passe', 'nom', 'prenom'));
                 }
                 //Sinon on affiche une erreur.
             } else {

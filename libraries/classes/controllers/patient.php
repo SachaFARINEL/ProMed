@@ -18,7 +18,7 @@ class Patient extends Controller
     public function showAuth()
     {
         session_start();
-        if (!isset($_SESSION['id'])) {
+        if (!isset($_SESSION['id_session'])) {
             $pageTitle = 'Authentification patient';
             \Renderer::render('authentificationPatient', compact('pageTitle'));
         } else {
@@ -160,6 +160,7 @@ class Patient extends Controller
                 if (!isset($_SESSION)) {
                     session_start();
                     $id_session = session_id();
+                    $_SESSION['id_session'] = $id_session;
                     $_SESSION["id"] = $id;
                     $_SESSION["mail"] = $mail;
                     $_SESSION["mot_de_passe"] = $mot_de_passe;
