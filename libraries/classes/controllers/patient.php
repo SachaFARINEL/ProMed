@@ -17,8 +17,8 @@ class Patient extends Controller
 
     public function showAuth()
     {
-        //La session n'est pas encore enregistré pour skippe l'authentification patient 
-        if (!isset($_SESSION['mail'])) {
+        session_start();
+        if (!isset($_SESSION['id'])) {
             $pageTitle = 'Authentification patient';
             \Renderer::render('authentificationPatient', compact('pageTitle'));
         } else {
@@ -159,6 +159,7 @@ class Patient extends Controller
                 // Si une session n'existe pas on la crée et un ajoute nos variables à la superglobale et on redirige le patient sur son espace.
                 if (!isset($_SESSION)) {
                     session_start();
+                    $id_session = session_id();
                     $_SESSION["id"] = $id;
                     $_SESSION["mail"] = $mail;
                     $_SESSION["mot_de_passe"] = $mot_de_passe;
@@ -167,7 +168,7 @@ class Patient extends Controller
 
                     //Redirection du patient sur son espace
                     $pageTitle = 'Espace patient';
-                    \Renderer::render('espacePatient', compact('pageTitle', 'id', 'mail', 'mot_de_passe', 'nom', 'prenom'));
+                    \Renderer::render('espacePatient', compact('pageTitle', 'id_session', 'id', 'mail', 'mot_de_passe', 'nom', 'prenom'));
                 }
                 //Sinon on affiche une erreur.
             } else {
@@ -179,13 +180,16 @@ class Patient extends Controller
     }
 
     /**
-     * Permet au patient de se déconnecer. Clear les variables de Session : 
+     * Permet au patient de se déconnecer. Clear les variables de Session & la détruit : 
      * @return void
      */
     function logout()
     {
-        unset($_SESSION["mail"]);
-        unset($_SESSION["mot_de_passe"]);
-        \Http::redirect('?controller=praticien&task=index');
+        session_start();
+        if (isset($_SESSION)) {
+            unset($_SESSION);
+            session_destroy();
+            \Http::redirect('?controller=praticien&task=index');
+        }
     }
 }

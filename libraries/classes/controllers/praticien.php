@@ -7,15 +7,21 @@ class Praticien extends Controller
     protected $modelName = "Praticien";
 
     /**
-     * Affiche authentification Praticien
+     * Affiche authentification praticien 
      * 
      * @return void
      */
 
-    public function showAuth(): void
+    public function showAuth()
     {
-        $pageTitle = 'Authentification Praticien';
-        \Renderer::render('authentificationPraticien', compact('pageTitle'));
+        session_start();
+        if (!isset($_SESSION['id'])) {
+            $pageTitle = 'Authentification praticien';
+            \Renderer::render('authentificationPraticien', compact('pageTitle'));
+        } else {
+            $pageTitle = 'Espace praticien';
+            \Renderer::render('espacePraticien', compact('pageTitle'));
+        }
     }
 
 
@@ -99,5 +105,19 @@ class Praticien extends Controller
             echo 'Les champs sont vides - JS Check à faire';
         }
         // return $_SESSION["id"];
+    }
+
+    /**
+     * Permet au praticien de se déconnecer. Clear les variables de Session & la détruit : 
+     * @return void
+     */
+    function logout()
+    {
+        session_start();
+        if (isset($_SESSION)) {
+            unset($_SESSION);
+            session_destroy();
+            \Http::redirect('?controller=praticien&task=index');
+        }
     }
 }
