@@ -2,9 +2,8 @@
 
 class Database
 {
-
-
-
+    // Création du singleton
+    private static $instance = null;
     /**
      * Retourne une instance de PDO
      * Attention, on précise ici deux options :
@@ -18,7 +17,6 @@ class Database
      * 
      * @return PDO
      */
-
     public static function getPdo(): PDO
     {
         $login = "root";
@@ -30,12 +28,12 @@ class Database
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
         ];
-
         try {
-            $conn = new PDO("mysql:host=$serveur;dbname=$bd", $login, $mdp, $options);
-            return $conn;
+            if (self::$instance === null) {
+                self::$instance = new PDO("mysql:host=$serveur;dbname=$bd", $login, $mdp, $options);
+            }
+            return self::$instance;
         } catch (PDOException $e) {
-
             die('Erreur : ' . $e->getMessage());
         }
     }

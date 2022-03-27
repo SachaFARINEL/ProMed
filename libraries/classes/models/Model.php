@@ -133,7 +133,6 @@ abstract class Model
      * 
      * @return array
      */
-
     public function findAll(?string $order = ""): array
     /* ?string signifie variable string non obligatoire, utile ici si l'on n'a pas besoin de classer nos résultats */
     {

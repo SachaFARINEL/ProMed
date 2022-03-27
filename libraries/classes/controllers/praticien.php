@@ -91,13 +91,12 @@ class Praticien extends Controller
                     $_SESSION['id_session'] = $id_session;
                     $_SESSION["id"] = $id;
                     $_SESSION["mail"] = $mail;
-                    $_SESSION["mot_de_passe"] = $mot_de_passe;
                     $_SESSION["nom"] = $nom;
                     $_SESSION["prenom"] = $prenom;
 
                     //Redirection du praticien sur son espace
                     $pageTitle = 'Espace praticien';
-                    \Renderer::render('espacePraticien', compact('pageTitle', 'id_session', 'id', 'mail', 'mot_de_passe', 'nom', 'prenom'));
+                    \Renderer::render('espacePraticien', compact('pageTitle', 'id_session', 'id', 'mail', 'nom', 'prenom'));
                 }
                 //Sinon on affiche une erreur.
             } else {
@@ -110,16 +109,34 @@ class Praticien extends Controller
     }
 
     /**
-     * Permet au praticien de se déconnecer. Clear les variables de Session & la détruit : 
+     * Permet au patient de se déconnecer. Clear les variables de Session & la détruit : 
      * @return void
      */
     function logout()
     {
         session_start();
-        if (isset($_SESSION)) {
-            unset($_SESSION);
-            session_destroy();
-            \Http::redirect('?controller=praticien&task=index');
+
+        // Détruit toutes les variables de session
+        $_SESSION = array();
+
+        // Si vous voulez détruire complètement la session, effacez également
+        // le cookie de session.
+        // Note : cela détruira la session et pas seulement les données de session !
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(
+                session_name(),
+                '',
+                time() - 42000,
+                $params["path"],
+                $params["domain"],
+                $params["secure"],
+                $params["httponly"]
+            );
         }
+
+        // Finalement, on détruit la session.
+        session_destroy();
+        \Http::redirect('?controller=praticien&task=index');
     }
 }
