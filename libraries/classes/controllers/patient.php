@@ -56,11 +56,12 @@ class Patient extends Controller
     public function afficherProfil()
     {
         session_start();
-        $donnesPatient = $this->model->find($_SESSION['id']);
+        $donnesTablePatient = $this->model->find($_SESSION['id']);
+        $adresseModel = new \Models\Adresse();
+        $donnesAdresse = $adresseModel->findAdresse($_SESSION['id']);
         $pageTitle = "Mon profil";
-        \Renderer::render('profilPatient', compact('pageTitle', 'donnesPatient'));
+        \Renderer::render('profilPatient', compact('pageTitle', 'donnesTablePatient', 'donnesAdresse'));
     }
-
 
     /**
      * Ajouter un patient dans la base de donnée

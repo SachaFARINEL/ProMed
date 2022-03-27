@@ -53,7 +53,7 @@
                                     <option value="Employé">Employé</option>
                                     <option value="Ouvrier">Ouvrier</option>
                                     <option value="Retraité">Retraité</option>
-                                    <option value="Sans activité profesionnelle">Sans activité profesionnelle</option>
+                                    <option value="Sans activité profesionnelle">Sans activité professionnelle</option>
                                 </select>
                             </div>
                         </div>
