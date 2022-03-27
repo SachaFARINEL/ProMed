@@ -28,7 +28,6 @@ abstract class Model
      * @param integer $id
      * 
      */
-
     public function find(int $id)
     {
         try { /* Essayer si cela fonctionne */

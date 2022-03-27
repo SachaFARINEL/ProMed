@@ -15,12 +15,11 @@ class Praticien extends Controller
     public function showAuth()
     {
         session_start();
-        if (!isset($_SESSION['id_session'])) {
+        if (!isset($_SESSION['id_session']) || $_SESSION["role"] !== 'praticien') {
             $pageTitle = 'Authentification praticien';
             \Renderer::render('authentificationPraticien', compact('pageTitle'));
         } else {
-            $pageTitle = 'Espace praticien';
-            \Renderer::render('espacePraticien', compact('pageTitle'));
+            Praticien::showEspace();
         }
     }
 
@@ -93,10 +92,12 @@ class Praticien extends Controller
                     $_SESSION["mail"] = $mail;
                     $_SESSION["nom"] = $nom;
                     $_SESSION["prenom"] = $prenom;
+                    $role = 'praticien';
+                    $_SESSION["role"] = $role;
 
                     //Redirection du praticien sur son espace
                     $pageTitle = 'Espace praticien';
-                    \Renderer::render('espacePraticien', compact('pageTitle', 'id_session', 'id', 'mail', 'nom', 'prenom'));
+                    \Renderer::render('espacePraticien', compact('pageTitle', 'id_session', 'id', 'mail', 'nom', 'prenom', 'role'));
                 }
                 //Sinon on affiche une erreur.
             } else {

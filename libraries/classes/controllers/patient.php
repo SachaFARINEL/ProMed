@@ -7,8 +7,6 @@ class Patient extends Controller
 {
     protected $modelName = "Patient";
 
-
-
     /**
      * Affiche authentification patient 
      * 
@@ -18,12 +16,11 @@ class Patient extends Controller
     public function showAuth()
     {
         session_start();
-        if (!isset($_SESSION['id_session'])) {
+        if (!isset($_SESSION['id_session']) || $_SESSION["role"] !== 'patient') {
             $pageTitle = 'Authentification patient';
             \Renderer::render('authentificationPatient', compact('pageTitle'));
         } else {
-            $pageTitle = 'Espace patient';
-            \Renderer::render('espacePatient', compact('pageTitle'));
+            Patient::showEspace();
         }
     }
 
@@ -134,6 +131,25 @@ class Patient extends Controller
             'date_inscription'
         ));
 
+        //Adresse
+        $numero = filter_input(INPUT_POST, 'numero', FILTER_SANITIZE_SPECIAL_CHARS);
+        $type_de_voie = filter_input(INPUT_POST, 'type_de_voie', FILTER_SANITIZE_SPECIAL_CHARS);
+        $adresse = filter_input(INPUT_POST, 'adresse', FILTER_SANITIZE_SPECIAL_CHARS);
+        $code_postal = filter_input(INPUT_POST, 'code_postal', FILTER_SANITIZE_NUMBER_INT);
+        $ville = filter_input(INPUT_POST, 'ville', FILTER_SANITIZE_SPECIAL_CHARS);
+        $departement = filter_input(INPUT_POST, 'departement', FILTER_SANITIZE_SPECIAL_CHARS);
+        $pays = filter_input(INPUT_POST, 'pays', FILTER_SANITIZE_SPECIAL_CHARS);
+        $adresseModel = new \Models\Adresse();
+        $adresseModel->insert(compact(
+            'numero',
+            'type_de_voie',
+            'adresse',
+            'code_postal',
+            'ville',
+            'departement',
+            'pays',
+        ));
+
 
         // 4. Redirection vers la page d'accueil pour le moment :
         \Http::redirect('?controller=praticien&task=afficherMonProfil');
@@ -165,10 +181,12 @@ class Patient extends Controller
                     $_SESSION["mail"] = $mail;
                     $_SESSION["nom"] = $nom;
                     $_SESSION["prenom"] = $prenom;
+                    $role = 'patient';
+                    $_SESSION["role"] = $role;
 
                     //Redirection du patient sur son espace
                     $pageTitle = 'Espace patient';
-                    \Renderer::render('espacePatient', compact('pageTitle', 'id_session', 'id', 'mail', 'nom', 'prenom'));
+                    \Renderer::render('espacePatient', compact('pageTitle', 'id_session', 'id', 'mail', 'nom', 'prenom', 'role'));
                 }
                 //Sinon on affiche une erreur.
             } else {
