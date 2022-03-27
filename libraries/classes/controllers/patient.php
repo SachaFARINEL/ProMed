@@ -130,7 +130,6 @@ class Patient extends Controller
             'tel_generaliste',
             'date_inscription'
         ));
-
         //Adresse
         $numero = filter_input(INPUT_POST, 'numero', FILTER_SANITIZE_SPECIAL_CHARS);
         $type_de_voie = filter_input(INPUT_POST, 'type_de_voie', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -139,6 +138,8 @@ class Patient extends Controller
         $ville = filter_input(INPUT_POST, 'ville', FILTER_SANITIZE_SPECIAL_CHARS);
         $departement = filter_input(INPUT_POST, 'departement', FILTER_SANITIZE_SPECIAL_CHARS);
         $pays = filter_input(INPUT_POST, 'pays', FILTER_SANITIZE_SPECIAL_CHARS);
+
+        extract($this->model->findLastInsertId()); //Récupérationde l'id patient pour le mettre dans la base adresse
         $adresseModel = new \Models\Adresse();
         $adresseModel->insert(compact(
             'numero',
@@ -148,6 +149,7 @@ class Patient extends Controller
             'ville',
             'departement',
             'pays',
+            'id_user',
         ));
 
 

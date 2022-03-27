@@ -155,4 +155,34 @@ abstract class Model
             die('Erreur : ' . $e->getMessage());
         }
     }
+
+    /** 
+     * Retourne le dernier id crée
+     * 
+     * @param integer $id
+     * 
+     */
+    public function findLastInsertId()
+    {
+        try { /* Essayer si cela fonctionne */
+
+            $resultat = $this->pdo->query("SELECT LAST_INSERT_ID() as id_user"); //Utilisation d'un alias sinon c'est chiant
+
+            // On exécute la requête en précisant le paramètre :id
+
+            //On fouille le résultat pour en extraire les données réelles de la table
+            $item = $resultat->fetch();
+
+            // On retourne (principe d'une fonction) ce que l'on à trouvé.
+            return $item;
+
+            //On affiche à l'écran un message (pour le développement)
+            echo "$this->table trouvé";
+        } catch (\PDOException $e) { /* Sinon afficher l'erreur en question */
+            /* Dans ce cas j'utilise '\PDOException' à la place de 'PDOException' car 
+            nous sommes dans un namespace. PDOException n'est donc pas défini ici*/
+
+            die('Erreur : ' . $e->getMessage());
+        }
+    }
 }
