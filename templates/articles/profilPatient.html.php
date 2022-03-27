@@ -1,6 +1,8 @@
 <p><a href="./?controller=patient&task=showAuth">Retour </a></p>
 <?php
 
+// Pour le dev
+
 foreach ($donnesTablePatient as $key => $value) {
   echo '<h5>' . $key . ' ' . ':' . ' ' . $value . '</h5>';
 }
@@ -35,25 +37,30 @@ extract($donnesAdresse); ?>
 <section style="background-color: #eee;">
   <div class="container py-5">
     <div class="row">
-      <div class="col-lg-3" style="border: 1px solid red">
+      <div class="col-lg-3">
         <div class="card mb-3" style='box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px'>
           <div class="card-body text-center">
             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="mt-3"><?= $nom . ' ' . $prenom . ', ' . (date_diff(date_create($date_naissance), date_create(date("Y-m-d")))->format('%y')) . ' ' . 'ans' ?></h5>
-            <p class="text-muted mb-1"><?= $activite ?></p>
+            <h5 class="mt-3"><?= $nom . ' ' . $prenom . ', ' . Controllers\Utils::dateToAge($date_naissance) . ' ' . 'ans' ?></h5>
+            <p class="text-muted mb-1"> <?= ($genre === 'Masculin' ? 'Né' : 'Née') . ' ' . 'le' . ' ' . Controllers\Utils::dateToFrench($date_naissance, 'j F Y') ?>
+              <hr>
             <p class="text-muted mb-1"><?= $numero . ' ' . $type_de_voie . ' ' . $adresse . ', ' . $code_postal . ' ' . $ville  ?></p>
-            <p class="text-muted mb-1"><?= $tel ?></p>
+            <p class="text-muted mb-1"><?= $out = Controllers\Utils::espaceTelephone($tel) ?></p>
             <p class="text-muted mb-3"><?= $mail ?></p>
+            <p class="text-muted mb-3"><?= $activite ?></p>
           </div>
         </div>
         <div class="card mb-3" style='box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px'>
           <div class="card-body text-center">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="mt-3"><?= $nom . ' ' . $prenom . ', ' . (date_diff(date_create($date_naissance), date_create(date("Y-m-d")))->format('%y')) . ' ' . 'ans' ?></h5>
-            <p class="text-muted mb-1"><?= $activite ?></p>
-            <p class="text-muted mb-1"><?= $numero . ' ' . $type_de_voie . ' ' . $adresse . ', ' . $code_postal . ' ' . $ville  ?></p>
-            <p class="text-muted mb-1"><?= $tel ?></p>
-            <p class="text-muted mb-3"><?= $mail ?></p>
+            <h5>Données liées aux soins</h5>
+            <hr>
+            <p class="text-muted mb-1">Numéro de sécurité sociale : <strong><?= $num_secu ?></strong>
+            </p>
+            <p class="text-muted mb-1">
+              <strong><?= $mutuelle ?></strong>
+            </p>
+            <p class="text-muted mb-3">Caisse d'assurance maladie : <strong><?= $caisse ?></strong>
+            </p>
           </div>
         </div>
       </div>

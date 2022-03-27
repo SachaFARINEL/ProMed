@@ -152,12 +152,9 @@ class Patient extends Controller
             'pays',
             'id_user',
         ));
-
-
         // 4. Redirection vers la page d'accueil pour le moment :
         \Http::redirect('?controller=praticien&task=afficherMonProfil');
     }
-
 
     /**
      * Logging du patient
