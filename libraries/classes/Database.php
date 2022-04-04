@@ -2,7 +2,6 @@
 
 class Database
 {
-    /* Ceci est un test */
     // Création du singleton
     private static $instance = null;
     /**
@@ -21,9 +20,13 @@ class Database
     public static function getPdo(): PDO
     {
         $login = "dev";
+        $loginHome = "root";
         $mdp = "SuperUser@sio56";
+        $mdpHome = "";
         $bd = "gr3";
+        $bdHome = "db_promed";
         $serveur = "172.16.120.2";
+        $serveurHome = "localhost";
         $port = "3307";
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -32,7 +35,8 @@ class Database
         ];
         try {
             if (self::$instance === null) {
-                self::$instance = new PDO("mysql:host=$serveur;port=$port;dbname=$bd", $login, $mdp, $options);
+                // self::$instance = new PDO("mysql:host=$serveur;port=$port;dbname=$bd", $login, $mdp, $options);
+                self::$instance = new PDO("mysql:host=$serveurHome;dbname=$bdHome", $loginHome, $mdpHome, $options);
             }
             return self::$instance;
         } catch (PDOException $e) {
