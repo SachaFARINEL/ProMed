@@ -23,6 +23,7 @@ class Database
         $mdp = "SuperUser@sio56";
         $bd = "gr3";
         $serveur = "172.16.120.2";
+        $port = "3307";
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -30,7 +31,7 @@ class Database
         ];
         try {
             if (self::$instance === null) {
-                self::$instance = new PDO("mysql:host=$serveur;dbname=$bd", $login, $mdp, $options);
+                self::$instance = new PDO("mysql:host=$serveur;port=$port;dbname=$bd", $login, $mdp, $options);
             }
             return self::$instance;
         } catch (PDOException $e) {
