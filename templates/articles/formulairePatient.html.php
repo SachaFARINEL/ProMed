@@ -1,4 +1,4 @@
-<p><a href="./?controller=praticien&task=showEspace">Retour </a></p>
+<p><a class="bi-chevron-double-left" href="./?controller=praticien&task=showEspace">Retour </a></p>
 <div class="container">
     <h1 class="mb-5 py-3 text-center border border-dark rounded font-monospace col-sm-6">Création de la fiche patient</h1>
     <main>
