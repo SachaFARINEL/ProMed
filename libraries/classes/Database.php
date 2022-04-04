@@ -19,10 +19,10 @@ class Database
      */
     public static function getPdo(): PDO
     {
-        $login = "root";
-        $mdp = "";
-        $bd = "db_promed";
-        $serveur = "localhost";
+        $login = "dev";
+        $mdp = "SuperUser@sio56";
+        $bd = "gr3";
+        $serveur = "172.16.120.2";
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
