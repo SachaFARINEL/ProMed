@@ -10,7 +10,7 @@
                         <div class="col-sm-6">
                             <div class="input-group has-validation">
                                 <span class="input-group-text font-monospace font-monospace">Prénom</span>
-                                <input type="text" class="form-control" name="prenom" id="prenom" required>
+                                <input type="text" name="prenom" id="prenom" required>
                             </div>
                         </div>
 

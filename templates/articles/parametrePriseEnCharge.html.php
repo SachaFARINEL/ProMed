@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../../assets//css//styles.css" type="text/css">
+<link rel="stylesheet" href="../../assets//css/prestationPraticien.css" type="text/css">
 
 <p><a href="./?controller=praticien&task=showEspace">Retour </a></p>
 
@@ -33,10 +33,9 @@ foreach ($donnesPraticien as $key => $value) : ?>
           </div>
         </div>
       </div>
+      <button class="btn btn-primary btn-block confirm-button" type="submit">Confirmer</button>
     </div>
 
-    <button class="btn btn-primary btn-block confirm-button" type="submit">Confirmer</button>
   </div>
-  </div>
-  </div>
+
 </form>
