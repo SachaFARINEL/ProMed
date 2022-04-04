@@ -24,11 +24,4 @@ class Prestation extends Controller
         ));
         \Http::redirect('?controller=praticien&task=afficherMonProfil');
     }
-
-    function readAll()
-    {
-        session_start();
-        $donnesPrestations = $this->model->findAllPrestations($_SESSION['id']);
-        return $donnesPrestations;
-    }
 }

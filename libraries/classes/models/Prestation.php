@@ -15,17 +15,17 @@ class Prestation extends Model
      * @param integer $id
      * 
      */
-    public function findAllPrestations(int $id_praticien)
+    public function findPrestations(int $id_praticien)
     {
         try { /* Essayer si cela fonctionne */
 
-            $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE id_praticien =:id_praticien");
+            $query = $this->pdo->prepare("SELECT nom, description, duree, prix FROM {$this->table} WHERE id_praticien =:session_id");
 
             // On exécute la requête en précisant le paramètre :id_praticien
-            $query->execute(['id_praticien' => $id_praticien]);
+            $query->execute(['session_id' => $id_praticien]);
 
             //On fouille le résultat pour en extraire les données réelles de la table
-            $item = $query->fetch();
+            $item = $query->fetchAll();
 
             // On retourne (principe d'une fonction) ce que l'on à trouvé.
             return $item;

@@ -7,7 +7,6 @@ foreach ($donnesPraticien as $key => $value) : ?>
   <h5><?= $key ?> : <?= $value ?></h5>
 <?php endforeach ?>
 
-<h1> Test : <? Controllers\Prestation::readAll() ?> </h1>
 
 <form action=".?controller=prestation&task=addPrestation" method="POST">
   <div class="container mt-5 mb-5 d-flex justify-content-center">
@@ -48,10 +47,17 @@ foreach ($donnesPraticien as $key => $value) : ?>
             <div class="form-group">
               <!-- <label for="name">Name</label> -->
 
+              <?php
+              for ($i = 0; $i < count($donnesPrestations); $i++) {
+                echo "<div style='border: 1px solid black'>";
+                foreach ($donnesPrestations[$i] as $key => $value) {
+                  echo $key . " : " . "<input type='text' class='form-control' name=" . $key . " value=" . $value . ">";
+                }
+                echo "</div>";
+              }
+              ?>
 
-              <textarea class="form-control" name='description' style="height: 100px">
 
-            </textarea>
             </div>
           </div>
         </div>
