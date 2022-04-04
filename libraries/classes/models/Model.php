@@ -126,6 +126,7 @@ abstract class Model
             die('Erreur : ' . $e->getMessage());
         }
     }
+
     public function insert(array $data): void
     {
 
