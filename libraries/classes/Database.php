@@ -2,6 +2,7 @@
 
 class Database
 {
+    /* Ceci est un test */
     // Création du singleton
     private static $instance = null;
     /**
