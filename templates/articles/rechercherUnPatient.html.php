@@ -7,12 +7,5 @@
         </div>
     </form>
     <div id="content"></div>
-    <div>
-        <h1>Réponses</h1>
-        <?php
-        foreach ($dataPatient as $key => $value) : ?>
-            <h5><?= $key ?> : <?= $value ?></h5>
-        <?php endforeach ?>
-    </div>
 
     <script src="../../assets/scripts/recherchePatient.js"></script>

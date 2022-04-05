@@ -13,7 +13,8 @@ class Ajax extends Controller
         $search = $_POST['userData'];
         $patientModel = new \Models\Patient();
         $dataPatient = ($patientModel->findPatientByName($search)[0]);
-        $pageTitle = 'Rechercher un patient';
-        \Renderer::render('rechercherUnPatient', compact('pageTitle', 'dataPatient'));
+        extract($dataPatient);
+        echo $nom . ' ' . $prenom;
+        // \Renderer::renderAjax('ajax', compact('dataPatient'));
     }
 }

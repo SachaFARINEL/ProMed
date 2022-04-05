@@ -16,15 +16,14 @@ $(function () {
             error: function () {
                 alert('Erreur sur PHP !');
             },
-            success: function (retour) {
-                if (retour === 'err') {
+            success: function (res) {
+                if (res === 'err') {
                     $('#content').html("Erreur de traitement !");
                 } else {
-                    $('#content').html(retour);
+                    $('#content').html(res);
                 }
             },
             complete: function () {
-                console.log('complete')
             }
         });
     });
