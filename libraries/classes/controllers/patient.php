@@ -236,4 +236,10 @@ class Patient extends Controller
         $pageTitle = 'Rechercher un patient';
         \Renderer::render('rechercherUnPatient', compact('pageTitle', 'dataPatient'));
     }
+
+    function pagePourRechercherUnPraticien()
+    {
+        $pageTitle = "Rechercher un praticien";
+        \Renderer::render('rechercherUnPraticien', compact('pageTitle'));
+    }
 }

@@ -83,6 +83,7 @@ class Praticien extends Controller
         $mail = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_EMAIL);
         $tel = filter_input(INPUT_POST, 'tel', FILTER_SANITIZE_NUMBER_INT);
         $num_adelie = filter_input(INPUT_POST, 'num_adelie', FILTER_SANITIZE_SPECIAL_CHARS);
+        $nom_cabinet = filter_input(INPUT_POST, 'nom_cabinet', FILTER_SANITIZE_SPECIAL_CHARS);
 
 
         $password = filter_input(INPUT_POST, 'mot_de_passe');
@@ -104,7 +105,8 @@ class Praticien extends Controller
             'mot_de_passe',
             'profession',
             'tel',
-            'num_adelie'
+            'num_adelie',
+            'nom_cabinet'
         ));
         // //Adresse
         // $numero = filter_input(INPUT_POST, 'numero', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -204,5 +206,12 @@ class Praticien extends Controller
     {
         $pageTitle = "Rechercher un patient";
         \Renderer::render('rechercherUnPatient', compact('pageTitle'));
+    }
+    public function rechercherUnPraticien()
+    {
+        $search = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_SPECIAL_CHARS);
+        $dataPraticien = $this->model->findPraticienByName($search);
+        $pageTitle = 'Rechercher un praticien';
+        \Renderer::render('rechercherUnPraticien', compact('pageTitle', 'dataPraticien'));
     }
 }
