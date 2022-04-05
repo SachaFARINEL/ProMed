@@ -9,14 +9,14 @@ class Patient extends Model
     protected $table = 'patient';
 
 
-    public function findPatientByName(string $nom)
+    public function findPatientByName(string $dataUser)
     {
         try { /* Essayer si cela fonctionne */
 
-            $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE nom =:nom");
+            $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE nom LIKE '$dataUser%'");
 
             // On exécute la requête en précisant le paramètre :id
-            $query->execute(['nom' => $nom]);
+            $query->execute(['dataUser' => $dataUser]);
 
             //On fouille le résultat pour en extraire les données réelles de la table
             $item = $query->fetchAll();

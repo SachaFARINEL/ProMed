@@ -13,3 +13,5 @@
             <h5><?= $key ?> : <?= $value ?></h5>
         <?php endforeach ?>
     </div>
+
+    <script src="../../assets//scripts//recherchePatient.js"></script>

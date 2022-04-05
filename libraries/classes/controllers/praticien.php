@@ -200,7 +200,7 @@ class Praticien extends Controller
         \Http::redirect('?controller=praticien&task=index');
     }
 
-    function rechercherUnPatient()
+    function pagePourRechercherUnPatient()
     {
         $pageTitle = "Rechercher un patient";
         \Renderer::render('rechercherUnPatient', compact('pageTitle'));
