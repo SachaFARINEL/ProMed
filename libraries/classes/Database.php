@@ -36,6 +36,7 @@ class Database
         try {
             if (self::$instance === null) {
                 self::$instance = new PDO("mysql:host=$serveur;port=$port;dbname=$bd", $login, $mdp, $options);
+                // self::$instance = new PDO("mysql:host=$serveurHome;dbname=$bdHome", $loginHome, $mdpHome, $options);
             }
             return self::$instance;
         } catch (PDOException $e) {

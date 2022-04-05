@@ -1,5 +1,6 @@
 <h1>Bienvenue sur votre espace</h1>
 
+<p><a href="templates\articles\profilPraticien.html.php">Mon profil </a></p>
 
 </p>
 <p><a href="./?controller=patient&task=inscription">Créer une fiche patient </a></p>
