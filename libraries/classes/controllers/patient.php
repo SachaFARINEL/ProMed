@@ -40,8 +40,9 @@ class Patient extends Controller
      * 
      * @return void
      */
-    public function showEspace(): void
+    public function showEspace()
     {
+
 
         $pageTitle = 'Espace patient';
         \Renderer::render('espacePatient', compact('pageTitle'));
@@ -150,7 +151,7 @@ class Patient extends Controller
             'ville',
             'departement',
             'pays',
-            'id_user',
+            'id_user'
         ));
         // 4. Redirection vers la page d'accueil pour le moment :
         \Http::redirect('?controller=praticien&task=afficherMonProfil');
