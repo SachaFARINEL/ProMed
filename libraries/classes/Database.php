@@ -36,11 +36,7 @@ class Database
         try {
             if (self::$instance === null) {
                 self::$instance = new PDO("mysql:host=$serveur;port=$port;dbname=$bd", $login, $mdp, $options);
-<<<<<<< Updated upstream
                 // self::$instance = new PDO("mysql:host=$serveurHome;dbname=$bdHome", $loginHome, $mdpHome, $options);
-=======
-                //self::$instance = new PDO("mysql:host=$serveurHome;dbname=$bdHome", $loginHome, $mdpHome, $options);
->>>>>>> Stashed changes
             }
             return self::$instance;
         } catch (PDOException $e) {
