@@ -10,4 +10,7 @@
 <p><a href="./?controller=praticien&task=afficherMonProfil">Paramètres et prises en charge</a></p>
 <p>
 
+<p><a href="./?controller=praticien&task=rechercherUnPatient">Rechercher un patient</a></p>
+<p>
+
 <p><a href="./?controller=patient&task=logout">Se déconnecter</a></p>

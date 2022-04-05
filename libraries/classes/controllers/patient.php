@@ -42,8 +42,6 @@ class Patient extends Controller
      */
     public function showEspace()
     {
-
-
         $pageTitle = 'Espace patient';
         \Renderer::render('espacePatient', compact('pageTitle'));
     }
@@ -229,5 +227,13 @@ class Patient extends Controller
         // Finalement, on détruit la session.
         session_destroy();
         \Http::redirect('?controller=praticien&task=index');
+    }
+
+    public function rechercherUnPatient()
+    {
+        $search = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_SPECIAL_CHARS);
+        $dataPatient = ($this->model->findPatientByName($search)[0]);
+        $pageTitle = 'Rechercher un patient';
+        \Renderer::render('rechercherUnPatient', compact('pageTitle', 'dataPatient'));
     }
 }

@@ -199,4 +199,10 @@ class Praticien extends Controller
         session_destroy();
         \Http::redirect('?controller=praticien&task=index');
     }
+
+    function rechercherUnPatient()
+    {
+        $pageTitle = "Rechercher un patient";
+        \Renderer::render('rechercherUnPatient', compact('pageTitle'));
+    }
 }
