@@ -1,31 +1,38 @@
 $(function () {
 
-    $('#loginform').on('submit', function (e) {
+    $('#search').on('propertychange input', function (e) {
         e.preventDefault();
 
-        let $error = $('#error');
-        let search = $('#search').val();
-        let valeurs = {
-            "userData": $('#search').val(),
-        };
+        if ($('#search').val()) {
+            let valeurs = {
+                "userData": $('#search').val(),
+            };
 
-        $.ajax({
-            type: 'POST',
-            url: './?controller=ajax&task=rechercherUnPatient',
-            data: valeurs,
-            error: function () {
-                alert('Erreur sur PHP !');
-            },
-            success: function (res) {
-                if (res === 'err') {
-                    $('#content').html("Erreur de traitement !");
-                } else {
-                    $('#content').html(res);
+            $.ajax({
+                type: 'POST',
+                url: './?controller=ajax&task=rechercherUnPatient',
+                data: valeurs,
+                error: function () {
+                    alert('Erreur sur PHP !');
+                },
+                success: function (res) {
+
+                    if (res === 'err') {
+                        $('#content').html("Erreur de traitement !");
+                    } else {
+                        if (res !== undefined) {
+
+                            $('#content').html(res);
+                        }
+                    }
+                },
+                complete: function () {
                 }
-            },
-            complete: function () {
-            }
-        });
+            });
+
+        } else {
+            $('#content').html('');
+        }
     });
 
 });

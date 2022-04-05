@@ -13,7 +13,7 @@ class Patient extends Model
     {
         try { /* Essayer si cela fonctionne */
 
-            $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE nom LIKE '$dataUser%'");
+            $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE nom LIKE '$dataUser%' OR prenom LIKE '$dataUser%' ");
 
             // On exécute la requête en précisant le paramètre :id
             $query->execute(['dataUser' => $dataUser]);
