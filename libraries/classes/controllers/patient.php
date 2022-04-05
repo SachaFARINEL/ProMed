@@ -52,15 +52,15 @@ class Patient extends Controller
      * @return pageTitle
      * @return donnesPatient
      */
-    public function afficherProfil()
-    {
-        session_start();
-        $donnesTablePatient = $this->model->find($_SESSION['id']);
-        $adresseModel = new \Models\Adresse();
-        $donnesAdresse = $adresseModel->findAdresse($_SESSION['id']);
-        $pageTitle = "Mon profil";
-        \Renderer::render('profilPatient', compact('pageTitle', 'donnesTablePatient', 'donnesAdresse'));
-    }
+    // public function afficherProfil()
+    // {
+    //     session_start();
+    //     $donnesTablePatient = $this->model->find($_SESSION['id']);
+    //     $adresseModel = new \Models\Adresse();
+    //     $donnesAdresse = $adresseModel->findAdresse($_SESSION['id']);
+    //     $pageTitle = "Mon profil";
+    //     \Renderer::render('espacePatient', compact('pageTitle', 'donnesTablePatient', 'donnesAdresse'));
+    // }
 
     /**
      * Ajouter un patient dans la base de donnée
@@ -183,9 +183,24 @@ class Patient extends Controller
                     $role = 'patient';
                     $_SESSION["role"] = $role;
 
+                    $donnesTablePatient = $this->model->find($_SESSION['id']);
+                    $adresseModel = new \Models\Adresse();
+                    $donnesAdresse = $adresseModel->findAdresse($_SESSION['id']);
+                    $pageTitle = "Mon profil";
+
                     //Redirection du patient sur son espace
                     $pageTitle = 'Espace patient';
-                    \Renderer::render('espacePatient', compact('pageTitle', 'id_session', 'id', 'mail', 'nom', 'prenom', 'role'));
+                    \Renderer::render('espacePatient', compact(
+                        'pageTitle',
+                        'id_session',
+                        'id',
+                        'mail',
+                        'nom',
+                        'prenom',
+                        'role',
+                        'donnesTablePatient',
+                        'donnesAdresse'
+                    ));
                 }
                 //Sinon on affiche une erreur.
             } else {

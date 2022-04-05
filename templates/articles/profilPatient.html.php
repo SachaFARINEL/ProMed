@@ -3,26 +3,25 @@
 
 // Pour le dev
 
-//foreach ($donnesTablePatient as $key => $value) {
-//echo '<h5>' . $key . ' ' . ':' . ' ' . $value . '</h5>';
-//}
+foreach ($donnesTablePatient as $key => $value) {
+  echo '<h5>' . $key . ' ' . ':' . ' ' . $value . '</h5>';
+}
 
-//echo 'Changement de table';
+echo 'Changement de table';
 
-//foreach ($donnesAdresse as $key => $value) {
-//  echo '<h5>' . $key . ' ' . ':' . ' ' . $value . '</h5>';
-//}
+foreach ($donnesAdresse as $key => $value) {
+  echo '<h5>' . $key . ' ' . ':' . ' ' . $value . '</h5>';
+}
 ?>
-<!--Ou autre manière : !-->
+Ou autre manière :
 
 <?php
 extract($donnesTablePatient);
-extract($donnesAdresse);
-?>
+extract($donnesAdresse); ?>
 <!-- Pour savoir si qu'il y a dans $donnesTablePatient -> var_dump($donnesTablePatient) -->
-<!--<h5> <?= $id ?> </h5>
+<h5> <?= $id ?> </h5>
 <h5> <?= $nom ?> </h5>
-<h5> <?= $prenom ?> </h5>!-->
+<h5> <?= $prenom ?> </h5>
 
 <!-- etc ... -->
 <!-- Modal HTML embedded directly into document -->
@@ -125,18 +124,33 @@ extract($donnesAdresse);
                 <p class="mb-1" style="font-size: .77rem;">Medecin Généraliste
                   <!-- test à changer plus tard!-->
                 </p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
                 <p class="mt-4 mb-1" style="font-size: .77rem;">Médecin Généraliste
                   <!-- test à changer plus tard!-->
                 </p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
                 <p class="mt-4 mb-1" style="font-size: .77rem;">Kinésithérapeute
                   <!-- test à changer plus tard!-->
                 </p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
                 <p class="mt-4 mb-1" style="font-size: .77rem;">Kinésithérapeute
                   <!-- test à changer plus tard!-->
                 </p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
                 <p class="mt-4 mb-1" style="font-size: .77rem;">Médecin Généraliste
                   <!-- test à changer plus tard!-->
                 </p>
+                <div class="progress rounded mb-2" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -149,18 +163,33 @@ extract($donnesAdresse);
                 <p class="mb-1" style="font-size: .77rem;">Médecin Généraliste
                   <!-- test à changer plus tard!-->
                 </p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
                 <p class="mt-4 mb-1" style="font-size: .77rem;">Pneumologue
                   <!-- test à changer plus tard!-->
                 </p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
                 <p class="mt-4 mb-1" style="font-size: .77rem;">Allergologue
                   <!-- test à changer plus tard!-->
                 </p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
                 <p class="mt-4 mb-1" style="font-size: .77rem;">Kiné
                   <!-- test à changer plus tard!-->
                 </p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
                 <p class="mt-4 mb-1" style="font-size: .77rem;">Cardiologue
                   <!-- test à changer plus tard!-->
                 </p>
+                <div class="progress rounded mb-2" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
               </div>
             </div>
           </div>
