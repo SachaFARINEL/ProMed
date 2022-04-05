@@ -3,6 +3,12 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
+<?php
+extract($dataPraticien);
+var_dump($dataPraticien)
+?>
+
+
 <head>
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
@@ -17,7 +23,7 @@
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-sm-10">
-            <h1>Praticien</h1>
+            <h1><?= $nom . ' ' . $prenom ?></h1>
             <br /> <br />
 
         </div>
@@ -71,77 +77,102 @@
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="first_name">
+                                <label for="nom">
                                     <h4>Nom</h4>
                                 </label>
-                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Nom" title="enter your first name if any.">
+
+                                <input type="text" class="form-control" name="nom" id="nom" value="<?= $nom ?>" />
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="last_name">
+                                <label for="prenom">
                                     <h4>Prénom</h4>
                                 </label>
-                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Prénom" title="enter your last name if any.">
+                                <input type="text" class="form-control" name="prenom" id="prenom" value=<?= $prenom ?> required>
                             </div>
                         </div>
-
                         <div class="form-group">
 
                             <div class="col-xs-6">
                                 <label for="phone">
                                     <h4>Téléphone Fixe</h4>
                                 </label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Téléphone fixe" title="enter your phone number if any.">
+                                <input type="text" class="form-control" name="tel" id="tel" value=<?= $tel ?> required>
                             </div>
                         </div>
+                        <div class="form-group">
 
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                <label for="mobile">
-                                    <h4>Téléphone Portable</h4>
-                                </label>
-                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Téléphone portable" title="enter your mobile number if any.">
-                            </div>
-                        </div>
-                        <div class="form-group">
+
 
                             <div class="col-xs-6">
                                 <label for="email">
                                     <h4>Email</h4>
                                 </label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                                <input type="email" class="form-control" name="mail" id="mail" value=<?= $mail ?> required>
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="email">
-                                    <h4>Adresse cabinet</h4>
+                                <label for="profession">
+                                    <h4>Profession</h4>
                                 </label>
-                                <input type="email" class="form-control" id="location" placeholder="55 rue Alphonse Guerin, Rennes 35000" title="enter a location">
+                                <input type="text" class="form-control" name="profession" id="profession" value=<?= $profession ?> required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+
+                            <div class="col-xs-6">
+                                <label for="adresse">
+                                    <h4>Nom cabinet</h4>
+                                </label>
+                                <input type="text" class="form-control" id="cabinet" value="<?= $nom_cabinet ?>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="num_adelie">
+                                    <h4>Numéro adélie</h4>
+                                </label>
+                                <input type="text" class="form-control" name="num_adelie" id="num_adelie" value=<?= $num_adelie ?> required>
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
                                 <label for="password">
-                                    <h4>Password</h4>
+                                    <h4>Ancien mot de passe</h4>
                                 </label>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
+                                <input type="password" class="form-control" name="password" id="password" value="" required>
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="password2">
-                                    <h4>Numéro adélie</h4>
+                                <label for="new_password">
+                                    <h4>Nouveau mot de passe</h4>
                                 </label>
-                                <input type="password" class="form-control" name="password2" id="password2" placeholder="Numéro adélie" title="enter your password2.">
+                                <input type="password" class="form-control" name="new_password" id="new_password" value="" required>
                             </div>
                         </div>
                         <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="new_password">
+                                    <h4>Comfimre ton nouveau mot de passe</h4>
+                                </label>
+                                <input type="password" class="form-control" name="password" id="password" value="" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+
+
+
                             <div class="col-xs-12">
                                 <br>
                                 <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>

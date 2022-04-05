@@ -170,6 +170,18 @@ class Praticien extends Controller
         // return $_SESSION["id"];
     }
 
+    public function profilPraticien()
+    {
+
+        session_start();
+        $dataPraticien = $this->model->find($_SESSION["id"]);
+        $pageTitle = 'Profil Praticien';
+        \Renderer::render('profilPraticien', compact('pageTitle', 'dataPraticien'));
+    }
+
+
+
+
     /**
      * Permet au patient de se déconnecer. Clear les variables de Session & la détruit : 
      * @return void
