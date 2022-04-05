@@ -1,11 +1,12 @@
-    <form action='./?controller=patient&task=rechercherUnPatient' method="POST">
+    <form id='loginform'>
         <div class="input-group rounded" style="width: 200px">
-            <input type="search" name="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <input type="search" name="search" id="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
             <span class="input-group-text border-0" id="search-addon">
-                <button type='submit'><i class="bi bi-search"></i></button>
+                <button type='submit' name='buttonSearch'><i class="bi bi-search"></i></button>
             </span>
         </div>
     </form>
+    <div id="content"></div>
     <div>
         <h1>Réponses</h1>
         <?php
@@ -14,4 +15,4 @@
         <?php endforeach ?>
     </div>
 
-    <script src="../../assets//scripts//recherchePatient.js"></script>
+    <script src="../../assets/scripts/recherchePatient.js"></script>
