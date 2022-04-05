@@ -326,7 +326,7 @@
                         <div class="col-sm-4">
                             <div class="input-group has-validation">
                                 <span class="input-group-text font-monospace">Type de voie</span>
-                                <select class="form-select" naùe="type_de_voie_tuteur" id="type_de_voie_tuteur">
+                                <select class="form-select" name="type_de_voie_tuteur" id="type_de_voie_tuteur">
                                     <option value="">Choisir...</option>
                                     <option value="Allée">Allée</option>
                                     <option value="Avenue">Avenue</option>
