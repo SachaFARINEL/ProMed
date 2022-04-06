@@ -15,10 +15,12 @@ class Ajax extends Controller
         // $dataPatient = ($patientModel->findPatientByName($search)[0]);
         $dataPatient = $patientModel->findPatientByName($search);
 
-        if (isset($dataPatient)) {
+        if (isset($dataPatient) && !empty($dataPatient)) {
             for ($i = 0; $i < count($dataPatient); $i++) {
                 echo $dataPatient[$i]['nom'] . "&nbsp" . $dataPatient[$i]['prenom'] . "<br/>";
             }
+        } else {
+            echo "Aucun patients trouvé.e.s";
         }
         // \Renderer::renderAjax('ajax', compact('dataPatient'));
     }
