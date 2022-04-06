@@ -89,7 +89,9 @@ extract($donnesAdresse); ?>
                                 </div>
                             </div>
                         </div>
-                        <div id='calendar' style="height: 10vh"></div>
+                    </div>
+                </div>
+                        <div style="max-height: 38vh; background:white" id='calendar' style="height: 10vh"></div>
 </section>
 <?php
 
