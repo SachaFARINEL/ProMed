@@ -14911,19 +14911,7 @@ var FullCalendar = (function (exports) {
         borderTopRightRadius: '3px',
     };
     function buildLicenseWarning(context) {
-        var key = context.options.schedulerLicenseKey;
-        var currentUrl = typeof window !== 'undefined' ? window.location.href : '';
-        if (!isImmuneUrl(currentUrl)) {
-            var status_1 = processLicenseKey(key);
-            if (status_1 !== 'valid') {
-                return (createElement("div", { className: "fc-license-message", style: CSS }, (status_1 === 'outdated') ? (createElement(Fragment, null,
-                    'Your license key is too old to work with this version. ',
-                    createElement("a", { href: OUTDATED_LICENSE_URL }, "More Info"))) : (createElement(Fragment, null,
-                        'Your license key is invalid. ',
-                        createElement("a", { href: INVALID_LICENSE_URL }, "More Info")))));
-            }
-        }
-        return null;
+
     }
     /*
     This decryption is not meant to be bulletproof. Just a way to remind about an upgrade.

@@ -84,61 +84,12 @@ extract($donnesAdresse); ?>
                                 <p class="text-muted mb-0">
                                     <!--<//?= $numero_tuteur  . ' ' . $adresse_tuteur . ' ' .  $ville_tuteur . ' ' . $code_postal_tuteur ?></p> !-->
                                 <div id="ex1" class="modal">
-                                    <div id='calendar'></div>
-                                    <a href="#" rel="modal:close">Close</a>
-                                </div>
-                                <p><a href="#ex1" rel="modal:open">Calendrier</a></p>
-                                <div style="margin-top:20px" class="row">
-                                    <div class="col-md-6">
-                                        <div class="card mb-4 mb-md-0">
-                                            <div class="card-body">
-                                                <p class="mb-4"><span class="text-primary font-italic me-1">RDV passé</span></p>
-                                                <p class="mb-1" style="font-size: .77rem;">Medecin Généraliste
-                                                    <!-- test à changer plus tard!-->
-                                                </p>
-                                                <p class="mt-4 mb-1" style="font-size: .77rem;">Médecin Généraliste
-                                                    <!-- test à changer plus tard!-->
-                                                </p>
-                                                <p class="mt-4 mb-1" style="font-size: .77rem;">Kinésithérapeute
-                                                    <!-- test à changer plus tard!-->
-                                                </p>
-                                                <p class="mt-4 mb-1" style="font-size: .77rem;">Kinésithérapeute
-                                                    <!-- test à changer plus tard!-->
-                                                </p>
-                                                <p class="mt-4 mb-1" style="font-size: .77rem;">Médecin Généraliste
-                                                    <!-- test à changer plus tard!-->
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card mb-4 mb-md-0">
-                                            <div class="card-body">
-                                                <p class="mb-4"><span class="text-primary font-italic me-1">RDV à venir</span>
-                                                    <!--Project Status!-->
-                                                </p>
-                                                <p class="mb-1" style="font-size: .77rem;">Médecin Généraliste
-                                                    <!-- test à changer plus tard!-->
-                                                </p>
-                                                <p class="mt-4 mb-1" style="font-size: .77rem;">Pneumologue
-                                                    <!-- test à changer plus tard!-->
-                                                </p>
-                                                <p class="mt-4 mb-1" style="font-size: .77rem;">Allergologue
-                                                    <!-- test à changer plus tard!-->
-                                                </p>
-                                                <p class="mt-4 mb-1" style="font-size: .77rem;">Kiné
-                                                    <!-- test à changer plus tard!-->
-                                                </p>
-                                                <p class="mt-4 mb-1" style="font-size: .77rem;">Cardiologue
-                                                    <!-- test à changer plus tard!-->
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
+
+
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div id='calendar' style="height: 10vh"></div>
 </section>
 <?php
 
