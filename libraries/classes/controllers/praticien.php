@@ -7,6 +7,16 @@ class Praticien extends Controller
     protected $modelName = "Praticien";
 
     /**
+     * Affiche authentification praticien 2
+     */
+    public function espacePraticien2()
+    {
+        $pageTitle = 'Espace praticien2';
+        \Renderer::render('espacePraticien2', compact('pageTitle'));
+    }
+
+
+    /**
      * Affiche authentification praticien 
      * 
      * @return void

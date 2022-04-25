@@ -31,7 +31,7 @@ extract($donnesAdresse); ?>
 </div>
 
 <!-- Link to open the modal -->
-<p><a href="#ex1" rel="modal:open">Open Modal</a></p>
+<!-- <p><a href="#ex1" rel="modal:open">Open Modal</a></p> -->
 
 
 <section style="background-color: #eee;">

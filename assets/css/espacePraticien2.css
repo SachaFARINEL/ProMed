@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+body {
+  height: 100vh;
+  background: #f6f5f8;
+}
+.sideBar {
+  font-family: "Lato", sans-serif;
+}
+
+h1 {
+  color: #221e41;
+}
+.sideBar h1 i {
+  color: #ff819a;
+  margin-right: 1vh;
+}
+.sideBar .menuSideBar {
+  color: #8b9096;
+}
+.sideBar .menuSideBar:hover {
+  background: #eae9f6;
+  color: #7b7ee4;
+  border-left: 0.5vh solid #7a84c2;
+  cursor: pointer;
+  border-radius: 1vh;
+}
+.main .container .rdv {
+  border: 1px solid black;
+}

@@ -13,4 +13,7 @@
 <p><a href="./?controller=praticien&task=pagePourRechercherUnPatient">Rechercher un patient</a></p>
 <p>
 
+<p><a href="./?controller=praticien&task=espacePraticien2">Espace praticien2</a></p>
+<p>
+
 <p><a href="./?controller=patient&task=logout">Se déconnecter</a></p>
