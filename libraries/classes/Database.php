@@ -21,12 +21,16 @@ class Database
     {
         $login = "dev";
         $loginHome = "root";
+        $loginServeurSio = "promo22";
         $mdp = "SuperUser@sio56";
         $mdpHome = "";
+        $mdpServeurSio = "user@sio22";
         $bd = "gr3";
         $bdHome = "db_promed";
+        $bdServeurSio = "promo22_sacha_promed";
         $serveur = "172.16.120.2";
         $serveurHome = "localhost";
+        $serveurSio = "localhost";
         $port = "3307";
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -36,7 +40,8 @@ class Database
         try {
             if (self::$instance === null) {
                 self::$instance = new PDO("mysql:host=$serveur;port=$port;dbname=$bd", $login, $mdp, $options);
-                // self::$instance = new PDO("mysql:host=$serveurHome;dbname=$bdHome", $loginHome, $mdpHome, $options);
+                //self::$instance = new PDO("mysql:host=$serveurHome;dbname=$bdHome", $loginHome, $mdpHome, $options);
+                //self::$instance = new PDO("mysql:host=$serveurSio;dbname=$bdServeurSio", $loginServeurSio, $mdpServeurSio, $options);
             }
             return self::$instance;
         } catch (PDOException $e) {

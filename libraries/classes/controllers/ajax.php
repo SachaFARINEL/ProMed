@@ -6,7 +6,7 @@ class Ajax extends Controller
 {
     protected $modelName = "Ajax";
 
-    public function rechercherUnPatient()
+    public static function rechercherUnPatient()
     {
         // print_r($_POST);
         // exit;
