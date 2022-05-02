@@ -84,15 +84,26 @@ extract($donnesAdresse); ?>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">
                                     <!--<//?= $numero_tuteur  . ' ' . $adresse_tuteur . ' ' .  $ville_tuteur . ' ' . $code_postal_tuteur ?></p> !-->
-                                <div id="ex1" class="modal">
-
-
-                                </div>
                             </div>
+
+
+                            <hr>
+                            <div class="card-body text-center">
+                                <h5>Emploi du temps</h5>
+                                <hr>
+                                <p class="text-muted mb-1"> Prochain rendez vous
+                                </p>
+                                <p class="text-muted mb-1">
+                                    <!-- mettre post pour chopper les prochains rdv -->
+                                </p>
+                                <p class="text-muted mb-3"> Historique des rendez vous
+                                    <!-- mettre post pour chopper les rdv d'avant -->
+                                </p>
+                            </div>
+
                         </div>
-                    </div>
-                </div>
-                <div style="max-height: 38vh; background:white" id='calendar' style="height: 10vh"></div>
+
+
 </section>
 <?php
 

@@ -27,18 +27,7 @@
     <!-- Formulaire François -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
-    <!-- Calendrier Bastien !-->
-    <link href='assets\css\main.css' rel='stylesheet' />
-    <script src='assets\scripts\main.js'></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth'
-            });
-            calendar.render();
-        });
-    </script>
+    <!-- Calendrier supprimé-->
 
     <!-- Formulaire Sacha -->
 
