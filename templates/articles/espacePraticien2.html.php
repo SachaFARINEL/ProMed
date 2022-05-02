@@ -1,4 +1,4 @@
-<link href="../../assets/css/espacePraticien2.css" rel="stylesheet" />
+<link href="../../assets/css/espacePraticien.css" rel="stylesheet" />
 <?php extract($donnesPraticien) ?>
 
 <body class="d-flex align-items-center">
@@ -12,24 +12,33 @@
                             <h1 class="fs-2 fw-bold mb-4 w-100 text-center"><span><i class="bi bi-activity"></i></span>Pro<span style="color : #FF819A">MED</span></h1>
                         </div>
                         <div class="w-100">
-                            <div class="menuSideBar w-100 d-flex justify-content-center align-items-center p-3">
-                                <i class="bi bi-house-heart w-25 text-start"></i>
-                                <span class="w-75 text-start fs-6">Mon espace</span>
-                            </div>
-                            <div class="menuSideBar w-100 d-flex justify-content-center align-items-center p-3">
-                                <i class="bi bi-person-circle  w-25 text-start"></i>
-                                <span class="w-75 text-start fs-6">Mon profil</span>
-                            </div>
-                            <div class="menuSideBar w-100 d-flex justify-content-center align-items-center p-3">
-                                <i class="bi bi-person-rolodex w-25 text-start"></i>
-                                <span class="w-75 text-start fs-6">Mes patients</span>
-                            </div>
+                            <a class="liensEspace" href="?controller=praticien&task=showEspace2">
+                                <div class="menuSideBar w-100 d-flex justify-content-center align-items-center p-3">
+                                    <i class="bi bi-house-heart w-25 text-start"></i>
+                                    <span class="w-75 text-start fs-6">Mon espace</span>
+                                </div>
+                            </a>
+
+                            <a class="liensEspace" href="./?controller=patient&task=showEspace">
+                                <div class="menuSideBar w-100 d-flex justify-content-center align-items-center p-3">
+                                    <i class="bi bi-person-circle  w-25 text-start"></i>
+                                    <span class="w-75 text-start fs-6">Mon profil</span>
+                                </div>
+                            </a>
+                            <a class="liensEspace" href="./?controller=patient&task=pagePourRechercherUnPraticien">
+                                <div class="menuSideBar w-100 d-flex justify-content-center align-items-center p-3">
+                                    <i class="bi bi-person-rolodex w-25 text-start"></i>
+                                    <span class="w-75 text-start fs-6">Mes patients</span>
+                                </div>
+                            </a>
                         </div>
                         <div class="w-100">
-                            <div class="menuSideBar w-100 d-flex justify-content-center align-items-center p-3">
-                                <i class="bi bi-box-arrow-right  w-25 text-start"></i>
-                                <span class="w-75 text-start fs-6">Déconnexion</span>
-                            </div>
+                            <a class="liensEspace" href="./?controller=patient&task=logout">
+                                <div class="menuSideBar w-100 d-flex justify-content-center align-items-center p-3">
+                                    <i class="bi bi-box-arrow-right w-25 text-start"></i>
+                                    <span class="w-75 text-start fs-6">Déconnexion</span>
+                                </div>
+                            </a>
                         </div>
                         </ul>
                     </div>
