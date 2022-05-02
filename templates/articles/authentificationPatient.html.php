@@ -1,3 +1,12 @@
+<nav class="d-flex justify-content-center align-items-center shadow p-3 mb-5 bg-body">
+
+    <a href="./index.php" class="text-decoration-none text-reset d-flex justify-content-center align-items-center ">
+        <img id='logo' src="assets/images/logoEntete.png" alt="logo" class="w-25 p-3" />
+        <h1 class="fs-2 ">PRO<strong class="fs-1 fw-bold font-monospace">MED</strong></h1>
+    </a>
+
+</nav>
+
 <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-md-9 col-lg-6 col-xl-5">
