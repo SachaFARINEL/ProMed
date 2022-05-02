@@ -1,7 +1,7 @@
 <link href="../../assets/css/espacePraticien2.css" rel="stylesheet" />
 <?php extract($donnesPraticien) ?>
 
-<body class="overflow-hidden d-flex align-items-center">
+<body class="d-flex align-items-center">
 
     <div class="container-fluid" style=" height: 90vh">
         <div class="row">
@@ -36,21 +36,58 @@
                 </div>
 
             </div>
-            <div class="main col-8">
-                <h1 class="fs-2 fw-bold" style="font-family: Lato, sans-serif"># DASHBOARD</h1>
-                <div class="container">
-                    <div class="rdv">
-                        Mes rendez-vous de la journée
+
+            <div class="col-10">
+                <div class="col-12">
+                    <div style="display: flex; justify-content: space-between ; align-items : center">
+                        <h1 class=" fs-2 fw-bold" style="font-family: Lato, sans-serif"># DASHBOARD</h1>
+                        <h2 class="fs-4 me-4" style="font-family: Lato, sans-serif">Bienvenue <?= $prenom . ' ' . strtoupper($nom) ?></h2>
+
+                        <h4 id="affichageHeure" class="text-end me-2 fs-6" style="font-family: Lato, sans-serif">
+                        </h4>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="main col-8">
+                        <div class="container">
+                            <div class="rdv rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif">
+                                <h2 class="mesRdv fs-4">Mes rendez-vous de la journée</h2>
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <div class="rdv rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif">
+                                <h2 class="mesRdv fs-4">Historiques de mes rendez-vous</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main col-4">
+                        <div class="container">
+                            <div class="rdvAutre rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif">
+                                <h2 class="mesRdv fs-4">Something</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="messageBienvenue col-2">
-                <h4 class="text-end me-2 fs-5" style="font-family: Lato, sans-serif"><?= $prenom . ' ' . strtoupper($nom) ?></h4>
-                <h4 id="affichageHeure" class="text-end me-2 fs-6" style="font-family: Lato, sans-serif">
-                </h4>
-            </div>
+
         </div>
+
+
+
+        <!-- <div class="main col-3">
+                <div class="container">
+                    <div class="rdv rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif">
+                        <h2 class="mesRdv fs-4">Test</h2>
+                    </div>
+                </div>
+            </div> -->
+
+
+
+
     </div>
 </body>
 

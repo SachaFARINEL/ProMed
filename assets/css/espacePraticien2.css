@@ -26,5 +26,14 @@ h1 {
   border-radius: 1vh;
 }
 .main .container .rdv {
-  border: 1px solid black;
+  height: 15rem;
+}
+.rdvAutre {
+  color: red;
+  height: 31.4rem;
+}
+.mesRdv {
+  color: #8b9096;
+  padding-top: 1rem;
+  padding-left: 1rem;
 }
