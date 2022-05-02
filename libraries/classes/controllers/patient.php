@@ -152,7 +152,7 @@ class Patient extends Controller
             'id_user'
         ));
         // 4. Redirection vers la page d'accueil pour le moment :
-        \Http::redirect('?controller=praticien&task=afficherMonProfil');
+        \Renderer::render('espacePatient', compact('pageTitle'));
     }
 
     /**

@@ -7,16 +7,6 @@ class Praticien extends Controller
     protected $modelName = "Praticien";
 
     /**
-     * Affiche authentification praticien 2
-     */
-    public function espacePraticien2()
-    {
-        $pageTitle = 'Espace praticien2';
-        \Renderer::render('espacePraticien2', compact('pageTitle'));
-    }
-
-
-    /**
      * Affiche authentification praticien 
      * 
      * @return void
@@ -38,6 +28,14 @@ class Praticien extends Controller
     {
         $pageTitle = 'Espace praticien';
         \Renderer::render('espacePraticien', compact('pageTitle'));
+    }
+
+    public function showEspace2(): void
+    {
+        session_start();
+        $pageTitle = 'Espace praticien2';
+        $donnesPraticien = $this->model->find($_SESSION['id']);
+        \Renderer::render('espacePraticien2', compact('pageTitle', 'donnesPraticien'));
     }
 
     /**
@@ -182,15 +180,11 @@ class Praticien extends Controller
 
     public function profilPraticien()
     {
-
         session_start();
         $dataPraticien = $this->model->find($_SESSION["id"]);
         $pageTitle = 'Profil Praticien';
         \Renderer::render('profilPraticien', compact('pageTitle', 'dataPraticien'));
     }
-
-
-
 
     /**
      * Permet au patient de se déconnecer. Clear les variables de Session & la détruit : 

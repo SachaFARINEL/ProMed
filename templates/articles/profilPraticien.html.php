@@ -5,7 +5,6 @@
 
 <?php
 extract($dataPraticien);
-var_dump($dataPraticien)
 ?>
 
 
