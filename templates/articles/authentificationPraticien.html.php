@@ -28,8 +28,6 @@
                             <p class="text-center fw-bold mx-3 mb-0 text-muted">OU</p>
                         </div>
                         <a type="button" style="background-color: #55acee" class="btn btn-primary btn-lg btn-block" a href="./?controller=praticien&task=inscription">S'inscrire</a>
-
-                        <a type="button" style="background-color: red" class="btn btn-primary btn-lg btn-block" href="./?controller=praticien&task=showEspace">Mode dev</a>
                     </div>
                 </form>
             </div>

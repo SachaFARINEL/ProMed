@@ -14,29 +14,19 @@ class Praticien extends Controller
 
     public function showAuth()
     {
-        session_start();
-        if (!isset($_SESSION['id_session']) || $_SESSION["role"] !== 'praticien') {
-            $pageTitle = 'Authentification praticien';
-            \Renderer::render('authentificationPraticien', compact('pageTitle'));
-        } else {
-            Praticien::showEspace();
-        }
+        $pageTitle = 'Authentification praticien';
+        \Renderer::render('authentificationPraticien', compact('pageTitle'));
     }
 
 
     public function showEspace(): void
     {
+        session_start();
         $pageTitle = 'Espace praticien';
-        \Renderer::render('espacePraticien', compact('pageTitle'));
+        $donneesPraticien = $this->model->find($_SESSION['id']);
+        \Renderer::render('espacePraticien', compact('pageTitle', 'donneesPraticien'));
     }
 
-    public function showEspace2(): void
-    {
-        session_start();
-        $pageTitle = 'Espace praticien2';
-        $donnesPraticien = $this->model->find($_SESSION['id']);
-        \Renderer::render('espacePraticien2', compact('pageTitle', 'donnesPraticien'));
-    }
 
     /**
      * Affiche l'accueil (Reussir à l'utiliser directement sur l'index ? {N'a rien à faire dans le controleur praticien car correspond à nos deux utilisateurs})
@@ -73,7 +63,7 @@ class Praticien extends Controller
         $prestationModel = new \Models\Prestation();
         $donnesPrestations = $prestationModel->findPrestations($_SESSION['id']);
         $pageTitle = "Profil et prise en charge";
-        \Renderer::render('parametrePriseEnCharge', compact('pageTitle', 'donnesPraticien', 'donnesPrestations'));
+        \Renderer::render('profilPraticien', compact('pageTitle', 'donnesPraticien', 'donnesPrestations'));
     }
 
     /**
@@ -116,28 +106,7 @@ class Praticien extends Controller
             'num_adelie',
             'nom_cabinet'
         ));
-        // //Adresse
-        // $numero = filter_input(INPUT_POST, 'numero', FILTER_SANITIZE_SPECIAL_CHARS);
-        // $type_de_voie = filter_input(INPUT_POST, 'type_de_voie', FILTER_SANITIZE_SPECIAL_CHARS);
-        // $adresse = filter_input(INPUT_POST, 'adresse', FILTER_SANITIZE_SPECIAL_CHARS);
-        // $code_postal = filter_input(INPUT_POST, 'code_postal', FILTER_SANITIZE_NUMBER_INT);
-        // $ville = filter_input(INPUT_POST, 'ville', FILTER_SANITIZE_SPECIAL_CHARS);
-        // $departement = filter_input(INPUT_POST, 'departement', FILTER_SANITIZE_SPECIAL_CHARS);
-        // $pays = filter_input(INPUT_POST, 'pays', FILTER_SANITIZE_SPECIAL_CHARS);
 
-        // extract($this->model->findLastInsertId()); //Récupérationde l'id patient pour le mettre dans la base adresse
-        // $adresseModel = new \Models\Adresse();
-        // $adresseModel->insert(compact(
-        //     'numero',
-        //     'type_de_voie',
-        //     'adresse',
-        //     'code_postal',
-        //     'ville',
-        //     'departement',
-        //     'pays',
-        //     'id_user',
-        // ));
-        // 4. Redirection vers la page d'accueil pour le moment :
         \Http::redirect('?controller=praticien&task=showAuth');
     }
 
@@ -156,17 +125,14 @@ class Praticien extends Controller
                 if (!isset($_SESSION)) {
                     session_start();
                     $id_session = session_id();
+                    $praticien = 'praticien';
                     $_SESSION['id_session'] = $id_session;
-                    $_SESSION["id"] = $id;
-                    $_SESSION["mail"] = $mail;
-                    $_SESSION["nom"] = $nom;
-                    $_SESSION["prenom"] = $prenom;
-                    $role = 'praticien';
-                    $_SESSION["role"] = $role;
-
+                    $_SESSION['id'] = $id;
+                    $_SESSION['role'] = $praticien;
                     //Redirection du praticien sur son espace
-                    $pageTitle = 'Espace praticien';
-                    \Renderer::render('espacePraticien', compact('pageTitle', 'id_session', 'id', 'mail', 'nom', 'prenom', 'role'));
+                    //\Renderer::render('espacePraticien', compact('pageTitle', 'id_session', 'id', 'praticien', 'donneesPraticien'));
+                    //Praticien::showEspace();
+                    \Http::redirect('?controller=praticien&task=showEspace');
                 }
                 //Sinon on affiche une erreur.
             } else {
@@ -175,7 +141,6 @@ class Praticien extends Controller
         } else {
             echo 'Les champs sont vides - JS Check à faire';
         }
-        // return $_SESSION["id"];
     }
 
     public function profilPraticien()
