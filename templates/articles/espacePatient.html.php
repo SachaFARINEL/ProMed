@@ -22,7 +22,8 @@ extract($donnesAdresse); ?>
                         <h5 class="mt-3"><?= $nom . ' ' . $prenom . ', ' . Controllers\Utils::dateToAge($date_naissance) . ' ' . 'ans' ?></h5>
                         <p class="text-muted mb-1"> <?= ($genre === 'M' ? 'Né' : 'Née') . ' ' . 'le' . ' ' . Controllers\Utils::dateToFrench($date_naissance, 'j F Y') ?>
                             <hr>
-                        <p class="text-muted mb-1"><?= $numero . ' ' . $type_de_voie . ' ' . $adresse . ', ' . $code_postal . ' ' . $ville  ?></p>
+                        <p class="text-muted mb-1"><?= $numero . ' ' . ($type_de_voie === 'Autre' ? ' ' : $type_de_voie) . ' ' . $adresse . ', ' . $code_postal . ' ' . $ville  ?></p>
+
                         <p class="text-muted mb-1"><?= $out = Controllers\Utils::espaceTelephone($tel) ?></p>
                         <p class="text-muted mb-3"><?= $mail ?></p>
                         <p class="text-muted mb-3"><?= $activite ?></p>
@@ -91,7 +92,7 @@ extract($donnesAdresse); ?>
                         </div>
                     </div>
                 </div>
-                        <div style="max-height: 38vh; background:white" id='calendar' style="height: 10vh"></div>
+                <div style="max-height: 38vh; background:white" id='calendar' style="height: 10vh"></div>
 </section>
 <?php
 

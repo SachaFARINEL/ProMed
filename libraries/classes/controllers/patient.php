@@ -80,6 +80,7 @@ class Patient extends Controller
         $mail = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_EMAIL);
         $tel = filter_input(INPUT_POST, 'tel', FILTER_SANITIZE_NUMBER_INT);
 
+
         $password = filter_input(INPUT_POST, 'mot_de_passe');
         $password_confirmation = filter_input(INPUT_POST, 'mot_de_passe_confirmation');
         if ($password === $password_confirmation) {
@@ -106,6 +107,7 @@ class Patient extends Controller
         $prenom_generaliste = filter_input(INPUT_POST, 'prenom_generaliste', FILTER_SANITIZE_SPECIAL_CHARS);
         $mail_generaliste = filter_input(INPUT_POST, 'mail_generaliste', FILTER_SANITIZE_EMAIL);
         $tel_generaliste = filter_input(INPUT_POST, 'tel_generaliste', FILTER_SANITIZE_NUMBER_INT);
+
         $date_inscription = date('Y-m-d H:i:s');
 
         $this->model->insert(compact(
@@ -129,6 +131,7 @@ class Patient extends Controller
             'mail_generaliste',
             'tel_generaliste',
             'date_inscription'
+
         ));
         //Adresse
         $numero = filter_input(INPUT_POST, 'numero', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -138,21 +141,25 @@ class Patient extends Controller
         $ville = filter_input(INPUT_POST, 'ville', FILTER_SANITIZE_SPECIAL_CHARS);
         $departement = filter_input(INPUT_POST, 'departement', FILTER_SANITIZE_SPECIAL_CHARS);
         $pays = filter_input(INPUT_POST, 'pays', FILTER_SANITIZE_SPECIAL_CHARS);
+        $role = filter_input(INPUT_GET, 'controller', FILTER_SANITIZE_SPECIAL_CHARS);
 
         extract($this->model->findLastInsertId()); //Récupérationde l'id patient pour le mettre dans la base adresse
         $adresseModel = new \Models\Adresse();
         $adresseModel->insert(compact(
+            'id_user',
+            'role',
             'numero',
             'type_de_voie',
             'adresse',
             'code_postal',
             'ville',
             'departement',
-            'pays',
-            'id_user'
+            'pays'
+
         ));
         // 4. Redirection vers la page d'accueil pour le moment :
-        \Renderer::render('espacePatient', compact('pageTitle'));
+        $pageTitle = 'Espace Praticien';
+        \Renderer::render('espacePraticien', compact('pageTitle'));
     }
 
     /**

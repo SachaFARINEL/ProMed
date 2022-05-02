@@ -42,10 +42,9 @@ extract($dataPraticien);
 
 
             <div class="panel panel-default">
-                <div class="panel-heading">Préstation <i class="fa fa-link fa-1x"></i></div>
-                <div class="panel-body">Médecin generaliste</div>
+                <div class="panel-heading">Prestation <i class="fa fa-link fa-1x"></i></div>
+                <div class="panel-body">Médecin généraliste</div>
                 <div class="panel-body">Podologue</div>
-                <div class="panel-body">Doctor love</div>
             </div>
 
 

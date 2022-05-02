@@ -17,7 +17,11 @@ Ou autre manière :
 
 <?php
 extract($donnesTablePatient);
-extract($donnesAdresse); ?>
+extract($donnesAdresse);
+// var_dump($donnesAdresse);
+var_dump($donnesTablePatient);
+exit;
+?>
 <!-- Pour savoir si qu'il y a dans $donnesTablePatient -> var_dump($donnesTablePatient) -->
 <h5> <?= $id ?> </h5>
 <h5> <?= $nom ?> </h5>
@@ -44,7 +48,7 @@ extract($donnesAdresse); ?>
             <h5 class="mt-3"><?= $nom . ' ' . $prenom . ', ' . Controllers\Utils::dateToAge($date_naissance) . ' ' . 'ans' ?></h5>
             <p class="text-muted mb-1"> <?= ($genre === 'Masculin' ? 'Né' : 'Née') . ' ' . 'le' . ' ' . Controllers\Utils::dateToFrench($date_naissance, 'j F Y') ?>
               <hr>
-            <p class="text-muted mb-1"><?= $numero . ' ' . $type_de_voie . ' ' . $adresse . ', ' . $code_postal . ' ' . $ville  ?></p>
+            <p class="text-muted mb-1"><?= $numero . ' ' . ($type_de_voie === 'Autre' ? ' ' : $type_de_voie) . ' ' . $adresse . ', ' . $code_postal . ' ' . $ville  ?></p>
             <p class="text-muted mb-1"><?= $out = Controllers\Utils::espaceTelephone($tel) ?></p>
             <p class="text-muted mb-3"><?= $mail ?></p>
             <p class="text-muted mb-3"><?= $activite ?></p>

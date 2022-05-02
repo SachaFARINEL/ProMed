@@ -116,6 +116,7 @@
                                     <option value="Ruelle">Ruelle</option>
                                     <option value="Quai">Quai</option>
                                     <option value="Square">Square</option>
+                                    <option value="Autre">Autre...</option>
 
                                 </select>
                             </div>
