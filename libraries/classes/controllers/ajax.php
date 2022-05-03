@@ -62,11 +62,7 @@ class Ajax extends Controller
                 echo $dataPatient[$i]['nom'] . "&nbsp" . $dataPatient[$i]['prenom'] . "<br/>";
             }
         } else {
-            foreach ($donneesAllPatients as $item) {
-                foreach ($item as $key => $data) {
-                    echo  $key . ":" . $data . "</br>";
-                }
-            }
+            echo "Aucun patients trouvé.e.s";
         }
         // \Renderer::renderAjax('ajax', compact('dataPatient'));
     }
