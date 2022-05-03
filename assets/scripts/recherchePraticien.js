@@ -1,19 +1,16 @@
 $(function () {
 
-    let allData = $('#listePatients').html();        
-    
     $('#search').on('propertychange input', function (e) {
         e.preventDefault();
-        $('#listePatients').html(' ').val();
-        if ($('#search').val()) {
 
+        if ($('#search').val()) {
             let valeurs = {
                 "userData": $('#search').val(),
             };
 
             $.ajax({
                 type: 'POST',
-                url: './?controller=ajax&task=rechercherUnPatient2',
+                url: './?controller=ajax&task=rechercherUnPraticien',
                 data: valeurs,
                 error: function () {
                     alert('Erreur sur PHP !');
@@ -34,8 +31,7 @@ $(function () {
             });
 
         } else {
-            
-            $('#content').html(allData);
+            $('#content').html('');
         }
     });
 
