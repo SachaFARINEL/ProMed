@@ -213,9 +213,13 @@ class Praticien extends Controller
 
     function pagePourRechercherUnPatient()
     {
-        $donneesAllPatients = $this->model->findAll();
+        session_start();
         $pageTitle = "Rechercher un patient";
-        \Renderer::render('rechercherUnPatient', compact('pageTitle', 'donneesAllPatients'));
+        $nomPartie = "Mes Patients";
+        $donneesAllPatients = $this->model->findAll();
+        $donneesPraticien = $this->model->find($_SESSION['id']);
+
+        \Renderer::renderEspacePraticien('rechercherUnPatient', compact('pageTitle', 'nomPartie', 'donneesAllPatients', 'donneesPraticien'));
     }
 
     public function rechercherUnPraticien()
