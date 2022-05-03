@@ -42,8 +42,14 @@ class Patient extends Controller
      */
     public function showEspace()
     {
+        session_start();
+        $donneesTablePatient = $this->model->find($_SESSION['id']);
+        $adresseModel = new \Models\Adresse();
+        $rdvModel = new \Models\Rendez_vous();
+        $donneesAdresse = $adresseModel->findAdresse($_SESSION['id']);
+        $donneesRdv = $rdvModel->findRdv($_SESSION['id']);
         $pageTitle = 'Espace patient';
-        \Renderer::render('espacePatient', compact('pageTitle'));
+        \Renderer::render('espacePatient', compact('pageTitle', 'donneesTablePatient', 'donneesAdresse', 'donneesRdv'));
     }
 
     /**
@@ -182,32 +188,12 @@ class Patient extends Controller
                 if (!isset($_SESSION)) {
                     session_start();
                     $id_session = session_id();
+                    $role = 'patient';
                     $_SESSION['id_session'] = $id_session;
                     $_SESSION["id"] = $id;
-                    $_SESSION["mail"] = $mail;
-                    $_SESSION["nom"] = $nom;
-                    $_SESSION["prenom"] = $prenom;
-                    $role = 'patient';
                     $_SESSION["role"] = $role;
-
-                    $donnesTablePatient = $this->model->find($_SESSION['id']);
-                    $adresseModel = new \Models\Adresse();
-                    $donnesAdresse = $adresseModel->findAdresse($_SESSION['id']);
-                    $pageTitle = "Mon profil";
-
                     //Redirection du patient sur son espace
-                    $pageTitle = 'Espace patient';
-                    \Renderer::render('espacePatient', compact(
-                        'pageTitle',
-                        'id_session',
-                        'id',
-                        'mail',
-                        'nom',
-                        'prenom',
-                        'role',
-                        'donnesTablePatient',
-                        'donnesAdresse'
-                    ));
+                    \Http::redirect('?controller=patient&task=showEspace');
                 }
                 //Sinon on affiche une erreur.
             } else {

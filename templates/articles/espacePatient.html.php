@@ -1,10 +1,14 @@
 <?php
+// A M J H M S
 echo 'Bienvenue sur votre espace' . ' ' . $_SESSION['nom'] . ' ' . $_SESSION['prenom'];
 ?>
 <?php
-extract($donnesTablePatient);
-extract($donnesAdresse);
-//extract($rdv);
+extract($donneesTablePatient);
+extract($donneesAdresse);
+extract($donneesRdv);
+
+
+
 ?>
 </p>
 <!--<p><a href="./?controller=patient&task=afficherProfil">Mon profil</a></p> !-->
@@ -99,22 +103,27 @@ extract($donnesAdresse);
                                 <!-- a voir quand y'aura des rendez-vous-->
                             </p>
                             <div class="row">
-                                <?php
-                                $rdvS = ['médecin généraliste', 'kiné', 'podologue', 'pharmacien', 'aller faire les courses',];
-                                foreach ($rdvS as $rdv) {
-                                ?>
 
-                                    <div class="col-4">
-                                        <div class="card shadow my-3" style="min-height: 7rem">
-                                            <div class="card-body">
-                                                <h5 class="card-title"><?= $rdv ?></h5>
-                                                <p class="card-text">15/05/2022 15:30</p>
+                                <?php
+
+
+                                foreach ($donneesRdv as $items) {
+                                    foreach ($items as $key => $item) {
+
+                                ?>
+                                        <div class="col-4">
+                                            <div class="card shadow my-3" style="min-height: 7rem">
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><?= $key . ' ' . $item[3] ?></h5>
+                                                    <p class="card-text"><?= $key . ' ' . $item[4] ?></p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
                                 <?php
+                                    }
                                 }
+
                                 ?>
                             </div>
                         </div>
