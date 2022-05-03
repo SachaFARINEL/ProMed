@@ -48,7 +48,6 @@ abstract class Model
         } catch (\PDOException $e) { /* Sinon afficher l'erreur en question */
             /* Dans ce cas j'utilise '\PDOException' à la place de 'PDOException' car 
             nous sommes dans un namespace. PDOException n'est donc pas défini ici*/
-
             die('Erreur : ' . $e->getMessage());
         }
     }
