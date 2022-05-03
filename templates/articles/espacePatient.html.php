@@ -3,7 +3,9 @@ echo 'Bienvenue sur votre espace' . ' ' . $_SESSION['nom'] . ' ' . $_SESSION['pr
 ?>
 <?php
 extract($donnesTablePatient);
-extract($donnesAdresse); ?>
+extract($donnesAdresse);
+//extract($rdv);
+?>
 </p>
 <!--<p><a href="./?controller=patient&task=afficherProfil">Mon profil</a></p> !-->
 <p>
@@ -81,28 +83,44 @@ extract($donnesAdresse); ?>
                             <div class="col-sm-3">
                                 <p class="mb-0">Adresse</p>
                             </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">
-                                    <!--<//?= $numero_tuteur  . ' ' . $adresse_tuteur . ' ' .  $ville_tuteur . ' ' . $code_postal_tuteur ?></p> !-->
-                            </div>
-
-
-                            <hr>
-                            <div class="card-body text-center">
-                                <h5>Emploi du temps</h5>
-                                <hr>
-                                <p class="text-muted mb-1"> Prochain rendez vous
-                                </p>
-                                <p class="text-muted mb-1">
-                                    <!-- mettre post pour chopper les prochains rdv -->
-                                </p>
-                                <p class="text-muted mb-3"> Historique des rendez vous
-                                    <!-- mettre post pour chopper les rdv d'avant -->
-                                </p>
-                            </div>
-
                         </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">
+                                <!--<//?= $numero_tuteur  . ' ' . $adresse_tuteur . ' ' .  $ville_tuteur . ' ' . $code_postal_tuteur ?></p> !-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="card mb-8">
+                        <div class="card-body text-center">
+                            <h5>Emploi du temps</h5>
+                            <hr>
+                            <p class="text-muted mb-1"> Prochains rendez-vous
+                                <!-- a voir quand y'aura des rendez-vous-->
+                            </p>
+                            <div class="row">
+                                <?php
+                                $rdvS = ['médecin généraliste', 'kiné', 'podologue', 'pharmacien', 'aller faire les courses',];
+                                foreach ($rdvS as $rdv) {
+                                ?>
 
+                                    <div class="col-4">
+                                        <div class="card shadow my-3" style="min-height: 7rem">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><?= $rdv ?></h5>
+                                                <p class="card-text">15/05/2022 15:30</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
 
 </section>
 <?php
