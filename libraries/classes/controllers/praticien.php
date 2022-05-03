@@ -22,9 +22,10 @@ class Praticien extends Controller
     public function showEspace(): void
     {
         session_start();
-        $pageTitle = 'Espace praticien';
+        $pageTitle = 'Mon espace';
+        $nomPartie = 'DASHBOARD';
         $donneesPraticien = $this->model->find($_SESSION['id']);
-        \Renderer::render('espacePraticien', compact('pageTitle', 'donneesPraticien'));
+        \Renderer::renderEspacePraticien('espacePraticien', compact('pageTitle', 'nomPartie', 'donneesPraticien'));
     }
 
 
@@ -185,9 +186,13 @@ class Praticien extends Controller
 
     function pagePourRechercherUnPatient()
     {
+        session_start();
         $pageTitle = "Rechercher un patient";
-        \Renderer::render('rechercherUnPatient', compact('pageTitle'));
+        $nomPartie = "Mes Patients";
+        $donneesPraticien = $this->model->find($_SESSION['id']);
+        \Renderer::renderEspacePraticien('rechercherUnPatient', compact('pageTitle', 'nomPartie', 'donneesPraticien'));
     }
+
     public function rechercherUnPraticien()
     {
         $search = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_SPECIAL_CHARS);
