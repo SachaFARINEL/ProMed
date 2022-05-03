@@ -3,6 +3,10 @@
 extract($donneesTablePatient);
 extract($donneesAdresse);
 extract($donneesRdv);
+
+
+
+
 ?>
 
 
@@ -104,7 +108,11 @@ extract($donneesRdv);
                                             <div class="card-body">
                                                 <h5 class="card-title"><?= $id_praticien ?></h5>
                                                 <p class="card-text"><?= $id_prestation ?></p>
-                                                <p class="card-text"><?= $date ?></p>
+                                                <p class="card-text"><?=
+                                                                        date_format(new DateTime($date), 'l jS F Y g:ia')
+                                                                        ?>
+
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
