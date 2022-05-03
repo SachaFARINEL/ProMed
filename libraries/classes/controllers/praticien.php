@@ -154,6 +154,31 @@ class Praticien extends Controller
         \Renderer::renderEspacePraticien('profilPraticien', compact('pageTitle', 'dataPraticien', 'nomPartie', 'donneesPraticien'));
     }
 
+
+    public function update()
+    {
+        session_start();
+        $id = $_SESSION['id'];
+        $prenom = filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_SPECIAL_CHARS);
+        $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_SPECIAL_CHARS);
+        $profession = filter_input(INPUT_POST, 'profession', FILTER_SANITIZE_SPECIAL_CHARS);
+        $mail = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_EMAIL);
+        $tel = filter_input(INPUT_POST, 'tel', FILTER_SANITIZE_NUMBER_INT);
+        $num_adelie = filter_input(INPUT_POST, 'num_adelie', FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $this->model->updatePraticien(
+            $id,
+            $nom,
+            $prenom,
+            $mail,
+            $profession,
+            $tel,
+            $num_adelie,
+        );
+        \Http::redirect('?controller=praticien&task=profilPraticien');
+    }
+
+
     /**
      * Permet au patient de se déconnecer. Clear les variables de Session & la détruit : 
      * @return void

@@ -50,203 +50,204 @@ extract($dataPraticien);
                 <li><a data-toggle="tab" href="#settings">Ajouter une prestation</a></li>
             </ul>
 
+            <form action=".?controller=praticien&task=update" method="POST">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home">
+                        <hr>
+                        <form class="form" action="##" method="post" id="registrationForm">
+                            <div class="form-group">
 
-            <div class="tab-content">
-                <div class="tab-pane active" id="home">
-                    <hr>
-                    <form class="form" action="##" method="post" id="registrationForm">
-                        <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="nom">
+                                        <h4>Nom</h4>
+                                    </label>
 
-                            <div class="col-xs-6">
-                                <label for="nom">
-                                    <h4>Nom</h4>
-                                </label>
-
-                                <input type="text" class="form-control" name="nom" id="nom" value="<?= $nom ?>" />
+                                    <input type="text" class="form-control" name="nom" id="nom" value="<?= $nom ?>" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
+                            <div class="form-group">
 
-                            <div class="col-xs-6">
-                                <label for="prenom">
-                                    <h4>Prénom</h4>
-                                </label>
-                                <input type="text" class="form-control" name="prenom" id="prenom" value=<?= $prenom ?> required>
+                                <div class="col-xs-6">
+                                    <label for="prenom">
+                                        <h4>Prénom</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="prenom" id="prenom" value=<?= $prenom ?> required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
+                            <div class="form-group">
 
-                            <div class="col-xs-6">
-                                <label for="phone">
-                                    <h4>Téléphone Fixe</h4>
-                                </label>
-                                <input type="text" class="form-control" name="tel" id="tel" value=<?= $tel ?> required>
+                                <div class="col-xs-6">
+                                    <label for="phone">
+                                        <h4>Téléphone Fixe</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="tel" id="tel" value=<?= $tel ?> required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
+                            <div class="form-group">
 
 
 
-                            <div class="col-xs-6">
-                                <label for="email">
-                                    <h4>Email</h4>
-                                </label>
-                                <input type="email" class="form-control" name="mail" id="mail" value=<?= $mail ?> required>
+                                <div class="col-xs-6">
+                                    <label for="email">
+                                        <h4>Email</h4>
+                                    </label>
+                                    <input type="email" class="form-control" name="mail" id="mail" value=<?= $mail ?> required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
+                            <div class="form-group">
 
-                            <div class="col-xs-6">
-                                <label for="profession">
-                                    <h4>Profession</h4>
-                                </label>
-                                <input type="text" class="form-control" name="profession" id="profession" value=<?= $profession ?> required>
+                                <div class="col-xs-6">
+                                    <label for="profession">
+                                        <h4>Profession</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="profession" id="profession" value=<?= $profession ?> required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
+                            <div class="form-group">
 
 
-                            <div class="col-xs-6">
-                                <label for="adresse">
-                                    <h4>Nom cabinet</h4>
-                                </label>
-                                <input type="text" class="form-control" id="cabinet" value="<?= $nom_cabinet ?>">
+                                <div class="col-xs-6">
+                                    <label for="adresse">
+                                        <h4>Nom cabinet</h4>
+                                    </label>
+                                    <input type="text" class="form-control" id="cabinet" value="<?= $nom_cabinet ?>">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
+                            <div class="form-group">
 
-                            <div class="col-xs-6">
-                                <label for="num_adelie">
-                                    <h4>Numéro adélie</h4>
-                                </label>
-                                <input type="text" class="form-control" name="num_adelie" id="num_adelie" value=<?= $num_adelie ?> required>
+                                <div class="col-xs-6">
+                                    <label for="num_adelie">
+                                        <h4>Numéro adélie</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="num_adelie" id="num_adelie" value=<?= $num_adelie ?> required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
+                            <div class="form-group">
 
-                            <div class="col-xs-6">
-                                <label for="password">
-                                    <h4>Ancien mot de passe</h4>
-                                </label>
-                                <input type="password" class="form-control" name="password" id="password" value="" required>
+                                <div class="col-xs-6">
+                                    <label for="password">
+                                        <h4>Ancien mot de passe</h4>
+                                    </label>
+                                    <input type="password" class="form-control" name="password" id="password" value="">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
+                            <div class="form-group">
 
-                            <div class="col-xs-6">
-                                <label for="new_password">
-                                    <h4>Nouveau mot de passe</h4>
-                                </label>
-                                <input type="password" class="form-control" name="new_password" id="new_password" value="" required>
+                                <div class="col-xs-6">
+                                    <label for="new_password">
+                                        <h4>Nouveau mot de passe</h4>
+                                    </label>
+                                    <input type="password" class="form-control" name="new_password" id="new_password" value="">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
+                            <div class="form-group">
 
-                            <div class="col-xs-6">
-                                <label for="new_password">
-                                    <h4>Comfimre ton nouveau mot de passe</h4>
-                                </label>
-                                <input type="password" class="form-control" name="password" id="password" value="" required>
+                                <div class="col-xs-6">
+                                    <label for="new_password">
+                                        <h4>Comfimre ton nouveau mot de passe</h4>
+                                    </label>
+                                    <input type="password" class="form-control" name="password" id="password" value="">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
+                            <div class="form-group">
 
 
 
 
-                            <div class="col-xs-12">
-                                <br>
-                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                <button class="btn btn-lg" type="modif"><i class="glyphicon glyphicon-repeat"></i> Modifier</button>
+                                <div class="col-xs-12">
+                                    <br>
+                                    <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                    <button class="btn btn-lg" type="submit"><i class="glyphicon glyphicon-repeat"></i> Modifier</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
 
-                    <hr>
+                        <hr>
+
+                    </div>
+                    <!--/tab-pane-->
+
+                    <!--/tab-pane-->
+                    <div class="tab-pane" id="settings">
+
+
+                        <hr>
+                        <form class="form" action="##" method="post" id="registrationForm">
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="first_name">
+                                        <h4>Consultation</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Menu déroulant" title="enter your first name if any.">
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="mobile">
+                                        <h4>Durée</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Durée de la consultation " title="enter your mobile number if any.">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="phone">
+                                        <h4>Prix</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Prix consultation" title="enter your phone number if any.">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="mobile">
+                                        <h4>Moyens de paiement</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Cheques, especes, cartes bancaires... " title="enter your mobile number if any.">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="last_name">
+                                        <h4>Description</h4>
+                                    </label>
+                                    <textarea type="text" class="form-control" name="last_name" id="last_name" style="height: 100px" placeholder="Description" title="enter your last name if any."></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <br>
+                                    <button class="btn btn-lg btn-add " type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Ajouter</button>
+                                    <!--<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>-->
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+
+
 
                 </div>
                 <!--/tab-pane-->
-
-                <!--/tab-pane-->
-                <div class="tab-pane" id="settings">
-
-
-                    <hr>
-                    <form class="form" action="##" method="post" id="registrationForm">
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="first_name">
-                                    <h4>Consultation</h4>
-                                </label>
-                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Menu déroulant" title="enter your first name if any.">
-                            </div>
-                        </div>
-
-
-
-
-
-
-
-
-
-
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                <label for="mobile">
-                                    <h4>Durée</h4>
-                                </label>
-                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Durée de la consultation " title="enter your mobile number if any.">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="phone">
-                                    <h4>Prix</h4>
-                                </label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Prix consultation" title="enter your phone number if any.">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                <label for="mobile">
-                                    <h4>Moyens de paiement</h4>
-                                </label>
-                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Cheques, especes, cartes bancaires... " title="enter your mobile number if any.">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                <label for="last_name">
-                                    <h4>Description</h4>
-                                </label>
-                                <textarea type="text" class="form-control" name="last_name" id="last_name" style="height: 100px" placeholder="Description" title="enter your last name if any."></textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <br>
-                                <button class="btn btn-lg btn-add " type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Ajouter</button>
-                                <!--<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>-->
-                            </div>
-                        </div>
-
-
-                    </form>
-                </div>
-
-
-
-            </div>
-            <!--/tab-pane-->
+            </form>
         </div>
         <!--/tab-content-->
 
