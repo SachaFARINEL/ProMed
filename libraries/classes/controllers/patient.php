@@ -193,6 +193,8 @@ class Patient extends Controller
                     $_SESSION['id_session'] = $id_session;
                     $_SESSION["id"] = $id;
                     $_SESSION["role"] = $role;
+                    $_SESSION["nom"] = $nom;
+                    $_SESSION["prenom"] = $prenom;
                     //Redirection du patient sur son espace
                     \Http::redirect('?controller=patient&task=showEspace');
                 }
@@ -238,17 +240,21 @@ class Patient extends Controller
         \Http::redirect('?controller=praticien&task=index');
     }
 
-    public function rechercherUnPatient()
-    {
-        $search = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_SPECIAL_CHARS);
-        $dataPatient = ($this->model->findPatientByName($search)[0]);
-        $pageTitle = 'Rechercher un patient';
-        \Renderer::render('rechercherUnPatient', compact('pageTitle', 'dataPatient'));
-    }
-
     function pagePourRechercherUnPraticien()
     {
+        session_start();
         $pageTitle = "Rechercher un praticien";
-        \Renderer::render('rechercherUnPraticien', compact('pageTitle'));
+        $nomPartie = "Mes rendez-vous";
+        $praticienModel = new \Models\Praticien();
+        $allPraticiens = $praticienModel->findAll();
+        \Renderer::renderEspacePatient('rechercherUnPraticien', compact('pageTitle', 'nomPartie', 'allPraticiens'));
     }
+
+    //     public function rechercherUnPatient()
+    //     {
+    //         $search = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_SPECIAL_CHARS);
+    //         $dataPatient = ($this->model->findPatientByName($search)[0]);
+    //         $pageTitle = 'Rechercher un patient';
+    //         \Renderer::render('rechercherUnPatient', compact('pageTitle', 'dataPatient'));
+    //     }
 }

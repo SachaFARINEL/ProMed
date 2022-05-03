@@ -24,8 +24,8 @@ class Praticien extends Controller
         session_start();
         $pageTitle = 'Mon espace';
         $nomPartie = 'DASHBOARD';
-        $donneesPraticien = $this->model->find($_SESSION['id']);
-        \Renderer::renderEspacePraticien('espacePraticien', compact('pageTitle', 'nomPartie', 'donneesPraticien'));
+        // $donneesPraticien = $this->model->find($_SESSION['id']);
+        \Renderer::renderEspacePraticien('espacePraticien', compact('pageTitle', 'nomPartie'));
     }
 
 
@@ -130,6 +130,8 @@ class Praticien extends Controller
                     $_SESSION['id_session'] = $id_session;
                     $_SESSION['id'] = $id;
                     $_SESSION['role'] = $praticien;
+                    $_SESSION['nom'] = $nom;
+                    $_SESSION['prenom'] = $prenom;
                     //Redirection du praticien sur son espace
                     //\Renderer::render('espacePraticien', compact('pageTitle', 'id_session', 'id', 'praticien', 'donneesPraticien'));
                     //Praticien::showEspace();
@@ -217,16 +219,15 @@ class Praticien extends Controller
         $pageTitle = "Rechercher un patient";
         $nomPartie = "Mes Patients";
         $donneesAllPatients = $this->model->findAll();
-        $donneesPraticien = $this->model->find($_SESSION['id']);
 
-        \Renderer::renderEspacePraticien('rechercherUnPatient', compact('pageTitle', 'nomPartie', 'donneesAllPatients', 'donneesPraticien'));
+        \Renderer::renderEspacePraticien('rechercherUnPatient', compact('pageTitle', 'nomPartie', 'donneesAllPatients'));
     }
 
-    public function rechercherUnPraticien()
-    {
-        $search = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_SPECIAL_CHARS);
-        $dataPraticien = $this->model->findPraticienByName($search);
-        $pageTitle = 'Rechercher un praticien';
-        \Renderer::render('rechercherUnPraticien', compact('pageTitle', 'dataPraticien'));
-    }
+    // public function rechercherUnPraticien()
+    // {
+    //     $search = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_SPECIAL_CHARS);
+    //     $dataPraticien = $this->model->findPraticienByName($search);
+    //     $pageTitle = 'Rechercher un praticien';
+    //     \Renderer::render('rechercherUnPraticien', compact('pageTitle', 'dataPraticien'));
+    // }
 }

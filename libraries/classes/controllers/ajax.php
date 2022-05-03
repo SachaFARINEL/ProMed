@@ -27,11 +27,9 @@ class Ajax extends Controller
 
     public static function rechercherUnPraticien()
     {
-        // print_r($_POST);
-        // exit;
+
         $search = $_POST['userData'];
         $praticienModel = new \Models\Praticien();
-        // $dataPatient = ($patientModel->findPatientByName($search)[0]);
         $dataPraticien = $praticienModel->findPraticienByName($search);
 
         if (isset($dataPraticien) && !empty($dataPraticien)) {
@@ -65,5 +63,20 @@ class Ajax extends Controller
             echo "Aucun patients trouvé.e.s";
         }
         // \Renderer::renderAjax('ajax', compact('dataPatient'));
+    }
+
+    public static function findAllPraticien()
+    {
+        $praticienModel = new \Models\Praticien();
+        $allPraticiens = $praticienModel->findAll();
+        var_dump($allPraticiens);
+        exit;
+        if (isset($allPraticiens) && !empty($allPraticiens)) {
+            for ($i = 0; $i < count($allPraticiens); $i++) {
+                echo $allPraticiens[$i]['nom'] . "&nbsp" . $allPraticiens[$i]['prenom'] . "<br/>";
+            }
+        } else {
+            echo "NOP";
+        }
     }
 }

@@ -35,11 +35,7 @@
     <title><?= $pageTitle ?></title>
 </head>
 
-<?php
-extract($donneesPraticien);
-?>
-
-<body class="d-flex align-items-center">
+<body class="d-flex align-items-center" style="background: #FAFAFF">
     <div class="container-fluid" style=" height: 90vh">
         <div class="row">
             <div class="col-2">
@@ -88,7 +84,7 @@ extract($donneesPraticien);
                             <?= $nomPartie ?>
                         </h1>
                         <h2 class="fs-4 me-4" style="font-family: Lato, sans-serif">
-                            <?= $prenom . ' ' . strtoupper($nom) ?>
+                            <?= $_SESSION['prenom'] . ' ' . strtoupper($_SESSION['nom']) ?>
                         </h2>
 
                         <h4 id="affichageHeure" class="text-end me-2 fs-6" style="font-family: Lato, sans-serif">

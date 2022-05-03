@@ -1,9 +1,13 @@
 $(function () {
 
+    let allData = $('#listePraticiens').html();
+
     $('#search').on('propertychange input', function (e) {
         e.preventDefault();
-
+        $('#listePraticiens').hide();
+        $('#listePraticiens').html(' ').val();
         if ($('#search').val()) {
+
             let valeurs = {
                 "userData": $('#search').val(),
             };
@@ -31,7 +35,8 @@ $(function () {
             });
 
         } else {
-            $('#content').html('');
+
+            $('#content').html(allData);
         }
     });
 

@@ -7,8 +7,6 @@
 <div id="content"></div>
 <div id="listePatients">
     <?php
-    // var_dump($donneesAllPatients);
-    // exit;
     foreach ($donneesAllPatients as $item) {
         foreach ($item as $key => $data) {
             echo  $key . ":" . $data . "</br>";
