@@ -49,7 +49,8 @@ class Patient extends Controller
         $donneesAdresse = $adresseModel->findAdresse($_SESSION['id']);
         $donneesRdv = $rdvModel->findRdv($_SESSION['id']);
         $pageTitle = 'Espace patient';
-        \Renderer::render('espacePatient', compact('pageTitle', 'donneesTablePatient', 'donneesAdresse', 'donneesRdv'));
+        $nomPartie = 'DASHBOARD';
+        \Renderer::renderEspacePatient('espacePatient', compact('pageTitle', 'donneesTablePatient', 'donneesAdresse', 'donneesRdv', 'nomPartie'));
     }
 
     /**

@@ -3,15 +3,7 @@
 extract($donneesTablePatient);
 extract($donneesAdresse);
 extract($donneesRdv);
-
-echo 'Bienvenue sur votre espace' . ' ' . $nom . ' ' . $prenom;
 ?>
-</p>
-<!--<p><a href="./?controller=patient&task=afficherProfil">Mon profil</a></p> !-->
-<p>
-<p><a href="./?controller=patient&task=pagePourRechercherUnPraticien">Rechercher un praticien</a></p>
-<p>
-<p><a href="./?controller=patient&task=logout">Se déconnecter</a></p>
 
 
 <section style="background-color: #eee;">
