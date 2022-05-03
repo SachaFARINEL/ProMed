@@ -108,21 +108,22 @@ extract($donneesRdv);
 
 
                                 foreach ($donneesRdv as $items) {
-                                    foreach ($items as $key => $item) {
+                                    extract($items);
 
                                 ?>
-                                        <div class="col-4">
-                                            <div class="card shadow my-3" style="min-height: 7rem">
-                                                <div class="card-body">
-                                                    <h5 class="card-title"><?= $key . ' ' . $item[3] ?></h5>
-                                                    <p class="card-text"><?= $key . ' ' . $item[4] ?></p>
-                                                </div>
+                                    <div class="col-4">
+                                        <div class="card shadow my-3" style="min-height: 7rem">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><?= $id_praticien ?></h5>
+                                                <p class="card-text"><?= $id_prestation ?></p>
+                                                <p class="card-text"><?= $date ?></p>
                                             </div>
                                         </div>
+                                    </div>
 
                                 <?php
-                                    }
                                 }
+
 
                                 ?>
                             </div>
