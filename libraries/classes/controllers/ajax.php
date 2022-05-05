@@ -6,19 +6,28 @@ class Ajax extends Controller
 {
     protected $modelName = "Ajax";
 
+
     public static function rechercherUnPraticien()
     {
         $search = $_POST['userData'];
         $praticienModel = new \Models\Praticien();
         $dataPraticien = $praticienModel->findByName($search);
 
-        if (isset($dataPraticien) && !empty($dataPraticien)) {
 
-            echo "<div class='col-10'>";
-            echo "<div class='row'>";
+        if (isset($dataPraticien) && !empty($dataPraticien)) {
+            $adresseModel = new \Models\Adresse();
             foreach ($dataPraticien as $data) {
                 extract($data);
-                echo Utils::cartes($nom, $prenom, $tel, $mail, $profession);
+                $informationsPraticiens[] = $adresseModel->findAdresseById('praticien', $id);
+            }
+            echo "<div class='col-10'>";
+            echo "<div class='row'>";
+            foreach ($informationsPraticiens as $informationPraticien) {
+                foreach ($informationPraticien as $data) {
+
+                    extract($data);
+                    echo Utils::cartes($nom, $prenom, $tel, $mail, $profession, $numero, $type_de_voie, $adresse, $code_postal, $ville);
+                }
             }
             echo "</div>";
             echo "</div>";
@@ -42,21 +51,6 @@ class Ajax extends Controller
             }
         } else {
             echo "Aucun patients trouvé.e.s";
-        }
-    }
-
-    public static function findAllPraticien()
-    {
-        $praticienModel = new \Models\Praticien();
-        $allPraticiens = $praticienModel->findAll();
-        var_dump($allPraticiens);
-        exit;
-        if (isset($allPraticiens) && !empty($allPraticiens)) {
-            for ($i = 0; $i < count($allPraticiens); $i++) {
-                echo $allPraticiens[$i]['nom'] . "&nbsp" . $allPraticiens[$i]['prenom'] . "<br/>";
-            }
-        } else {
-            echo "NOP";
         }
     }
 }

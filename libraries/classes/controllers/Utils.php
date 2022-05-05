@@ -25,7 +25,7 @@ class Utils extends Controller
     return implode('.', str_split($tel, 2));
   }
 
-  public static function cartes($nom, $prenom, $tel, $mail, ?string $profession = "")
+  public static function cartes($nom, $prenom, $tel, $mail, ?string $profession = "", $numero, $type_de_voie, $adresse, $code_postal, $ville)
   {
 ?>
     <div class="col-lg-4 col-md-4 col-sm-4 mt-3">
@@ -81,14 +81,15 @@ class Utils extends Controller
             <div class="solu_title" style="text-align: center">
               <h3><?= $nom . ' ' . $prenom ?></h3>
               <?php
-              if (!empty($profession)) {
-                echo '<h4>' . $profession . '</h4>';
+              if ($profession) {
+                echo '<h5>' . $profession . '</h5>';
               }
               ?>
             </div>
             <div class="solu_description">
               <p><?= self::espaceTelephone($tel)  . ' - ' .  $mail ?></p>
-              <p> Requete pour l'adresse </p>
+              <p> <?= $numero . ' ' . $type_de_voie . ' ' . $adresse ?></p>
+              <p> <?= $code_postal . ', ' . $ville ?></p>
               <button type="button" class="read_more_btn">Prendre un rendez-vous</button>
             </div>
           </div>

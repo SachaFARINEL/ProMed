@@ -196,6 +196,8 @@ abstract class Model
         }
     }
 
+
+
     public function findByName(string $dataUser)
     {
         try { /* Essayer si cela fonctionne */

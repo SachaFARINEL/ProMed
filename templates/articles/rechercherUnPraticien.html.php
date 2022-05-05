@@ -11,10 +11,15 @@
     <div class="col-10">
         <div class="row">
             <?php
-            foreach ($allPraticiens as $praticien) {
-                extract($praticien);
-                Controllers\Utils::cartes($nom, $prenom, $tel, $mail, $profession);
+
+            foreach ($informationsPraticiens as $informationPraticien) {
+                foreach ($informationPraticien as $data) {
+
+                    extract($data);
+                    Controllers\Utils::cartes($nom, $prenom, $tel, $mail, $profession, $numero, $type_de_voie, $adresse, $code_postal, $ville);
+                }
             }
+
             ?>
         </div>
     </div>

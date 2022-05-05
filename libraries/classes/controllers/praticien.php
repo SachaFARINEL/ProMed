@@ -220,18 +220,8 @@ class Praticien extends Controller
         $pageTitle = "Rechercher un patient";
         $nomPartie = "Mes Patients";
         $patientModel = new \Models\Patient();
-        $donneesAllPatients = $patientModel->findAll();
+        $donneesAllPatients = $patientModel->findAll('nom');
 
         \Renderer::renderEspacePraticien('rechercherUnPatient', compact('pageTitle', 'nomPartie', 'donneesAllPatients'));
     }
-
-    // public function rechercherUnPraticien()
-    // {
-    //     $search = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_SPECIAL_CHARS);
-    //     $dataPraticien = $this->model->findPraticienByName($search);
-    //     $pageTitle = 'Rechercher un praticien';
-    //     \Renderer::render('rechercherUnPraticien', compact('pageTitle', 'dataPraticien'));
-    // }
-
-
 }
