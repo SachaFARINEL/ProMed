@@ -1,10 +1,12 @@
 $(function () {
 
     let allData = $('#listePraticiens').html();
+    $('#content').hide();
 
     $('#search').on('propertychange input', function (e) {
         e.preventDefault();
         $('#listePraticiens').hide();
+        $('#content').show();
         $('#listePraticiens').html(' ').val();
         if ($('#search').val()) {
 
