@@ -34,10 +34,15 @@ class Ajax extends Controller
 
         if (isset($dataPraticien) && !empty($dataPraticien)) {
 
+            echo "<div class='col-10'>";
+            echo "<div class='row'>";
             foreach ($dataPraticien as $data) {
                 extract($data);
+
                 echo Utils::cartes($nom, $prenom, $profession, $tel, $mail);
             }
+            echo "</div>";
+            echo "</div>";
         } else {
             echo "Aucun praticien trouvé.e.s";
         }

@@ -5,9 +5,8 @@
     </span>
 </div>
 
-<div id="content">
+<div id="content" style="text-align: center"></div>
 
-</div>
 
 <div id="listePraticiens" style="text-align: center">
     <div class="col-10">
