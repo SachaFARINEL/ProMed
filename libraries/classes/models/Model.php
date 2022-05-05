@@ -136,18 +136,18 @@ abstract class Model
     public function findAll(?string $order = ""): array
     /* ?string signifie variable string non obligatoire, utile ici si l'on n'a pas besoin de classer nos résultats */
     {
-        $sql = "SELECT * FROM {$this->table}";
+        $sql = "SELECT * FROM {$this->table} ORDER by prenom asc ";
 
-        if ($order) {
-            $sql .= " ORDER BY " . $order;
-        }
+        // if ($order) {
+        //     $sql .= " ORDER BY " . $order;
+        // }
         try {
 
             $resultats = $this->pdo->query($sql);
 
+
             // On fouille le résultat pour en extraire les données réelles
             $items = $resultats->fetchAll();
-
             return $items;
 
             echo "Toute la table $this->table trouvé";
