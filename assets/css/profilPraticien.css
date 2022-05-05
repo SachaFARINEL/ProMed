@@ -1,0 +1,9 @@
+.col-xs-3{
+    
+    background-color: rgba(128, 128, 128, 0.479);
+    border:none;
+    border-top-left-radius: 1em; 
+    border-top-right-radius: 1em; 
+    padding-bottom: 2%;
+    padding: 1%;
+}

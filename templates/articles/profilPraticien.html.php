@@ -1,73 +1,179 @@
 <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
 <!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" href="assets/css/profilPraticien">
 <?php
 extract($dataPraticien);
 ?>
 <hr>
-<div class="container bootstrap snippet">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-10">
-            <h1><?= $nom . ' ' . $prenom ?></h1>
+            <!-- <h1><?= $nom . ' ' . $prenom ?></h1> -->
             <br /> <br />
         </div>
 
-    </div>
-    <div class="row">
+
+
         <div class="col-sm-3">
             <!--left col-->
 
             <div class="text-center">
-                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-                <h6>Upload a different photo...</h6>
-                <input type="file" class="text-center center-block file-upload">
+                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar"></br>
+                </br>
+                <h6>Choisissez votre photo...</h6>
+                <input type="file" class="text-center center-block file-upload"></br>
             </div>
+
+
             </hr><br>
 
 
-            <div class="panel panel-default">
+            <!-- <div class="panel panel-default">
                 <div class="panel-heading">Prestation <i class="fa fa-link fa-1x"></i></div>
                 <div class="panel-body">Médecin généraliste</div>
                 <div class="panel-body">Podologue</div>
-            </div>
+            </div> -->
 
 
-            <!-- <ul class="list-group">
-                <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
-            </ul> -->
+            <ul class="list-group">
+                <li class="list-group-item text-muted"><strong>Prestation</strong> <i class="fa fa-dashboard fa-1x"></i></li>
+                <li class="list-group-item text-right"><span class="pull-left">Medecin généraliste</span> </li>
+                <li class="list-group-item text-right"><span class="pull-left">Podologue</span> </li>
+                <li class="list-group-item text-right"><span class="pull-left">Kinésithérapeute</span> </li>
+                <li class="list-group-item text-right"><span class="pull-left">Thérapeute de couple^^</span> </li>
+            </ul>
 
 
 
         </div>
         <!--/col-3-->
         <div class="col-sm-9">
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+            <div class="nav nav-tabs">
+                <button class="col-xs-3"><a data-toggle="tab">Home</a></button>
+                &nbsp;
+                <button class="col-xs-3"><a data-toggle="tab">Ajouter une prestation</a></button>
+            </div>
 
-                <li><a data-toggle="tab" href="#settings">Ajouter une prestation</a></li>
-            </ul>
+
 
             <form action=".?controller=praticien&task=update" method="POST">
                 <div class="tab-content">
                     <div class="tab-pane active" id="home">
                         <hr>
                         <form class="form" action="##" method="post" id="registrationForm">
-                            <div class="form-group">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="card shadow my-3" style="min-height: 7rem">
+                                        <div class="card-body">
+                                            <label for="nom">
+                                                <h4>Nom</h4>
+                                            </label>
 
-                                <div class="col-xs-6">
+                                            <input type="text" class="form-control" name="nom" id="nom" value="<?= $nom ?>" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="card shadow my-3" style="min-height: 7rem">
+                                        <div class="card-body">
+                                            <label for="prenom">
+                                                <h4>Prénom</h4>
+                                            </label>
+                                            <input type="text" class="form-control" name="prenom" id="prenom" value=<?= $prenom ?> required>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="card shadow my-3" style="min-height: 7rem">
+                                        <div class="card-body">
+                                            <label for="phone">
+                                                <h4>Téléphone Fixe</h4>
+                                            </label>
+                                            <input type="text" class="form-control" name="tel" id="tel" value=<?= $tel ?> required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="card shadow my-3" style="min-height: 7rem">
+                                        <div class="card-body">
+                                            <label for="email">
+                                                <h4>Email</h4>
+                                            </label>
+                                            <input type="email" class="form-control" name="mail" id="mail" value=<?= $mail ?> required>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="card shadow my-3" style="min-height: 7rem">
+                                        <div class="card-body">
+                                            <label for="profession">
+                                                <h4>Profession</h4>
+                                            </label>
+                                            <input type="text" class="form-control" name="profession" id="profession" value=<?= $profession ?> required>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="card shadow my-3" style="min-height: 7rem">
+                                        <div class="card-body">
+                                            <label for="adresse">
+                                                <h4>Nom cabinet</h4>
+                                            </label>
+                                            <input type="text" class="form-control" id="cabinet" value="<?= $nom_cabinet ?>">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="card shadow my-3" style="min-height: 7rem">
+                                        <div class="card-body">
+                                            <label for="num_adelie">
+                                                <h4>Numéro adélie</h4>
+                                            </label>
+                                            <input type="text" class="form-control" name="num_adelie" id="num_adelie" value=<?= $num_adelie ?> required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="card shadow my-3" style="min-height: 7rem">
+                                        <div class="card-body">
+                                            <label for="password">
+                                                <h4>Mot de passe</h4>
+                                            </label>
+                                            <input type="password" class="form-control" name="password" id="password" value="">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="card shadow my-3" style="min-height: 7rem">
+                                        <div class="card-body">
+                                            <label for="new_password">
+                                                <h4>Nouveau mot de passe</h4>
+                                            </label>
+                                            <input type="password" class="form-control" name="new_password" id="new_password" value="">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+
+                                <div class="col-sm-6">
                                     <label for="nom">
                                         <h4>Nom</h4>
                                     </label>
 
                                     <input type="text" class="form-control" name="nom" id="nom" value="<?= $nom ?>" />
                                 </div>
+
                             </div>
                             <div class="form-group">
 
-                                <div class="col-xs-6">
+                                <div class="col-sm-6">
                                     <label for="prenom">
                                         <h4>Prénom</h4>
                                     </label>
@@ -76,7 +182,7 @@ extract($dataPraticien);
                             </div>
                             <div class="form-group">
 
-                                <div class="col-xs-6">
+                                <div class="col-sm-6">
                                     <label for="phone">
                                         <h4>Téléphone Fixe</h4>
                                     </label>
@@ -87,7 +193,7 @@ extract($dataPraticien);
 
 
 
-                                <div class="col-xs-6">
+                                <div class="col-sm-6">
                                     <label for="email">
                                         <h4>Email</h4>
                                     </label>
@@ -96,7 +202,7 @@ extract($dataPraticien);
                             </div>
                             <div class="form-group">
 
-                                <div class="col-xs-6">
+                                <div class="col-sm-6">
                                     <label for="profession">
                                         <h4>Profession</h4>
                                     </label>
@@ -106,7 +212,7 @@ extract($dataPraticien);
                             <div class="form-group">
 
 
-                                <div class="col-xs-6">
+                                <div class="col-sm-6">
                                     <label for="adresse">
                                         <h4>Nom cabinet</h4>
                                     </label>
@@ -115,7 +221,7 @@ extract($dataPraticien);
                             </div>
                             <div class="form-group">
 
-                                <div class="col-xs-6">
+                                <div class="col-sm-6">
                                     <label for="num_adelie">
                                         <h4>Numéro adélie</h4>
                                     </label>
@@ -124,9 +230,9 @@ extract($dataPraticien);
                             </div>
                             <div class="form-group">
 
-                                <div class="col-xs-6">
+                                <div class="col-sm-6">
                                     <label for="password">
-                                        <h4>Ancien mot de passe</h4>
+                                        <h4>Mot de passe</h4>
                                     </label>
                                     <input type="password" class="form-control" name="password" id="password" value="">
                                 </div>
@@ -144,31 +250,31 @@ extract($dataPraticien);
 
                                 <div class="col-xs-6">
                                     <label for="new_password">
-                                        <h4>Comfimre ton nouveau mot de passe</h4>
+                                        <h4>Comfirme ton nouveau mot de passe</h4>
                                     </label>
                                     <input type="password" class="form-control" name="password" id="password" value="">
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group"> -->
 
 
 
 
-                                <div class="col-xs-12">
-                                    <br>
-                                    <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                    <button class="btn btn-lg" type="submit"><i class="glyphicon glyphicon-repeat"></i> Modifier</button>
-                                </div>
+                            <div class="col-xs-12">
+                                <br>
+                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Sauvegarder</button>
+                                <button class="btn btn-lg" type="submit"><i class="glyphicon glyphicon-repeat"></i> Modifier</button>
                             </div>
-                        </form>
-
-                        <hr>
-
                     </div>
-                    <!--/tab-pane-->
+            </form>
 
-                    <!--/tab-pane-->
-                    <div class="tab-pane" id="settings">
+            <hr>
+
+        </div>
+        <!--/tab-pane-->
+
+        <!--/tab-pane-->
+        <!-- <div class="tab-pane" id="settings">
 
 
                         <hr>
@@ -182,18 +288,10 @@ extract($dataPraticien);
                                     <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Menu déroulant" title="enter your first name if any.">
                                 </div>
                             </div>
+ -->
 
 
-
-
-
-
-
-
-
-
-
-                            <div class="form-group">
+        <!-- <div class="form-group">
                                 <div class="col-xs-6">
                                     <label for="mobile">
                                         <h4>Durée</h4>
@@ -235,23 +333,22 @@ extract($dataPraticien);
                                 <div class="col-xs-12">
                                     <br>
                                     <button class="btn btn-lg btn-add " type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Ajouter</button>
-                                    <!--<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>-->
+                                    <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
                                 </div>
-                            </div>
-
-
+                            </div> 
                         </form>
-                    </div>
+                    </div> -->
 
 
-
-                </div>
-                <!--/tab-pane-->
-            </form>
-        </div>
-        <!--/tab-content-->
 
     </div>
-    <!--/col-9-->
+    <!--/tab-pane-->
+    </form>
+</div>
+<!--/tab-content-->
+
+</div>
+<!--/col-9-->
+
 </div>
 <!--/row-->
