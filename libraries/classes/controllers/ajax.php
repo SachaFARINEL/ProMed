@@ -33,8 +33,10 @@ class Ajax extends Controller
         $dataPraticien = $praticienModel->findPraticienByName($search);
 
         if (isset($dataPraticien) && !empty($dataPraticien)) {
-            for ($i = 0; $i < count($dataPraticien); $i++) {
-                echo $dataPraticien[$i]['nom'] . "&nbsp" . $dataPraticien[$i]['prenom'] . "<br/>";
+
+            foreach ($dataPraticien as $data) {
+                extract($data);
+                echo Utils::cartes($nom, $prenom, $profession, $tel, $mail);
             }
         } else {
             echo "Aucun praticien trouvé.e.s";
@@ -79,4 +81,23 @@ class Ajax extends Controller
             echo "NOP";
         }
     }
+
+    // public static function rechercherUnPraticienOLD()
+    // {
+
+    //     $search = $_POST['userData'];
+    //     $praticienModel = new \Models\Praticien();
+    //     $dataPraticien = $praticienModel->findPraticienByName($search);
+
+    //     if (isset($dataPraticien) && !empty($dataPraticien)) {
+    //         for ($i = 0; $i < count($dataPraticien); $i++) {
+    //             var_dump($dataPraticien);
+    //             exit;
+    //             echo $dataPraticien[$i]['nom'] . "&nbsp" . $dataPraticien[$i]['prenom'] . "<br/>";
+    //         }
+    //     } else {
+    //         echo "Aucun praticien trouvé.e.s";
+    //     }
+    //     // \Renderer::renderAjax('ajax', compact('dataPatient'));
+    // }
 }
