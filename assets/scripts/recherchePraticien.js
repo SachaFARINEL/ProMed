@@ -8,6 +8,7 @@ $(function () {
         $('#listePraticiens').hide();
         $('#content').show();
         $('#listePraticiens').html(' ').val();
+        
         if ($('#search').val()) {
 
             let valeurs = {

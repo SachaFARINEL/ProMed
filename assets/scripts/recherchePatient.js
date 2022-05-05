@@ -1,10 +1,14 @@
 $(function () {
 
-    let allData = $('#listePatients').html();        
+    let allData = $('#listePatients').html(); 
+    $('#content').hide();
     
     $('#search').on('propertychange input', function (e) {
         e.preventDefault();
+        $('#listePatients').hide();
+        $('#content').show();
         $('#listePatients').html(' ').val();
+
         if ($('#search').val()) {
 
             let valeurs = {
@@ -13,7 +17,7 @@ $(function () {
 
             $.ajax({
                 type: 'POST',
-                url: './?controller=ajax&task=rechercherUnPatient2',
+                url: './?controller=ajax&task=rechercherUnPatient',
                 data: valeurs,
                 error: function () {
                     alert('Erreur sur PHP !');

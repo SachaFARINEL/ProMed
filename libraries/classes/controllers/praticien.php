@@ -218,7 +218,8 @@ class Praticien extends Controller
         session_start();
         $pageTitle = "Rechercher un patient";
         $nomPartie = "Mes Patients";
-        $donneesAllPatients = $this->model->findAll();
+        $patientModel = new \Models\Patient();
+        $donneesAllPatients = $patientModel->findAll();
 
         \Renderer::renderEspacePraticien('rechercherUnPatient', compact('pageTitle', 'nomPartie', 'donneesAllPatients'));
     }

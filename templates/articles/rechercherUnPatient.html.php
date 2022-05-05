@@ -1,18 +1,27 @@
-<div class="input-group rounded" style="width: 200px">
-    <input type="search" id="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-    <span class="input-group-text border-0" id="search-addon">
-        <i class="bi bi-search"></i>
-    </span>
+<div class="container d-flex justify-content-center  my-5">
+    <div class="input-group rounded" style="width: 30vw">
+        <input type="search" id="search" class="form-control rounded" placeholder="Rechercher un patient" aria-label="Search" aria-describedby="search-addon" />
+        <span class="input-group-text border-0" id="search-addon">
+            <i class="bi bi-search"></i>
+        </span>
+    </div>
 </div>
-<div id="content"></div>
-<div id="listePatients">
-    <?php
-    foreach ($donneesAllPatients as $item) {
-        foreach ($item as $key => $data) {
-            echo  $key . ":" . $data . "</br>";
-        }
-    }
-    ?>
+
+<div id="content" style="text-align: center"></div>
+
+
+<div id="listePatients" style="text-align: center">
+    <div class="col-10">
+        <div class="row">
+            <?php
+            foreach ($donneesAllPatients as $patient) {
+                extract($patient);
+                Controllers\Utils::cartesPatient($nom, $prenom, $tel, $mail);
+            }
+            ?>
+        </div>
+    </div>
+
 </div>
 
 
