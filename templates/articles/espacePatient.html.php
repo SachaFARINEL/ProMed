@@ -110,7 +110,7 @@ extract($donneesRdv);
                                                 <p class="card-text"><?= $id_prestation ?></p>
                                                 <p class="card-text"><?=
 
-                                                                        strftime("%A %d %B %Y %X", strtotime($date));
+                                                                        strftime("%A %d %B %Y %H h %M", strtotime($date));
 
                                                                         ?>
 
