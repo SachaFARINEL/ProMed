@@ -7,10 +7,7 @@
     </div>
 </div>
 
-<div id="content" style="text-align: center"></div>
-
-
-<div id="listePraticiens" style="text-align: center">
+<div id="content" style="text-align: center">
     <div class="col-10">
         <div class="row">
             <?php
@@ -21,7 +18,6 @@
             ?>
         </div>
     </div>
-
 </div>
 
 <script src="../../assets/scripts/recherchePraticien.js"></script>
