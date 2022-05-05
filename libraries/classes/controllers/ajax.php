@@ -6,25 +6,6 @@ class Ajax extends Controller
 {
     protected $modelName = "Ajax";
 
-    public static function rechercherUnPatient()
-    {
-        // print_r($_POST);
-        // exit;
-        $search = $_POST['userData'];
-        $patientModel = new \Models\Patient();
-        // $dataPatient = ($patientModel->findPatientByName($search)[0]);
-        $dataPatient = $patientModel->findByName($search);
-
-        if (isset($dataPatient) && !empty($dataPatient)) {
-            for ($i = 0; $i < count($dataPatient); $i++) {
-                echo $dataPatient[$i]['nom'] . "&nbsp" . $dataPatient[$i]['prenom'] . "<br/>";
-            }
-        } else {
-            echo "Aucun patients trouvé.e.s";
-        }
-        // \Renderer::renderAjax('ajax', compact('dataPatient'));
-    }
-
     public static function rechercherUnPraticien()
     {
 
@@ -49,7 +30,7 @@ class Ajax extends Controller
         // \Renderer::renderAjax('ajax', compact('dataPatient'));
     }
 
-    public static function rechercherUnPatient2()
+    public static function rechercherUnPatient()
     {
         // print_r($_POST);
         // exit;
@@ -58,13 +39,17 @@ class Ajax extends Controller
         $praticienModel = new \Models\Praticien();
         // $dataPatient = ($patientModel->findPatientByName($search)[0]);
         $dataPatient = $patientModel->findByName($search);
-        $donneesAllPatients = $praticienModel->findAll();
+        $donneesAllPatients = $patientModel->findAll();
 
 
 
         if (isset($dataPatient) && !empty($dataPatient)) {
-            for ($i = 0; $i < count($dataPatient); $i++) {
-                echo $dataPatient[$i]['nom'] . "&nbsp" . $dataPatient[$i]['prenom'] . "<br/>";
+
+            echo "<div class='col-10'>";
+            echo "<div class='row'>";
+            foreach ($dataPatient as $dpatient) {
+                extract($dpatient);
+                echo Utils::cartesPatient($nom, $prenom, $tel, $mail);
             }
         } else {
             echo "Aucun patients trouvé.e.s";
@@ -102,6 +87,24 @@ class Ajax extends Controller
     //         }
     //     } else {
     //         echo "Aucun praticien trouvé.e.s";
+    //     }
+    //     // \Renderer::renderAjax('ajax', compact('dataPatient'));
+    // }
+    // public static function rechercherUnPatientOLD()
+    // {
+    //     // print_r($_POST);
+    //     // exit;
+    //     $search = $_POST['userData'];
+    //     $patientModel = new \Models\Patient();
+    //     // $dataPatient = ($patientModel->findPatientByName($search)[0]);
+    //     $dataPatient = $patientModel->findByName($search);
+
+    //     if (isset($dataPatient) && !empty($dataPatient)) {
+    //         for ($i = 0; $i < count($dataPatient); $i++) {
+    //             echo $dataPatient[$i]['nom'] . "&nbsp" . $dataPatient[$i]['prenom'] . "<br/>";
+    //         }
+    //     } else {
+    //         //echo "Aucun patients trouvé.e.s";
     //     }
     //     // \Renderer::renderAjax('ajax', compact('dataPatient'));
     // }
