@@ -24,7 +24,6 @@ class Praticien extends Controller
         session_start();
         $pageTitle = 'Mon espace';
         $nomPartie = 'DASHBOARD';
-        // $donneesPraticien = $this->model->find($_SESSION['id']);
         \Renderer::renderEspacePraticien('espacePraticien', compact('pageTitle', 'nomPartie'));
     }
 
@@ -149,10 +148,10 @@ class Praticien extends Controller
     public function profilPraticien()
     {
         session_start();
-        $dataPraticien = $this->model->find($_SESSION["id"]);
+        $dataPraticien = $this->model->find('id', $_SESSION["id"]);
         $pageTitle = 'Mon Profil';
         $nomPartie = 'Mon Profil';
-        $donneesPraticien = $this->model->find($_SESSION['id']);
+        $donneesPraticien = $this->model->find('id', $_SESSION['id']);
         \Renderer::renderEspacePraticien('profilPraticien', compact('pageTitle', 'dataPraticien', 'nomPartie', 'donneesPraticien'));
     }
 

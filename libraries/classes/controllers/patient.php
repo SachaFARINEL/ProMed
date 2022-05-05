@@ -43,10 +43,10 @@ class Patient extends Controller
     public function showEspace()
     {
         session_start();
-        $donneesTablePatient = $this->model->find($_SESSION['id']);
+        $donneesTablePatient = $this->model->find('id', $_SESSION['id']);
         $adresseModel = new \Models\Adresse();
         $rdvModel = new \Models\Rendez_vous();
-        $donneesAdresse = $adresseModel->findAdresse($_SESSION['id']);
+        $donneesAdresse = $adresseModel->find('id_user', $_SESSION['id']);
         $donneesRdv = $rdvModel->findRdv($_SESSION['id']);
         $pageTitle = 'Espace patient';
         $nomPartie = 'DASHBOARD';

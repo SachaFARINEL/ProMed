@@ -28,14 +28,23 @@ abstract class Model
      * @param integer $id
      * 
      */
-    public function find(int $id)
+    public function find($colonne, int $id)
     {
         try { /* Essayer si cela fonctionne */
 
-            $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE id =:id");
+            /* Afin de sécuriser au maximum notre application, avant d'injecter directement le résultat de la variable colonne,
+            nous pourrions créer une "white list" des posibilités sous la forme : 
 
+                $allowed = ['id', 'nom', ...];
+
+                if (!in_array($colonne, $allowed)) {
+                throw new Exception("Invalid column name");
+                }
+                */
+
+            $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE $colonne = :id");
             // On exécute la requête en précisant le paramètre :id
-            $query->execute(['id' => $id]);
+            $query->execute([':id' => $id]);
 
             //On fouille le résultat pour en extraire les données réelles de la table
             $item = $query->fetch();
@@ -136,18 +145,18 @@ abstract class Model
     public function findAll(?string $order = ""): array
     /* ?string signifie variable string non obligatoire, utile ici si l'on n'a pas besoin de classer nos résultats */
     {
-        $sql = "SELECT * FROM {$this->table} ORDER BY `nom` asc ";
+        $sql = "SELECT * FROM {$this->table}";
 
-        // if ($order) {
-        //     $sql .= " ORDER BY " . $order;
-        // }
+        if ($order) {
+            $sql .= " ORDER BY " . $order;
+        }
         try {
 
             $resultats = $this->pdo->query($sql);
 
-
             // On fouille le résultat pour en extraire les données réelles
             $items = $resultats->fetchAll();
+
             return $items;
 
             echo "Toute la table $this->table trouvé";
@@ -177,29 +186,6 @@ abstract class Model
             // On retourne (principe d'une fonction) ce que l'on à trouvé.
             return $item;
 
-            //On affiche à l'écran un message (pour le développement)
-            echo "$this->table trouvé";
-        } catch (\PDOException $e) { /* Sinon afficher l'erreur en question */
-            /* Dans ce cas j'utilise '\PDOException' à la place de 'PDOException' car 
-            nous sommes dans un namespace. PDOException n'est donc pas défini ici*/
-
-            die('Erreur : ' . $e->getMessage());
-        }
-    }
-
-    public function findByName(string $dataUser)
-    {
-        try { /* Essayer si cela fonctionne */
-
-            $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE nom LIKE '$dataUser%' OR prenom LIKE '$dataUser%' ORDER BY `nom`");
-
-            // On exécute la requête en précisant le paramètre :id
-            $query->execute(['dataUser' => $dataUser]);
-
-            //On fouille le résultat pour en extraire les données réelles de la table
-            $item = $query->fetchAll();
-            // On retourne (principe d'une fonction) ce que l'on à trouvé.
-            return $item;
             //On affiche à l'écran un message (pour le développement)
             echo "$this->table trouvé";
         } catch (\PDOException $e) { /* Sinon afficher l'erreur en question */
