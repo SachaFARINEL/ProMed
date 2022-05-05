@@ -110,8 +110,8 @@ extract($donneesRdv);
                                                 <p class="card-text"><?= $id_prestation ?></p>
                                                 <p class="card-text"><?=
 
-                                                                        setlocale(LC_TIME, 'fr_FR.UTF-8', 'fr');
-                                                                        echo strftime("%A %d %B %G %H : %M", strtotime($date))
+                                                                        setlocale(LC_TIME, 'fr_FR.UTF-8', 'fra');
+                                                                        echo strftime("%d %B %G %H : %M", strtotime($date))
                                                                         //echo strftime("%A %d %B %G", strtotime($date))
                                                                         //date_format(new DateTime($date), 'l jS F Y g:ia')
                                                                         ?>
