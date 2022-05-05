@@ -11,8 +11,10 @@
     <?php
     foreach ($allPraticiens as $praticien) {
         extract($praticien);
+        Controllers\Utils::cartes($nom, $prenom, $profession, $tel, $mail)
     ?>
-        <div class="section_our_solution">
+
+        <!-- <div class="section_our_solution">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="our_solution_category">
@@ -78,7 +80,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     <?php
     }
     ?>
