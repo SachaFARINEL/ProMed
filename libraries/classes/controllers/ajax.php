@@ -52,7 +52,7 @@ class Ajax extends Controller
         $patientModel = new \Models\Patient();
         $praticienModel = new \Models\Praticien();
         // $dataPatient = ($patientModel->findPatientByName($search)[0]);
-        $dataPatient = $patientModel->findPatientByName($search);
+        $dataPatient = $patientModel->findByName($search);
         $donneesAllPatients = $praticienModel->findAll();
 
 
