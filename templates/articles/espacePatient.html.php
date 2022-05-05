@@ -10,8 +10,8 @@ extract($donneesRdv);
 ?>
 
 
-<section style="background-color: #eee;">
-    <div class="container py-5">
+<section style="background-color: #FAFAFF;">
+    <div class="container py-5" style="background-color: #FAFAFF">
         <div class="row">
             <div class="col-lg-3">
                 <div class="card mb-3" style='box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px'>
@@ -110,7 +110,7 @@ extract($donneesRdv);
                                                 <p class="card-text"><?= $id_prestation ?></p>
                                                 <p class="card-text"><?=
 
-                                                                        strftime("%A %d %B %Y %H h %M", strtotime($date));
+                                                                        strftime("%A %d %B %Y <br> %H h %M", strtotime($date));
 
                                                                         ?>
 
