@@ -22,7 +22,7 @@ class Utils extends Controller
 
   public static function espaceTelephone($tel)
   {
-    return implode(' ', str_split($tel, 2));
+    return implode('.', str_split($tel, 2));
   }
 
   public static function cartes($nom, $prenom, $profession, $tel, $mail)
@@ -83,7 +83,7 @@ class Utils extends Controller
               <h4><?= $profession ?></h4>
             </div>
             <div class="solu_description">
-              <p><?= $tel  . ' ' .  $mail ?></p>
+              <p><?= self::espaceTelephone($tel)  . ' ' .  $mail ?></p>
               <p> Requete pour l'adresse </p>
 
               <button type="button" class="read_more_btn">Prendre un rendez-vous</button>
