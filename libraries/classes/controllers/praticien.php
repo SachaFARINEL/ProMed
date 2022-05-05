@@ -61,7 +61,7 @@ class Praticien extends Controller
         session_start();
         $donnesPraticien = $this->model->find($_SESSION['id']);
         $prestationModel = new \Models\Prestation();
-        $donnesPrestations = $prestationModel->findPrestations($_SESSION['id']);
+        $donnesPrestations = $prestationModel->find('id_praticien', $_SESSION['id']);
         $pageTitle = "Profil et prise en charge";
         \Renderer::render('profilPraticien', compact('pageTitle', 'donnesPraticien', 'donnesPrestations'));
     }
