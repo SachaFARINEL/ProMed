@@ -13,7 +13,7 @@ class Ajax extends Controller
         $search = $_POST['userData'];
         $patientModel = new \Models\Patient();
         // $dataPatient = ($patientModel->findPatientByName($search)[0]);
-        $dataPatient = $patientModel->findPatientByName($search);
+        $dataPatient = $patientModel->findByName($search);
 
         if (isset($dataPatient) && !empty($dataPatient)) {
             for ($i = 0; $i < count($dataPatient); $i++) {
@@ -30,7 +30,7 @@ class Ajax extends Controller
 
         $search = $_POST['userData'];
         $praticienModel = new \Models\Praticien();
-        $dataPraticien = $praticienModel->findPraticienByName($search);
+        $dataPraticien = $praticienModel->findByName($search);
 
         if (isset($dataPraticien) && !empty($dataPraticien)) {
 
