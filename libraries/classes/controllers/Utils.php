@@ -83,7 +83,7 @@ class Utils extends Controller
               <h4><?= $profession ?></h4>
             </div>
             <div class="solu_description">
-              <p><?= self::espaceTelephone($tel)  . ' ' .  $mail ?></p>
+              <p><?= self::espaceTelephone($tel)  . ' - ' .  $mail ?></p>
               <p> Requete pour l'adresse </p>
 
               <button type="button" class="read_more_btn">Prendre un rendez-vous</button>
