@@ -16,7 +16,7 @@
             <?php
             foreach ($donneesAllPatients as $patient) {
                 extract($patient);
-                Controllers\Utils::cartesPatient($nom, $prenom, $tel, $mail);
+                Controllers\Utils::cartes($nom, $prenom, $tel, $mail, $profession = "");
             }
             ?>
         </div>

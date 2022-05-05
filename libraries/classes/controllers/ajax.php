@@ -8,7 +8,6 @@ class Ajax extends Controller
 
     public static function rechercherUnPraticien()
     {
-
         $search = $_POST['userData'];
         $praticienModel = new \Models\Praticien();
         $dataPraticien = $praticienModel->findByName($search);
@@ -19,42 +18,31 @@ class Ajax extends Controller
             echo "<div class='row'>";
             foreach ($dataPraticien as $data) {
                 extract($data);
-
-                echo Utils::cartes($nom, $prenom, $profession, $tel, $mail);
+                echo Utils::cartes($nom, $prenom, $tel, $mail, $profession);
             }
             echo "</div>";
             echo "</div>";
         } else {
             echo "Aucun praticien trouvé.e.s";
         }
-        // \Renderer::renderAjax('ajax', compact('dataPatient'));
     }
 
     public static function rechercherUnPatient()
     {
-        // print_r($_POST);
-        // exit;
         $search = $_POST['userData'];
         $patientModel = new \Models\Patient();
-        $praticienModel = new \Models\Praticien();
-        // $dataPatient = ($patientModel->findPatientByName($search)[0]);
         $dataPatient = $patientModel->findByName($search);
-        $donneesAllPatients = $patientModel->findAll();
-
-
 
         if (isset($dataPatient) && !empty($dataPatient)) {
-
             echo "<div class='col-10'>";
             echo "<div class='row'>";
-            foreach ($dataPatient as $dpatient) {
-                extract($dpatient);
-                echo Utils::cartesPatient($nom, $prenom, $tel, $mail);
+            foreach ($dataPatient as $patient) {
+                extract($patient);
+                echo Utils::cartes($nom, $prenom, $tel, $mail);
             }
         } else {
             echo "Aucun patients trouvé.e.s";
         }
-        // \Renderer::renderAjax('ajax', compact('dataPatient'));
     }
 
     public static function findAllPraticien()
@@ -71,41 +59,4 @@ class Ajax extends Controller
             echo "NOP";
         }
     }
-
-    // public static function rechercherUnPraticienOLD()
-    // {
-
-    //     $search = $_POST['userData'];
-    //     $praticienModel = new \Models\Praticien();
-    //     $dataPraticien = $praticienModel->findPraticienByName($search);
-
-    //     if (isset($dataPraticien) && !empty($dataPraticien)) {
-    //         for ($i = 0; $i < count($dataPraticien); $i++) {
-    //             var_dump($dataPraticien);
-    //             exit;
-    //             echo $dataPraticien[$i]['nom'] . "&nbsp" . $dataPraticien[$i]['prenom'] . "<br/>";
-    //         }
-    //     } else {
-    //         echo "Aucun praticien trouvé.e.s";
-    //     }
-    //     // \Renderer::renderAjax('ajax', compact('dataPatient'));
-    // }
-    // public static function rechercherUnPatientOLD()
-    // {
-    //     // print_r($_POST);
-    //     // exit;
-    //     $search = $_POST['userData'];
-    //     $patientModel = new \Models\Patient();
-    //     // $dataPatient = ($patientModel->findPatientByName($search)[0]);
-    //     $dataPatient = $patientModel->findByName($search);
-
-    //     if (isset($dataPatient) && !empty($dataPatient)) {
-    //         for ($i = 0; $i < count($dataPatient); $i++) {
-    //             echo $dataPatient[$i]['nom'] . "&nbsp" . $dataPatient[$i]['prenom'] . "<br/>";
-    //         }
-    //     } else {
-    //         //echo "Aucun patients trouvé.e.s";
-    //     }
-    //     // \Renderer::renderAjax('ajax', compact('dataPatient'));
-    // }
 }
