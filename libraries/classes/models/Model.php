@@ -136,7 +136,7 @@ abstract class Model
     public function findAll(?string $order = ""): array
     /* ?string signifie variable string non obligatoire, utile ici si l'on n'a pas besoin de classer nos résultats */
     {
-        $sql = "SELECT * FROM {$this->table} ORDER by prenom asc ";
+        $sql = "SELECT * FROM {$this->table} ORDER BY `nom` asc ";
 
         // if ($order) {
         //     $sql .= " ORDER BY " . $order;
@@ -191,7 +191,7 @@ abstract class Model
     {
         try { /* Essayer si cela fonctionne */
 
-            $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE nom LIKE '$dataUser%' OR prenom LIKE '$dataUser%'");
+            $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE nom LIKE '$dataUser%' OR prenom LIKE '$dataUser%' ORDER BY `nom`");
 
             // On exécute la requête en précisant le paramètre :id
             $query->execute(['dataUser' => $dataUser]);
