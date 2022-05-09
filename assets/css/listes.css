@@ -47,6 +47,10 @@
   color: #309df0;
 }
 
+.solution_cards_box .solution_card:hover .solu_description button a {
+  color: #309df0;
+}
+
 .solution_card .solu_title h3 {
   color: #212121;
   font-size: 1.3rem;
@@ -72,6 +76,11 @@
   font-weight: 500;
   font-size: 1rem;
   padding: 5px 16px;
+}
+
+.solution_card .solu_description button a {
+  text-decoration: none;
+  color: #fff;
 }
 
 .our_solution_content h1 {
@@ -146,4 +155,36 @@
     width: 50%;
     margin: 0 auto;
   }
+}
+.nomProfessionModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nomPraticienModal {
+  text-align: center;
+}
+
+.professionModal {
+  text-align: center;
+  color: #8b9096;
+}
+.valider {
+  border: 0;
+  border-radius: 15px;
+  background: linear-gradient(
+    140deg,
+    #42c3ca 0%,
+    #42c3ca 50%,
+    #42c3cac7 75%
+  ) !important;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 5px 16px;
+}
+.valider:hover {
+  background: #fff !important;
+  color: #309df0;
 }

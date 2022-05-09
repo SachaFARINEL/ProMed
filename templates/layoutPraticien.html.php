@@ -67,6 +67,12 @@
                                     <span class="w-75 text-start fs-6">Mes patients</span>
                                 </div>
                             </a>
+                            <a class="liensEspace" href="../?controller=patient&task=inscription">
+                                <div class="menuSideBar w-100 d-flex justify-content-center align-items-center p-3">
+                                    <i class="bi bi-person-rolodex w-25 text-start"></i>
+                                    <span class="w-75 text-start fs-6">Inscrire un patient</span>
+                                </div>
+                            </a>
                         </div>
                         <div class="w-100">
                             <a class="liensEspace" href="./?controller=patient&task=logout">

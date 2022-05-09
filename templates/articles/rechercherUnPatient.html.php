@@ -15,7 +15,7 @@
         <div class="row">
             <?php
             foreach ($informationsPatients as $informationsPatient) {
-                foreach ($informationPatient as $data) {
+                foreach ($informationsPatient as $data) {
                     extract($data);
                     Controllers\Utils::cartes($id, $nom, $prenom, $tel, $mail, $profession = "", $numero, $type_de_voie, $adresse, $code_postal, $ville);
                 }

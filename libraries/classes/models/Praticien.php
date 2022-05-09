@@ -18,9 +18,6 @@ class Praticien extends Model
             $query->execute(array('id' => $id, 'nom' => $nom, 'prenom' => $prenom, 'mail' => $mail, 'profession' => $profession, 'tel' => $tel, 'num_adelie' => $num_adelie));
 
 
-
-
-
             echo "$this->table modifié";
         } catch (\PDOException $e) {
 

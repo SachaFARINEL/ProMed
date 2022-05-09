@@ -78,32 +78,62 @@ class Utils extends Controller
                 </g>
               </svg>
             </div>
-            <div id=<?= $id ?>>
-              <div class="solu_title" style="text-align: center">
-                <h3><?= $nom . ' ' . $prenom ?></h3>
-                <?php
-                if ($profession) {
-                  echo '<h5>' . $profession . '</h5>';
-                }
-                ?>
-              </div>
-              <div class="solu_description">
-                <p><?= self::espaceTelephone($tel)  . ' - ' .  $mail ?></p>
-                <p> <?= $numero . ' ' . $type_de_voie . ' ' . $adresse ?></p>
-                <p> <?= $code_postal . ', ' . $ville ?></p>
-                <a href="#ex1" rel="modal:open"> <button type="button" class="read_more_btn" id=<?= $id ?>>Prendre un rendez-vous</button></a>
-              </div>
+
+            <div class="solu_title" style="text-align: center">
+              <h3><?= $nom . ' ' . $prenom ?></h3>
+              <?php
+              if ($profession) {
+                echo '<h5>' . $profession . '</h5>';
+              }
+              ?>
             </div>
+            <div class="solu_description">
+              <p><?= self::espaceTelephone($tel)  . ' - ' .  $mail ?></p>
+              <p> <?= $numero . ' ' . $type_de_voie . ' ' . $adresse ?></p>
+              <p> <?= $code_postal . ', ' . $ville ?></p>
+              <button type="button" class="read_more_btn" id="<?= $id ?>">
+                <a href=<?= '#div' . $id ?> rel=" modal:open"> Prendre un rendez-vous</a>
+              </button>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
 
 
-    <div id="ex1" class="modal" style='height: 40%; overflow: initial'>
-      <p>Thanks for clicking. That felt good.</p>
-      <hr>
-      <a href="#" rel="modal:close" class="mt-3">Close</a>
+    <div id=<?= 'div' . $id ?> class="modal" style='height: 50%; overflow: initial; background: #FAFAFF'>
+      <div class="row d-flex">
+        <div class="nomProfessionModal col-6">
+          <h3 class="nomPraticienModal"><?= $nom . ' ' . $prenom ?></h3>
+          <?php
+
+          if ($profession) {
+            echo '<h5 class="professionModal">' . $profession . '</h5>';
+          }
+          ?>
+        </div>
+        <div class="col-6" style="text-align: center">
+          <div>
+            <h6><?= self::espaceTelephone($tel) ?></h6>
+            <h6><?= $mail ?></h6>
+          </div>
+          <div>
+            <h6> <? $numero . ' ' . $type_de_voie . ' ' . $adresse ?></h6>
+            <h6> <?= $code_postal . ', ' . $ville ?></h6>
+          </div>
+        </div>
+      </div>
+      <div class="main col-12">
+        <div class="container">
+          <div class="rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif">
+            <h2 class="mesRdv fs-4" id="<?= 'rdvPossible' . $id ?>">Rendez-vous possibles</h2>
+
+          </div>
+        </div>
+      </div>
+      <button type="button" class="valider">Prendre un rendez-vous</button>
+
     </div>
 
 <?php

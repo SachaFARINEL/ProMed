@@ -59,4 +59,9 @@ class Ajax extends Controller
             echo "Aucun patients trouvé.e.s";
         }
     }
+
+    public static function test()
+    {
+        echo 'test ajax';
+    }
 }
