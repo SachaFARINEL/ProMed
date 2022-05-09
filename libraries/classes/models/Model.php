@@ -221,22 +221,25 @@ abstract class Model
         }
     }
 
-    public function PatientUpdate(array $data)
+    public function update(array $data)
     {
-        var_dump($data);
-        die;
-        extract($data);
-        $setdata = "";
+
+        $setData = [];
         $sql = "UPDATE {$this->table} SET ";
-        foreach ($data as $key->$value) {
-            $setdata .= $key . '=' . $value . ',';
+
+        foreach ($data as $key => $value) {
+
+            $setData[] .= $key . ' = ' . "'" . $value . "'";
         }
 
-        $sql .= $data . "WHERE id= :id";
+        $setData = implode(',', $setData);
+        $sql .= $setData . "WHERE id = :id";
+
 
         try {
             $query = $this->pdo->prepare($sql);
-            $query->execute(['id' => $data['id']]);
+
+            $query->execute([':id' => $data['id']]);
         } catch (\PDOException $e) {
 
             die('Erreur :' . $e->getMessage());

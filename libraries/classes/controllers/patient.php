@@ -253,12 +253,20 @@ class Patient extends Controller
             extract($praticien);
             $informationsPraticiens[] = $adresseModel->findAdresseById('praticien', $id);
         }
-        
-        $nomchangement =array();
-        $nom='Boyle';
-        $prenom='Charles';
 
-        
+        // $id = 5;
+        // $nom = 'FARINEL';
+        // $prenom = 'Sacha';
+        // $activite = 'clodo';
+        // $testUpdate = $this->model->update(compact(
+        //     "id",
+        //     "nom",
+        //     "prenom",
+        //     "activite"
+        // ));
+
+
+
 
 
         \Renderer::renderEspacePatient('rechercherUnPraticien', compact('pageTitle', 'nomPartie', 'informationsPraticiens'));
@@ -294,7 +302,7 @@ class Patient extends Controller
         $prenom_generaliste = filter_input(INPUT_POST, 'prenom_generaliste', FILTER_SANITIZE_NUMBER_INT);
         $mail_generaliste = filter_input(INPUT_POST, 'mail_generaliste', FILTER_SANITIZE_NUMBER_INT);
         $tel_generaliste = filter_input(INPUT_POST, 'tel_generaliste', FILTER_SANITIZE_NUMBER_INT);
-        
+
         $this->model->updatePatient(compact(
             'id',
             'nom',
