@@ -16,7 +16,6 @@
 
             foreach ($informationsPraticiens as $informationPraticien) {
                 foreach ($informationPraticien as $data) {
-
                     extract($data);
                     Controllers\Utils::cartes($id, $nom, $prenom, $tel, $mail, $profession, $numero, $type_de_voie, $adresse, $code_postal, $ville);
                 }
@@ -26,7 +25,4 @@
         </div>
     </div>
 </div>
-
-
-
 <script src="../../assets/scripts/recherchePraticien.js"></script>

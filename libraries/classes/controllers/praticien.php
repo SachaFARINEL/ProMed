@@ -222,6 +222,13 @@ class Praticien extends Controller
         $patientModel = new \Models\Patient();
         $donneesAllPatients = $patientModel->findAll('nom');
 
-        \Renderer::renderEspacePraticien('rechercherUnPatient', compact('pageTitle', 'nomPartie', 'donneesAllPatients'));
+        $adresseModel = new \Models\Adresse();
+        foreach ($donneesAllPatients as $patient) {
+            extract($patient);
+            $informationsPatients[] = $adresseModel->findAdresseById('patient', $id);
+        }
+        // var_dump($informationsPatients);
+        // exit;
+        \Renderer::renderEspacePraticien('rechercherUnPatient', compact('pageTitle', 'nomPartie', 'informationsPatients'));
     }
 }

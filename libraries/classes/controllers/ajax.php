@@ -43,11 +43,17 @@ class Ajax extends Controller
         $dataPatient = $patientModel->findByName($search);
 
         if (isset($dataPatient) && !empty($dataPatient)) {
+            $adresseModel = new \Models\Adresse();
+            foreach ($dataPatient as $data) {
+                extract($data);
+                $informationsPatients[] = $adresseModel->findAdresseById('patient', $id);
+            }
             echo "<div class='col-10'>";
             echo "<div class='row'>";
-            foreach ($dataPatient as $patient) {
-                extract($patient);
-                echo Utils::cartes($nom, $prenom, $tel, $mail);
+            foreach ($informationsPatients as $informationsPatient) {
+                foreach ($informationsPatient as $data)
+                    extract($data);
+                echo Utils::cartes($id, $nom, $prenom, $tel, $mail, $profession = "", $numero, $type_de_voie, $adresse, $code_postal, $ville);
             }
         } else {
             echo "Aucun patients trouvé.e.s";
