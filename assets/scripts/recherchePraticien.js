@@ -39,13 +39,32 @@ $(function () {
     });
 
 
-    // $('.read_more_btn').on('click', function () {
     $(document).on('click', '.read_more_btn', function () {
-        console.log(($(this).attr("id")))
-        // console.log($('#rdvPossible' + id).val())
-        // $('#rdvPossible' + id).html('test' + id)
+        id = $(this).attr("id")
+        let valeurs = {
+            "id": $(this).attr("id"),
+        };
+        $.ajax({
+            type: 'POST',
+            url: './?controller=ajax&task=prestationsDuPraticien',
+            data: valeurs,
+            error: function () {
+                alert('Erreur sur PHP !');
+            },
+            success: function (res) {
 
+                if (res === 'err') {
+                    $('#rdvPossible').html("Erreur de traitement !");
+                } else {
+                    if (res !== undefined) {
 
+                        $('#rdvPossible' + id).html(res);
+                    }
+                }
+            },
+            complete: function () {
+            }
+        });
 
     });
 

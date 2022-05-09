@@ -246,14 +246,12 @@ class Patient extends Controller
         $pageTitle = "Rechercher un praticien";
         $nomPartie = "Mes rendez-vous";
         $praticienModel = new \Models\Praticien();
-        $allPraticiens = $praticienModel->findAll('nom');
-
         $adresseModel = new \Models\Adresse();
+        $allPraticiens = $praticienModel->findAll('nom');
         foreach ($allPraticiens as $praticien) {
             extract($praticien);
             $informationsPraticiens[] = $adresseModel->findAdresseById('praticien', $id);
         }
-
         \Renderer::renderEspacePatient('rechercherUnPraticien', compact('pageTitle', 'nomPartie', 'informationsPraticiens'));
     }
 

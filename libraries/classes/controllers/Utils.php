@@ -91,9 +91,11 @@ class Utils extends Controller
               <p><?= self::espaceTelephone($tel)  . ' - ' .  $mail ?></p>
               <p> <?= $numero . ' ' . $type_de_voie . ' ' . $adresse ?></p>
               <p> <?= $code_postal . ', ' . $ville ?></p>
-              <button type="button" class="read_more_btn" id="<?= $id ?>">
-                <a href=<?= '#div' . $id ?> rel=" modal:open"> Prendre un rendez-vous</a>
-              </button>
+              <a href=<?= '#div' . $id ?> rel=" modal:open">
+                <button type="button" class="read_more_btn" id="<?= $id ?>">
+                  Prendre un rendez-vous
+                </button>
+              </a>
             </div>
 
           </div>
@@ -107,7 +109,6 @@ class Utils extends Controller
         <div class="nomProfessionModal col-6">
           <h3 class="nomPraticienModal"><?= $nom . ' ' . $prenom ?></h3>
           <?php
-
           if ($profession) {
             echo '<h5 class="professionModal">' . $profession . '</h5>';
           }
@@ -119,15 +120,18 @@ class Utils extends Controller
             <h6><?= $mail ?></h6>
           </div>
           <div>
-            <h6> <? $numero . ' ' . $type_de_voie . ' ' . $adresse ?></h6>
-            <h6> <?= $code_postal . ', ' . $ville ?></h6>
+            <h6> <?= $numero . ' ' . $type_de_voie . ' ' . $adresse ?></h6>
+            <h6> <?= $code_postal . '  ' . $ville ?></h6>
           </div>
         </div>
       </div>
       <div class="main col-12">
         <div class="container">
           <div class="rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif">
-            <h2 class="mesRdv fs-4" id="<?= 'rdvPossible' . $id ?>">Rendez-vous possibles</h2>
+            <h2 class="mesRdv fs-4" id="<?= 'rdvPossible' . $id ?>">
+
+
+            </h2>
 
           </div>
         </div>
