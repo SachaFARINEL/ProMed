@@ -127,11 +127,9 @@ class Utils extends Controller
       </div>
       <div class="main col-12">
         <div class="container">
-          <div class="rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif">
-            <h2 class="mesRdv fs-4" id="<?= 'rdvPossible' . $id ?>">
-
-
-            </h2>
+          <div class="rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif; height: 10vh">
+            <div class="mesRdv fs-4" id="<?= 'rdvPossible' . $id ?>" style='text-align: center'"></div>
+            <div class=" prix" style='text-align: center'></div>
 
           </div>
         </div>

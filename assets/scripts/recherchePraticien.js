@@ -68,6 +68,13 @@ $(function () {
 
     });
 
+    $(document).on('change', '.prestations', function () {
+        $('.prix').html(' ');
+        if ($('select').val()) {
+            $('.prix').html('Prix de la prestation : ' + this.value + '€')
+        };
+    });
+
 
 
 });

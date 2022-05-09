@@ -65,11 +65,11 @@ class Ajax extends Controller
         $idCible = $_POST['id'];
         $prestationModel = new \Models\Prestation();
         $prestations = $prestationModel->find('id_praticien', $idCible);
-        echo '<select name="prestations" id="prestations' . $idCible . '">';
+        echo '<select name="prestations" class="prestations" id="prestations' . $idCible . '">';
         echo '<option value="">--Choisir une prestation--</option>';
         foreach ($prestations as $prestation) {
             extract($prestation);
-            echo '<option value="' . $nom . '">' . $nom . '</option>';
+            echo '<option value="' . $prix . '">' . $nom . '</option>';
         }
         echo '</select>';
     }
