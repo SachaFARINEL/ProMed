@@ -17,7 +17,7 @@
   background: #309df0;
   color: #fff;
   transform: scale(1.1);
-  z-index: 9;
+  /* z-index: 9; */
 }
 
 .solution_cards_box .solution_card:hover::before {
@@ -45,9 +45,6 @@
 .solution_cards_box .solution_card:hover .solu_description button {
   background: #fff !important;
   color: #309df0;
-}
-
-.solution_card .so_top_icon {
 }
 
 .solution_card .solu_title h3 {
@@ -81,8 +78,6 @@
   text-transform: capitalize;
   margin-bottom: 1rem;
   font-size: 2.5rem;
-}
-.our_solution_content p {
 }
 
 .hover_color_bubble {

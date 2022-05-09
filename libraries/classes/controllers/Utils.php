@@ -25,10 +25,10 @@ class Utils extends Controller
     return implode('.', str_split($tel, 2));
   }
 
-  public static function cartes($nom, $prenom, $tel, $mail, ?string $profession = "", $numero, $type_de_voie, $adresse, $code_postal, $ville)
+  public static function cartes($id, $nom, $prenom, $tel, $mail, ?string $profession = "", $numero, $type_de_voie, $adresse, $code_postal, $ville)
   {
 ?>
-    <div class="col-lg-4 col-md-4 col-sm-4 mt-3">
+    <div class="col-lg-4 col-md-4 col-sm-4 mt-3" id="listeCartes">
       <div class="our_solution_category">
         <div class="solution_cards_box">
           <div class="solution_card" style='width: 20vw'>
@@ -78,24 +78,34 @@ class Utils extends Controller
                 </g>
               </svg>
             </div>
-            <div class="solu_title" style="text-align: center">
-              <h3><?= $nom . ' ' . $prenom ?></h3>
-              <?php
-              if ($profession) {
-                echo '<h5>' . $profession . '</h5>';
-              }
-              ?>
-            </div>
-            <div class="solu_description">
-              <p><?= self::espaceTelephone($tel)  . ' - ' .  $mail ?></p>
-              <p> <?= $numero . ' ' . $type_de_voie . ' ' . $adresse ?></p>
-              <p> <?= $code_postal . ', ' . $ville ?></p>
-              <button type="button" class="read_more_btn">Prendre un rendez-vous</button>
+            <div id=<?= $id ?>>
+              <div class="solu_title" style="text-align: center">
+                <h3><?= $nom . ' ' . $prenom ?></h3>
+                <?php
+                if ($profession) {
+                  echo '<h5>' . $profession . '</h5>';
+                }
+                ?>
+              </div>
+              <div class="solu_description">
+                <p><?= self::espaceTelephone($tel)  . ' - ' .  $mail ?></p>
+                <p> <?= $numero . ' ' . $type_de_voie . ' ' . $adresse ?></p>
+                <p> <?= $code_postal . ', ' . $ville ?></p>
+                <a href="#ex1" rel="modal:open"> <button type="button" class="read_more_btn" id=<?= $id ?>>Prendre un rendez-vous</button></a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+
+    <div id="ex1" class="modal" style='height: 40%; overflow: initial'>
+      <p>Thanks for clicking. That felt good.</p>
+      <hr>
+      <a href="#" rel="modal:close" class="mt-3">Close</a>
+    </div>
+
 <?php
   }
 }

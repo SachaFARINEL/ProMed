@@ -26,7 +26,7 @@ class Ajax extends Controller
                 foreach ($informationPraticien as $data) {
 
                     extract($data);
-                    echo Utils::cartes($nom, $prenom, $tel, $mail, $profession, $numero, $type_de_voie, $adresse, $code_postal, $ville);
+                    echo Utils::cartes($id, $nom, $prenom, $tel, $mail, $profession, $numero, $type_de_voie, $adresse, $code_postal, $ville);
                 }
             }
             echo "</div>";

@@ -1,3 +1,5 @@
+<style>
+</style>
 <div class="container d-flex justify-content-center  my-5">
     <div class="input-group rounded" style="width: 30vw">
         <input type="search" id="search" class="form-control rounded" placeholder="Rechercher un praticien" aria-label="Search" aria-describedby="search-addon" />
@@ -16,7 +18,7 @@
                 foreach ($informationPraticien as $data) {
 
                     extract($data);
-                    Controllers\Utils::cartes($nom, $prenom, $tel, $mail, $profession, $numero, $type_de_voie, $adresse, $code_postal, $ville);
+                    Controllers\Utils::cartes($id, $nom, $prenom, $tel, $mail, $profession, $numero, $type_de_voie, $adresse, $code_postal, $ville);
                 }
             }
 
@@ -24,5 +26,7 @@
         </div>
     </div>
 </div>
+
+
 
 <script src="../../assets/scripts/recherchePraticien.js"></script>

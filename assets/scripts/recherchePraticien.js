@@ -39,4 +39,19 @@ $(function () {
         }
     });
 
+    $('#test').on('click', function (e) {
+        console.log("test")
+    }
+    );
 });
+    // });
+    // $('.read_more_btn').on('click', function (e) {
+    //     $('#' + this.id).html(
+    //         '<input type="date" class="form-control" name="date_naissance" id="date_naissance" required></input>' +
+    //         '</br>' +
+    //         '<input type="select"></input>' +
+    //         '</br>' +
+    //         '<button type="button" class="read_more_btn">Valider le rendez-vous</button>'
+    //     )
+
+    // });
