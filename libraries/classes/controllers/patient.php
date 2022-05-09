@@ -257,50 +257,50 @@ class Patient extends Controller
         \Renderer::renderEspacePatient('rechercherUnPraticien', compact('pageTitle', 'nomPartie', 'informationsPraticiens'));
     }
 
-    public function update()
-    {
-        session_start();
-        $id = $_SESSION['id'];
-        $prenom = filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_SPECIAL_CHARS);
-        $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_SPECIAL_CHARS);
-        $mail = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_EMAIL);
-        $tel = filter_input(INPUT_POST, 'tel', FILTER_SANITIZE_NUMBER_INT);
-        $mot_de_passe = filter_input(INPUT_POST, 'mot_de_passe', FILTER_SANITIZE_NUMBER_INT);
-        $activite = filter_input(INPUT_POST, 'activite', FILTER_SANITIZE_NUMBER_INT);
-        $num_secu = filter_input(INPUT_POST, 'num_secu', FILTER_SANITIZE_NUMBER_INT);
-        $mutuelle = filter_input(INPUT_POST, 'mutuelle', FILTER_SANITIZE_NUMBER_INT);
-        $caisse = filter_input(INPUT_POST, 'caisse', FILTER_SANITIZE_NUMBER_INT);
-        $date_naissance = filter_input(INPUT_POST, 'date_naissance', FILTER_SANITIZE_NUMBER_INT);
-        $genre = filter_input(INPUT_POST, 'genre', FILTER_SANITIZE_NUMBER_INT);
-        $nom_tuteur = filter_input(INPUT_POST, 'nom_tuteur', FILTER_SANITIZE_NUMBER_INT);
-        $prenom_tuteur = filter_input(INPUT_POST, 'prenom_tuteur', FILTER_SANITIZE_NUMBER_INT);
-        $mail_tuteur = filter_input(INPUT_POST, 'mail_tuteur', FILTER_SANITIZE_NUMBER_INT);
-        $nom_generaliste = filter_input(INPUT_POST, 'nom_generaliste', FILTER_SANITIZE_NUMBER_INT);
-        $prenom_generaliste = filter_input(INPUT_POST, 'prenom_generaliste', FILTER_SANITIZE_NUMBER_INT);
-        $mail_generaliste = filter_input(INPUT_POST, 'mail_generaliste', FILTER_SANITIZE_NUMBER_INT);
-        $tel_generaliste = filter_input(INPUT_POST, 'tel_generaliste', FILTER_SANITIZE_NUMBER_INT);
+    // public function update()
+    // {
+    //     session_start();
+    //     $id = $_SESSION['id'];
+    //     $prenom = filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_SPECIAL_CHARS);
+    //     $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_SPECIAL_CHARS);
+    //     $mail = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_EMAIL);
+    //     $tel = filter_input(INPUT_POST, 'tel', FILTER_SANITIZE_NUMBER_INT);
+    //     $mot_de_passe = filter_input(INPUT_POST, 'mot_de_passe', FILTER_SANITIZE_NUMBER_INT);
+    //     $activite = filter_input(INPUT_POST, 'activite', FILTER_SANITIZE_NUMBER_INT);
+    //     $num_secu = filter_input(INPUT_POST, 'num_secu', FILTER_SANITIZE_NUMBER_INT);
+    //     $mutuelle = filter_input(INPUT_POST, 'mutuelle', FILTER_SANITIZE_NUMBER_INT);
+    //     $caisse = filter_input(INPUT_POST, 'caisse', FILTER_SANITIZE_NUMBER_INT);
+    //     $date_naissance = filter_input(INPUT_POST, 'date_naissance', FILTER_SANITIZE_NUMBER_INT);
+    //     $genre = filter_input(INPUT_POST, 'genre', FILTER_SANITIZE_NUMBER_INT);
+    //     $nom_tuteur = filter_input(INPUT_POST, 'nom_tuteur', FILTER_SANITIZE_NUMBER_INT);
+    //     $prenom_tuteur = filter_input(INPUT_POST, 'prenom_tuteur', FILTER_SANITIZE_NUMBER_INT);
+    //     $mail_tuteur = filter_input(INPUT_POST, 'mail_tuteur', FILTER_SANITIZE_NUMBER_INT);
+    //     $nom_generaliste = filter_input(INPUT_POST, 'nom_generaliste', FILTER_SANITIZE_NUMBER_INT);
+    //     $prenom_generaliste = filter_input(INPUT_POST, 'prenom_generaliste', FILTER_SANITIZE_NUMBER_INT);
+    //     $mail_generaliste = filter_input(INPUT_POST, 'mail_generaliste', FILTER_SANITIZE_NUMBER_INT);
+    //     $tel_generaliste = filter_input(INPUT_POST, 'tel_generaliste', FILTER_SANITIZE_NUMBER_INT);
 
-        $this->model->updatePatient(compact(
-            'id',
-            'nom',
-            'prenom',
-            'mail',
-            'tel',
-            'mot_de_passe',
-            'activite',
-            'num_secu',
-            'mutuelle',
-            'caisse',
-            'date_naissance',
-            'genre',
-            'nom_tuteur',
-            'prenom_tuteur',
-            'mail_tuteur',
-            'nom_généraliste',
-            'prenom_généraliste',
-            'mail_generaliste',
-            'tel_generaliste',
-        ));
-        \Http::redirect('?controller=patient&task=profilPatient');
-    }
+    //     $this->model->updatePatient(compact(
+    //         'id',
+    //         'nom',
+    //         'prenom',
+    //         'mail',
+    //         'tel',
+    //         'mot_de_passe',
+    //         'activite',
+    //         'num_secu',
+    //         'mutuelle',
+    //         'caisse',
+    //         'date_naissance',
+    //         'genre',
+    //         'nom_tuteur',
+    //         'prenom_tuteur',
+    //         'mail_tuteur',
+    //         'nom_généraliste',
+    //         'prenom_généraliste',
+    //         'mail_generaliste',
+    //         'tel_generaliste',
+    //     ));
+    //     \Http::redirect('?controller=patient&task=profilPatient');
+    // }
 }

@@ -12,9 +12,9 @@ class Adresse extends Model
     {
         try {
 
-            $query = $this->pdo->prepare("SELECT * FROM {$this->table} A JOIN $role P ON A.id_user=P.id WHERE id_user=:id");
+            $query = $this->pdo->prepare("SELECT * FROM {$this->table} A JOIN $role P ON A.id_user=P.id WHERE `id_user`=:id AND role = :role");
 
-            $query->execute([':id' => $id]);
+            $query->execute([':id' => $id, 'role' => $role]);
 
             $item = $query->fetchAll();
 
