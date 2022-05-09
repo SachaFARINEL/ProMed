@@ -254,31 +254,8 @@ class Patient extends Controller
             $informationsPraticiens[] = $adresseModel->findAdresseById('praticien', $id);
         }
 
-        // $id = 5;
-        // $nom = 'FARINEL';
-        // $prenom = 'Sacha';
-        // $activite = 'clodo';
-        // $testUpdate = $this->model->update(compact(
-        //     "id",
-        //     "nom",
-        //     "prenom",
-        //     "activite"
-        // ));
-
-
-
-
-
         \Renderer::renderEspacePatient('rechercherUnPraticien', compact('pageTitle', 'nomPartie', 'informationsPraticiens'));
     }
-
-    //     public function rechercherUnPatient()
-    //     {
-    //         $search = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_SPECIAL_CHARS);
-    //         $dataPatient = ($this->model->findPatientByName($search)[0]);
-    //         $pageTitle = 'Rechercher un patient';
-    //         \Renderer::render('rechercherUnPatient', compact('pageTitle', 'dataPatient'));
-    //     }
 
     public function update()
     {

@@ -227,8 +227,6 @@ class Praticien extends Controller
             extract($patient);
             $informationsPatients[] = $adresseModel->findAdresseById('patient', $id);
         }
-        // var_dump($informationsPatients);
-        // exit;
         \Renderer::renderEspacePraticien('rechercherUnPatient', compact('pageTitle', 'nomPartie', 'informationsPatients'));
     }
 }
