@@ -69,9 +69,61 @@ class Ajax extends Controller
         echo '<option value="">--Choisir une prestation--</option>';
         foreach ($prestations as $prestation) {
             extract($prestation);
-            echo '<option value="' . $prix . '">' . $nom . '</option>';
+            echo '<option value="' . $prix . '">' . $nom_prestation . '</option>';
         }
         echo '</select>';
+    }
+
+    public static function remplisLaModal()
+    {
+        $idPraticien = $_POST['id'];
+        // $modelPraticien = new \Models\Praticien();
+        $adresseModel = new \Models\Adresse();
+        $dataPraticien = $adresseModel->findAdresseById('praticien', $idPraticien);
+
+        $prestationModel = new \Models\Prestation();
+        $dataPrestation = $prestationModel->findWithFetchAll('id_praticien', $idPraticien);
+
+        extract($dataPraticien[0]);
+        echo '
+        <div class="row d-flex">
+            <div class="nomProfessionModal col-6">
+                <h3 class="nomPraticienModal">' . $nom . " " . $prenom . ' </h3>
+                <h5 class="professionModal">' . $profession . '</h5>
+            </div>
+            <div class="col-6" style="text-align: center">
+                <div>
+                <h6>' . Utils::espaceTelephone($tel) . ' </h6>
+                <h6>' . $mail . ' </h6>
+                </div>
+                <div>
+                <h6>' .  $numero . " " . $type_de_voie . " " . $adresse . ' </h6>
+                <h6>' .  $code_postal . "  " . $ville . ' </h6>
+                </div>
+            </div>
+        </div>
+            <div class="main col-12">
+                <div class="container rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif;text-align: center; height: 50vh">
+                    <div class="mesPrestation">
+                        <select name="prestations" class="prestations" id="prestations>
+                            <option value="null"> --Choisir une prestation-- </option>';
+        foreach ($dataPrestation as $prestation) {
+            extract($prestation);
+            echo '<option value="' . $prix . '">' . $nom_prestation . '</option>';
+        }
+        echo '</select>
+                    </div>
+                    <div class="mesRdv mb-5" id="rdvPossible"></div>
+                        <div class=" prix"></div>
+                        <div class="calendrier">
+                            <input type="date" class="inputDate" id="inputDate' . $idPraticien . '">
+                        </div>
+                        <div class="resultat" id="resultat">
+
+                        </div>
+                    </div>
+            </div>
+            <button type="button" class="valider">Prendre un rendez-vous</button>';
     }
 
     public static function rendezVousDisponibles()

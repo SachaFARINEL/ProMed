@@ -80,10 +80,10 @@ abstract class Model
             $query->execute([':id' => $id]);
 
             //On fouille le résultat pour en extraire les données réelles de la table
-            $item = $query->fetchAll();
+            $items = $query->fetchAll();
 
             // On retourne (principe d'une fonction) ce que l'on à trouvé.
-            return $item;
+            return $items;
 
             //On affiche à l'écran un message (pour le développement)
             echo "$this->table trouvé";

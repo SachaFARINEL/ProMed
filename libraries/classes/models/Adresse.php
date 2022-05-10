@@ -16,9 +16,11 @@ class Adresse extends Model
 
             $query->execute([':id' => $id, 'role' => $role]);
 
-            $item = $query->fetchAll();
+            $items = $query->fetchAll();
+            // var_dump($items);
+            // exit;
 
-            return $item;
+            return $items;
 
             echo "$this->table trouvé";
         } catch (\PDOException $e) {

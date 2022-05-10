@@ -2,7 +2,7 @@ $(function () {
 
     let allData = $('#content').html();
 
-    $('#loupe').on('click', function (e) {
+    $('#search').on('propertychange input', function (e) {
         e.preventDefault();
 
         if ($('#search').val()) {
@@ -34,19 +34,94 @@ $(function () {
             });
 
         } else {
-            // $('#content').html(allData);
-            $('#content').empty();
+            $('#content').html(allData);
+            // $('#content').empty();
         }
     });
 
+    // $(document).on('click', '.read_more_btn', function () {
+    //     let id = $(this).attr("id")
+    //     let valeurs = {
+    //         "id": $(this).attr("id"),
+    //     };
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: './?controller=ajax&task=prestationsDuPraticien',
+    //         data: valeurs,
+    //         error: function () {
+    //             alert('Erreur sur PHP !');
+    //         },
+    //         success: function (res) {
+
+    //             if (res === 'err') {
+    //                 $('#rdvPossible' + id).html("Erreur de traitement !");
+    //             } else {
+    //                 if (res) {
+    //                     $('#rdvPossible' + id).html(res);
+    //                 }
+    //             }
+    //         },
+    //         complete: function () {
+    //         }
+    //     });
+
+    // });
+
+    // $(document).on('change', '.prestations', function () {
+    //     $('.prix').html(' ');
+    //     if ($('select').val()) {
+    //         $('.prix').html('Prix de la prestation : ' + this.value + '€')
+    //     };
+    // });
+
+    // $(document).on('change', '.inputDate', function () {
+    //     // $(this).on('change', function () {
+
+    //     let idInput = $(this).attr("id")
+
+    //     let idPraticien = idInput.substr(-1);
+    //     // let idPraticien = 6;
+
+    //     if ($('#' + idInput).val()) {
+
+    //         let valeurs = {
+    //             "dateDesiree": $('#' + idInput).val(),
+    //             "idPraticien": idPraticien,
+    //         };
+
+
+    //         $.ajax({
+    //             type: 'POST',
+    //             url: './?controller=ajax&task=rendezVousDisponibles',
+    //             data: valeurs,
+    //             error: function () {
+    //                 alert('Erreur sur PHP !');
+    //             },
+    //             success: function (res) {
+
+    //                 if (res === 'err') {
+
+    //                 } else {
+    //                     if (res) {
+    //                         $('#resultat' + idPraticien).html(res);
+    //                     }
+    //                 }
+    //             },
+    //             complete: function () {
+    //             }
+    //         });
+    //     }
+    //     // });
+    // });
+
     $(document).on('click', '.read_more_btn', function () {
-        let id = $(this).attr("id")
+        let id = ($(this).attr("id")).substr(-1);
         let valeurs = {
-            "id": $(this).attr("id"),
+            "id": id,
         };
         $.ajax({
             type: 'POST',
-            url: './?controller=ajax&task=prestationsDuPraticien',
+            url: './?controller=ajax&task=remplisLaModal',
             data: valeurs,
             error: function () {
                 alert('Erreur sur PHP !');
@@ -54,68 +129,47 @@ $(function () {
             success: function (res) {
 
                 if (res === 'err') {
-                    $('#rdvPossible + id').html("Erreur de traitement !");
+                    $('#ex1').html("Erreur de traitement !");
                 } else {
                     if (res) {
-                        $('#rdvPossible' + id).html(res);
+                        $('#ex1').html(res);
                     }
                 }
             },
             complete: function () {
             }
         });
-
     });
 
-    $(document).on('change', '.prestations', function () {
-        $('.prix').html(' ');
-        if ($('select').val()) {
-            $('.prix').html('Prix de la prestation : ' + this.value + '€')
-        };
-    });
+    $(document).on('propertychange input', '.inputDate', function () {
 
-    $(document).on('change', '.inputDate', function () {
-        // $(this).on('change', function () {
-
-        let idInput = $(this).attr("id")
-
+        let idInput = $(this).attr("id");
         let idPraticien = idInput.substr(-1);
-        // let idPraticien = 6;
+        let valeurs = {
+            "dateDesiree": $('#' + idInput).val(),
+            "idPraticien": idPraticien,
+        };
+        $.ajax({
+            type: 'POST',
+            url: './?controller=ajax&task=rendezVousDisponibles',
+            data: valeurs,
+            error: function () {
+                alert('Erreur sur PHP !');
+            },
+            success: function (res) {
 
-        if ($('#' + idInput).val()) {
-
-            let valeurs = {
-                "dateDesiree": $('#' + idInput).val(),
-                "idPraticien": idPraticien,
-            };
-
-
-            $.ajax({
-                type: 'POST',
-                url: './?controller=ajax&task=rendezVousDisponibles',
-                data: valeurs,
-                error: function () {
-                    alert('Erreur sur PHP !');
-                },
-                success: function (res) {
-
-                    if (res === 'err') {
-
-                    } else {
-                        console.log(res);
-                        if (res) {
-                            $('#resultat' + idPraticien).empty();
-                            $('#resultat' + idPraticien).html(res);
-                        }
+                if (res === 'err') {
+                    $('#resultat').html("Erreur de traitement !");
+                } else {
+                    if (res) {
+                        $('#resultat').html(res);
                     }
-                },
-                complete: function () {
                 }
-            });
-        }
-        // });
+            },
+            complete: function () {
+            }
+        });
     });
-
 
 
 });

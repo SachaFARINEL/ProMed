@@ -23,4 +23,11 @@
         </div>
     </div>
 </div>
+
+<div id="ex1" class="modal">
+
+    <a href="#" rel="modal:close">Close</a>
+</div>
+
+
 <script src="../../assets/scripts/recherchePraticien.js"></script>

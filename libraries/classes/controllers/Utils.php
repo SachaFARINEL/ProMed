@@ -29,13 +29,13 @@ class Utils extends Controller
   {
 ?>
 
-    <div class="col-lg-4 col-md-4 col-sm-4 mt-3" id="listeCartes">
+    <div class="col-lg-4 col-md-4 col-sm-4 mt-3" id="listeCartes<?= $id ?>">
       <div class="our_solution_category">
         <div class="solution_cards_box">
           <div class="solution_card" style='width: 20vw'>
             <div class="hover_color_bubble"></div>
             <div class="so_top_icon">
-              <svg id="Layer_1" enable-background="new 0 0 512 512" height="50" viewBox="0 0 512 512" width="40" xmlns="http://www.w3.org/2000/svg">
+              <svg id="Layer_1<?= $id ?>" enable-background="new 0 0 512 512" height="50" viewBox="0 0 512 512" width="40" xmlns="http://www.w3.org/2000/svg">
                 <g>
                   <g>
                     <g>
@@ -81,7 +81,7 @@ class Utils extends Controller
             </div>
 
             <div class="solu_title" style="text-align: center">
-              <h3><?= $nom . ' ' . $prenom ?>
+              <h3 id='nomPrenom'><?= $nom . ' ' . $prenom ?>
                 <?php
                 if ($profession) {
                   echo '</br> <span style="font-size: 0.9em">' . $profession . '</span>';
@@ -100,8 +100,13 @@ class Utils extends Controller
               <h6><?= $mail ?></h6>
               <h6> <?= $numero . ' ' . $type_de_voie . ' ' . $adresse ?></h6>
               <h6 class="mb-3"> <?= $code_postal . ', ' . $ville ?></h6>
-              <a href=<?= '#div' . $id ?> rel=" modal:open">
+              <!-- <a href=<?= '#div' . $id ?> rel=" modal:open">
                 <button type="button" class="read_more_btn" id="<?= $id ?>">
+                  Prendre un rendez-vous
+                </button>
+              </a> -->
+              <a href="#ex1" rel="modal:open">
+                <button type="button" class="read_more_btn" id="bouton<?= $id ?>">
                   Prendre un rendez-vous
                 </button>
               </a>
@@ -112,7 +117,7 @@ class Utils extends Controller
     </div>
 
 
-    <div id=<?= 'div' . $id ?> class="modal" style='height: 100%; overflow: initial; background: #FAFAFF'>
+    <!-- <div id=<?= 'div' . $id ?> class="modal" style='height: 100%; overflow: initial; background: #FAFAFF'>
       <div class="row d-flex">
         <div class="nomProfessionModal col-6">
           <h3 class="nomPraticienModal"><?= $nom . ' ' . $prenom ?></h3>
@@ -141,6 +146,7 @@ class Utils extends Controller
 
           <div class="calendrier">
             <input type="date" class="inputDate" id="<?= 'inputDate' . $id ?>">
+            test
           </div>
           <div class="resultat" id="<?= 'resultat' . $id ?>">
 
@@ -151,7 +157,7 @@ class Utils extends Controller
       </div>
       <button type="button" class="valider">Prendre un rendez-vous</button>
 
-    </div>
+    </div> -->
 
 <?php
   }

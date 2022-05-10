@@ -57,4 +57,17 @@ class Praticien extends Model
             die('Erreur : ' . $e->getMessage());
         }
     }
+
+    // public function findInfoPraticienAdressePresta(int $id)
+    // {
+    //     $query = $this->pdo->prepare("SELECT * FROM praticien JOIN adresse ON praticien.id=adresse.id_user JOIN prestation ON praticien.id=prestation.id_praticien WHERE role='praticien' AND praticien.id = :id");
+
+    //     $query->execute([':id' => $id]);
+
+    //     $items = $query->fetchAll();
+    //     var_dump($items);
+    //     exit;
+
+    //     return $items;
+    // }
 }
