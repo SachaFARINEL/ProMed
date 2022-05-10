@@ -179,3 +179,7 @@
   background: #fff !important;
   color: #309df0;
 }
+.solu_description h6 {
+  font-weight: 400;
+  font-family: Lato;
+}

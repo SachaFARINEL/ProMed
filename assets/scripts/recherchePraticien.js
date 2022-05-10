@@ -38,9 +38,8 @@ $(function () {
         }
     });
 
-
     $(document).on('click', '.read_more_btn', function () {
-        id = $(this).attr("id")
+        let id = $(this).attr("id")
         let valeurs = {
             "id": $(this).attr("id"),
         };
@@ -56,15 +55,16 @@ $(function () {
                 if (res === 'err') {
                     $('#rdvPossible + id').html("Erreur de traitement !");
                 } else {
-                    if (res !== undefined) {
+                    if (res) {
                         $('#rdvPossible' + id).html(res);
                     }
                 }
             },
             complete: function () {
-                console.log('terminé')
             }
         });
+
+
 
     });
 
@@ -78,3 +78,4 @@ $(function () {
 
 
 });
+

@@ -27,7 +27,10 @@ class Utils extends Controller
 
   public static function cartes($id, $nom, $prenom, $tel, $mail, ?string $profession = "", $numero, $type_de_voie, $adresse, $code_postal, $ville)
   {
+    $roleRecherche = filter_input(INPUT_GET, 'controller');
+
 ?>
+
     <div class="col-lg-4 col-md-4 col-sm-4 mt-3" id="listeCartes">
       <div class="our_solution_category">
         <div class="solution_cards_box">
@@ -80,24 +83,37 @@ class Utils extends Controller
             </div>
 
             <div class="solu_title" style="text-align: center">
-              <h3><?= $nom . ' ' . $prenom ?></h3>
-              <?php
-              if ($profession) {
-                echo '<h5>' . $profession . '</h5>';
-              }
-              ?>
+              <h3><?= $nom . ' ' . $prenom ?>
+                <?php
+                if ($profession) {
+                  echo '</br> <span style="font-size: 0.9em">' . $profession . '</span>';
+                }
+                ?>
+              </h3>
             </div>
             <div class="solu_description">
-              <p><?= self::espaceTelephone($tel)  . ' - ' .  $mail ?></p>
-              <p> <?= $numero . ' ' . $type_de_voie . ' ' . $adresse ?></p>
-              <p> <?= $code_postal . ', ' . $ville ?></p>
-              <a href=<?= '#div' . $id ?> rel=" modal:open">
+              <h6><?= self::espaceTelephone($tel) ?></h6>
+              <h6><?= $mail ?></h6>
+              <h6> <?= $numero . ' ' . $type_de_voie . ' ' . $adresse ?></h6>
+              <h6 class="mb-3"> <?= $code_postal . ', ' . $ville ?></h6>
+              <?php if ($roleRecherche == 'patient') {
+              ?>
+                <a href=<?= '#div' . $id ?> rel=" modal:open">
+                  <button type="button" class="read_more_btn" id="<?= $id ?>">
+                    Prendre un rendez-vous
+                  </button>
+                </a>
+              <?php
+              } else {
+              ?>
                 <button type="button" class="read_more_btn" id="<?= $id ?>">
-                  Prendre un rendez-vous
+                  Voir la fiche du patient
                 </button>
-              </a>
-            </div>
+              <?php
+              }
+              ?>
 
+            </div>
           </div>
         </div>
       </div>
