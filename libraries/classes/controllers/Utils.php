@@ -27,8 +27,6 @@ class Utils extends Controller
 
   public static function cartes($id, $nom, $prenom, $tel, $mail, ?string $profession = "", $numero, $type_de_voie, $adresse, $code_postal, $ville)
   {
-    $roleRecherche = filter_input(INPUT_GET, 'controller');
-
 ?>
 
     <div class="col-lg-4 col-md-4 col-sm-4 mt-3" id="listeCartes">
@@ -96,23 +94,11 @@ class Utils extends Controller
               <h6><?= $mail ?></h6>
               <h6> <?= $numero . ' ' . $type_de_voie . ' ' . $adresse ?></h6>
               <h6 class="mb-3"> <?= $code_postal . ', ' . $ville ?></h6>
-              <?php if ($roleRecherche == 'patient') {
-              ?>
-                <a href=<?= '#div' . $id ?> rel=" modal:open">
-                  <button type="button" class="read_more_btn" id="<?= $id ?>">
-                    Prendre un rendez-vous
-                  </button>
-                </a>
-              <?php
-              } else {
-              ?>
+              <a href=<?= '#div' . $id ?> rel=" modal:open">
                 <button type="button" class="read_more_btn" id="<?= $id ?>">
-                  Voir la fiche du patient
+                  Prendre un rendez-vous
                 </button>
-              <?php
-              }
-              ?>
-
+              </a>
             </div>
           </div>
         </div>
