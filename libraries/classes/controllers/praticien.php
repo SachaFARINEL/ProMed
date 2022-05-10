@@ -48,7 +48,7 @@ class Praticien extends Controller
     public function inscription(): void
     {
         $pageTitle = "Formulaire d'inscription Praticien";
-        \Renderer::render('formulairePraticien', compact('pageTitle'));
+        \Renderer::renderEspacePraticien('formulairePraticien', compact('pageTitle'));
     }
 
     /**

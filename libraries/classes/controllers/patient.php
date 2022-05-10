@@ -31,8 +31,10 @@ class Patient extends Controller
      */
     public function inscription()
     {
+        session_start();
+        $nomPartie = 'Création de la fiche patient';
         $pageTitle = 'Formulaire Patient';
-        \Renderer::render('formulairePatient', compact('pageTitle'));
+        \Renderer::renderEspacePraticien('formulairePatient', compact('pageTitle', 'nomPartie'));
     }
 
     /**

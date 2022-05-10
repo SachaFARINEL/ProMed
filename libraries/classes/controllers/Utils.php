@@ -90,6 +90,12 @@ class Utils extends Controller
               </h3>
             </div>
             <div class="solu_description">
+              <?php
+              // if ($type_de_voie === "Autre" ? " " : $type_de_voie);
+              if ($type_de_voie == 'Autre') {
+                $type_de_voie = ' ';
+              }
+              ?>
               <h6><?= self::espaceTelephone($tel) ?></h6>
               <h6><?= $mail ?></h6>
               <h6> <?= $numero . ' ' . $type_de_voie . ' ' . $adresse ?></h6>

@@ -1,8 +1,7 @@
-<p><a class="bi-chevron-double-left" href="./?controller=praticien&task=showEspace">Retour </a></p>
+<link rel="stylesheet" href="assets/css/profilPraticien">
 <div class="container">
-    <h1 class="mb-5 py-3 text-center border border-dark rounded font-monospace col-sm-6">Création de la fiche patient</h1>
     <main>
-        <div class="row g-5">
+        <div class="row g-5 margin">
             <div>
                 <form action=".?controller=patient&task=save" method="POST">
                     <div class="row g-3">
