@@ -84,47 +84,10 @@ extract($donneesRdv);
         </div>
         <div class="col-lg-12">
           <div class="card mb-8">
-            <div class="card-body text-center">
-              <h5>Emploi du temps</h5>
-              <hr>
-              <p class="text-muted mb-1"> Prochains rendez-vous
-                <!-- a voir quand y'aura des rendez-vous-->
-              </p>
-              <div class="row">
-
-                <?php
-
-
-                foreach ($donneesRdv as $items) {
-                  extract($items);
-
-                ?>
-                  <div class="col-4">
-                    <div class="card shadow my-3" style="min-height: 7rem">
-                      <div class="card-body">
-                        <h5 class="card-title"><?= $id_praticien ?></h5>
-                        <p class="card-text"><?= $id_prestation ?></p>
-                        <p class="card-text"><?=
-
-                                              strftime("%A %d %B %Y <br> %H h %M", strtotime($date));
-
-                                              ?>
-
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                <?php
-                }
-
-
-                ?>
-              </div>
-            </div>
           </div>
         </div>
-        <br>
+      </div>
+      <br>
 
 </section>
 <?php

@@ -69,4 +69,28 @@ class Rendez_vous extends Model
             die('Erreur : ' . $e->getMessage());
         }
     }
+    public function retourneRdvPatient(int $id_patient, $signe)
+    {
+        try {
+
+            date_default_timezone_set('Europe/Paris');
+            $dateDuJour = date('Y-m-d H:i:s');
+
+            // $query = $this->pdo->prepare("SELECT * FROM rendez_vous JOIN id_praticien ON 
+            // id_praticien.rendez_vous = id_praticien.praticien AND JOIN id_prestation 
+            // ON id_prestation.rendez_vous = id.prestation WHERE date =< NOW() AND id_patient =:sessionid");
+            $query = $this->pdo->prepare("SELECT * FROM rendez_vous JOIN praticien 
+            ON rendez_vous.id_praticien=praticien.id
+            JOIN prestation
+            ON rendez_vous.id_prestation=prestation.id
+            WHERE date $signe NOW()
+            AND id_patient = :id_patient");
+
+            $query->execute([':id_patient' => $id_patient]);
+            $item = $query->fetchAll();
+            return $item;
+        } catch (\PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+    }
 }

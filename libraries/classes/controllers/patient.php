@@ -45,14 +45,15 @@ class Patient extends Controller
     public function showEspace()
     {
         session_start();
-        $donneesTablePatient = $this->model->find('id', $_SESSION['id']);
-        $adresseModel = new \Models\Adresse();
         $rdvModel = new \Models\Rendez_vous();
-        $donneesAdresse = $adresseModel->find('id_user', $_SESSION['id']);
-        $donneesRdv = $rdvModel->findRdv($_SESSION['id']);
+        // $donneesRdv = $rdvModel->findRdv($_SESSION['id']);
+
+        $rdvAVenir = $rdvModel->retourneRdvPatient($_SESSION['id'], '>');
+        $rdvPasses = $rdvModel->retourneRdvPatient($_SESSION['id'], '<');
+
         $pageTitle = 'Espace patient';
         $nomPartie = 'DASHBOARD';
-        \Renderer::renderEspacePatient('espacePatient', compact('pageTitle', 'donneesTablePatient', 'donneesAdresse', 'donneesRdv', 'nomPartie'));
+        \Renderer::renderEspacePatient('espacePatient', compact('pageTitle', 'rdvAVenir', 'rdvPasses', 'nomPartie'));
     }
 
     /**
@@ -259,6 +260,7 @@ class Patient extends Controller
         }
         \Renderer::renderEspacePatient('rechercherUnPraticien', compact('pageTitle', 'nomPartie', 'informationsPraticiens'));
     }
+
 
     // public function update()
     // {
