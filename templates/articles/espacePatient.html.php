@@ -2,13 +2,13 @@
     <div class="main col-12">
         <div class="container">
             <div class="rdv rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif">
-                <h2 class="mesRdv fs-4">Historiques de mes rendez-vous</h2>
+                <h2 class="mesRdv fs-4">Vos prochains rendez-vous</h2>
                 <div class="row">
                     <?php
                     // var_dump($allDataRDV);
                     // exit;
 
-                    foreach ($rdvPasses as $items) {
+                    foreach ($rdvAVenir as $items) {
                         extract($items);
 
                     ?>
@@ -45,7 +45,7 @@
                     // var_dump($allDataRDV);
                     // exit;
 
-                    foreach ($rdvAVenir as $items) {
+                    foreach ($rdvPasses as $items) {
                         extract($items);
 
                     ?>
