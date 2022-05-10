@@ -73,4 +73,21 @@ class Ajax extends Controller
         }
         echo '</select>';
     }
+
+    public static function rendezVousDisponibles()
+    {
+        $dateDesiree = $_POST['dateDesiree'];
+        $idPraticien = $_POST['idPraticien'];
+        $rendezVousModel = new \Models\Rendez_vous();
+        $heuresDisponibles = $rendezVousModel->findRdvLibreByDateAndIdPraticien($idPraticien, $dateDesiree);
+        echo '<div class="row">';
+        echo '<div class="col-2" style="display:flex">';
+
+        foreach ($heuresDisponibles as $heureDisponible) {
+            echo $heureDisponible;
+        }
+
+        echo '</div>';
+        echo '</div>';
+    }
 }

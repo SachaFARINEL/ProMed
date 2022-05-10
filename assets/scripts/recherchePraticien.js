@@ -2,7 +2,7 @@ $(function () {
 
     let allData = $('#content').html();
 
-    $('#search').on('propertychange input', function (e) {
+    $('#loupe').on('click', function (e) {
         e.preventDefault();
 
         if ($('#search').val()) {
@@ -34,7 +34,8 @@ $(function () {
             });
 
         } else {
-            $('#content').html(allData);
+            // $('#content').html(allData);
+            $('#content').empty();
         }
     });
 
@@ -64,8 +65,6 @@ $(function () {
             }
         });
 
-
-
     });
 
     $(document).on('change', '.prestations', function () {
@@ -73,6 +72,48 @@ $(function () {
         if ($('select').val()) {
             $('.prix').html('Prix de la prestation : ' + this.value + '€')
         };
+    });
+
+    $(document).on('change', '.inputDate', function () {
+        // $(this).on('change', function () {
+
+        let idInput = $(this).attr("id")
+
+        let idPraticien = idInput.substr(-1);
+        // let idPraticien = 6;
+
+        if ($('#' + idInput).val()) {
+
+            let valeurs = {
+                "dateDesiree": $('#' + idInput).val(),
+                "idPraticien": idPraticien,
+            };
+
+
+            $.ajax({
+                type: 'POST',
+                url: './?controller=ajax&task=rendezVousDisponibles',
+                data: valeurs,
+                error: function () {
+                    alert('Erreur sur PHP !');
+                },
+                success: function (res) {
+
+                    if (res === 'err') {
+
+                    } else {
+                        console.log(res);
+                        if (res) {
+                            $('#resultat' + idPraticien).empty();
+                            $('#resultat' + idPraticien).html(res);
+                        }
+                    }
+                },
+                complete: function () {
+                }
+            });
+        }
+        // });
     });
 
 

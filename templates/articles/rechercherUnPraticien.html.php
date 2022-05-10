@@ -4,7 +4,7 @@
     <div class="input-group rounded" style="width: 30vw">
         <input type="search" id="search" class="form-control rounded" placeholder="Rechercher un praticien" aria-label="Search" aria-describedby="search-addon" />
         <span class="input-group-text border-0" id="search-addon">
-            <i class="bi bi-search"></i>
+            <i class="bi bi-search" id='loupe'></i>
         </span>
     </div>
 </div>

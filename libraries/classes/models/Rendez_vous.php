@@ -38,7 +38,7 @@ class Rendez_vous extends Model
         try { /* Essayer si cela fonctionne */
             date_default_timezone_set('Europe/Paris');
             $dateDuJour = date('Y-m-d H:i:s');
-            $tableauDesHoraires = ['9:00', '9:30', '10:00', '10:30', '11:00', '11:30', '12:00', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00'];
+            $tableauDesHoraires = ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00'];
             // $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE id_patient =:id AND dates >$dateDuJour");
             $query = $this->pdo->prepare("SELECT date FROM {$this->table} WHERE id_praticien =:id AND date LIKE '$dateRdvVoulu%'");
 
@@ -54,8 +54,7 @@ class Rendez_vous extends Model
                     $heure[] .= strftime("%H:%M", strtotime($horaire));
                 }
             }
-            // var_dump($heure);
-            // exit;
+
             $horairesDispo = array_diff($tableauDesHoraires, $heure);
 
             // On retourne (principe d'une fonction) ce que l'on à trouvé.

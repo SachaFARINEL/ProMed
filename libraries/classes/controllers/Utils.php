@@ -112,7 +112,7 @@ class Utils extends Controller
     </div>
 
 
-    <div id=<?= 'div' . $id ?> class="modal" style='height: 50%; overflow: initial; background: #FAFAFF'>
+    <div id=<?= 'div' . $id ?> class="modal" style='height: 100%; overflow: initial; background: #FAFAFF'>
       <div class="row d-flex">
         <div class="nomProfessionModal col-6">
           <h3 class="nomPraticienModal"><?= $nom . ' ' . $prenom ?></h3>
@@ -134,13 +134,20 @@ class Utils extends Controller
         </div>
       </div>
       <div class="main col-12">
-        <div class="container">
-          <div class="rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif; height: 10vh">
-            <div class="mesRdv fs-4" id="<?= 'rdvPossible' . $id ?>" style='text-align: center'"></div>
-            <div class=" prix" style='text-align: center'></div>
+
+        <div class="container rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif;text-align: center; height: 50vh">
+          <div class="mesRdv mb-5" id="<?= 'rdvPossible' . $id ?>"></div>
+          <div class=" prix"></div>
+
+          <div class="calendrier">
+            <input type="date" class="inputDate" id="<?= 'inputDate' . $id ?>">
+          </div>
+          <div class="resultat" id="<?= 'resultat' . $id ?>">
 
           </div>
         </div>
+
+
       </div>
       <button type="button" class="valider">Prendre un rendez-vous</button>
 
