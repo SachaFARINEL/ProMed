@@ -64,7 +64,7 @@ class Ajax extends Controller
     {
         $idCible = $_POST['id'];
         $prestationModel = new \Models\Prestation();
-        $prestations = $prestationModel->find('id_praticien', $idCible);
+        $prestations = $prestationModel->findWithFetchAll('id_praticien', $idCible);
         echo '<select name="prestations" class="prestations" id="prestations' . $idCible . '">';
         echo '<option value="">--Choisir une prestation--</option>';
         foreach ($prestations as $prestation) {

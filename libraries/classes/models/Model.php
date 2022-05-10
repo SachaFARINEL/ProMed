@@ -61,6 +61,39 @@ abstract class Model
         }
     }
 
+    public function findWithFetchAll($colonne, int $id)
+    {
+        try { /* Essayer si cela fonctionne */
+
+            /* Afin de sécuriser au maximum notre application, avant d'injecter directement le résultat de la variable colonne,
+            nous pourrions créer une "white list" des posibilités sous la forme : 
+
+                $allowed = ['id', 'nom', ...];
+
+                if (!in_array($colonne, $allowed)) {
+                throw new Exception("Invalid column name");
+                }
+                */
+
+            $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE $colonne = :id");
+            // On exécute la requête en précisant le paramètre :id
+            $query->execute([':id' => $id]);
+
+            //On fouille le résultat pour en extraire les données réelles de la table
+            $item = $query->fetchAll();
+
+            // On retourne (principe d'une fonction) ce que l'on à trouvé.
+            return $item;
+
+            //On affiche à l'écran un message (pour le développement)
+            echo "$this->table trouvé";
+        } catch (\PDOException $e) { /* Sinon afficher l'erreur en question */
+            /* Dans ce cas j'utilise '\PDOException' à la place de 'PDOException' car 
+            nous sommes dans un namespace. PDOException n'est donc pas défini ici*/
+            die('Erreur : ' . $e->getMessage());
+        }
+    }
+
 
     /**
      * Supprime une entrée dans la base grâce à son identifiant
