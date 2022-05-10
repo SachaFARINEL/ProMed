@@ -54,15 +54,15 @@ $(function () {
             success: function (res) {
 
                 if (res === 'err') {
-                    $('#rdvPossible').html("Erreur de traitement !");
+                    $('#rdvPossible + id').html("Erreur de traitement !");
                 } else {
                     if (res !== undefined) {
-
                         $('#rdvPossible' + id).html(res);
                     }
                 }
             },
             complete: function () {
+                console.log('terminé')
             }
         });
 

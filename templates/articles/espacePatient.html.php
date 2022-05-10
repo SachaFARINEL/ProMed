@@ -1,11 +1,7 @@
 <?php
-
 extract($donneesTablePatient);
 extract($donneesAdresse);
 extract($donneesRdv);
-
-
-
 
 ?>
 
