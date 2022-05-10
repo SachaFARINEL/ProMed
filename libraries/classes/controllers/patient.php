@@ -59,15 +59,18 @@ class Patient extends Controller
      * @return pageTitle
      * @return donnesPatient
      */
-    // public function afficherProfil()
-    // {
-    //     session_start();
-    //     $donnesTablePatient = $this->model->find($_SESSION['id']);
-    //     $adresseModel = new \Models\Adresse();
-    //     $donnesAdresse = $adresseModel->findAdresse($_SESSION['id']);
-    //     $pageTitle = "Mon profil";
-    //     \Renderer::render('espacePatient', compact('pageTitle', 'donnesTablePatient', 'donnesAdresse'));
-    // }
+    public function profilPatient()
+    {
+        session_start();
+        $donneesTablePatient = $this->model->find('id', $_SESSION['id']);
+        $adresseModel = new \Models\Adresse();
+        $rdvModel = new \Models\Rendez_vous();
+        $donneesAdresse = $adresseModel->find('id_user', $_SESSION['id']);
+        $donneesRdv = $rdvModel->findRdv($_SESSION['id']);
+        $pageTitle = 'Espace patient';
+        $nomPartie = 'Mon profil';
+        \Renderer::renderEspacePatient('profilPatient', compact('pageTitle', 'donneesTablePatient', 'donneesAdresse', 'donneesRdv', 'nomPartie'));
+    }
 
     /**
      * Ajouter un patient dans la base de donnée
