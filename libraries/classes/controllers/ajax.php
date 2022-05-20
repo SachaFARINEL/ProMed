@@ -182,4 +182,11 @@ class Ajax extends Controller
             'is_presentiel'
         ));
     }
+    public static function afficherFichePatient()
+    {
+        $idBouton = $_POST['id'];
+        $fichePatientModel = new \Models\Patient();
+        $fichePatient = $fichePatientModel->findWithFetchAll('id_praticien', $idBouton);
+        echo $fichePatient;
+    }
 }
