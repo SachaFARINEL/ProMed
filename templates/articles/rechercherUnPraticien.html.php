@@ -27,6 +27,7 @@
 <div id="ex1" class="modal">
 
     <a href="#" rel="modal:close">Close</a>
+
 </div>
 
 
