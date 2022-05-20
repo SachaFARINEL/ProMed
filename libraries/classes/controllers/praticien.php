@@ -178,9 +178,7 @@ class Praticien extends Controller
         );
         \Http::redirect('?controller=praticien&task=profilPraticien');
     }
-    public function upload()
-    {
-    }
+
 
     /**
      * Permet au patient de se déconnecer. Clear les variables de Session & la détruit : 

@@ -39,8 +39,13 @@ extract($donneesRdv);
       </div>
       <div class="col-sm-9">
         <div class="nav nav-tabs">
-          <button class="col-xs-3"><a href="./?controller=patient&task=updatePatient">Modifier Informations</a></button>
-          &nbsp;
+
+          <button class="col-xs-3">
+            <a href="/?controller=patient&task=AfficherUpdatePatient">Modifier informations</a>
+            &nbsp;
+
+          </button>
+
         </div>
         <div class="col-lg-8">
 
@@ -92,6 +97,9 @@ extract($donneesRdv);
           </div>
         </div>
         <br>
+      </div>
+    </div>
+  </div>
 
 </section>
 <?php

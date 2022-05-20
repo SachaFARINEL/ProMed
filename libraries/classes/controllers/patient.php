@@ -74,6 +74,20 @@ class Patient extends Controller
         $nomPartie = 'Mon profil';
         \Renderer::renderEspacePatient('profilPatient', compact('pageTitle', 'donneesTablePatient', 'donneesAdresse', 'donneesRdv', 'nomPartie'));
     }
+    public function AfficherUpdatePatient()
+    {
+        session_start();
+        $donneesTablePatient = $this->model->find('id', $_SESSION['id']);
+        $adresseModel = new \Models\Adresse();
+        $rdvModel = new \Models\Rendez_vous();
+        $donneesAdresse = $adresseModel->find('id_user', $_SESSION['id']);
+        $donneesRdv = $rdvModel->findRdv($_SESSION['id']);
+        $pageTitle = 'Espace patient';
+        $nomPartie = 'Modifier Informations';
+        \Renderer::renderEspacePatient('modifPatient', compact('pageTitle', 'donneesTablePatient', 'donneesAdresse', 'donneesRdv', 'nomPartie'));
+    }
+
+
 
     /**
      * Ajouter un patient dans la base de donnée
