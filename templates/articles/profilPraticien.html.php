@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="assets/css/profilPraticien">
 <?php
 extract($dataPraticien);
+
 ?>
 <hr>
 <div class="container-fluid">
@@ -34,14 +35,27 @@ extract($dataPraticien);
                 <div class="panel-body">Podologue</div>
             </div> -->
 
-
+            <!-- 
             <ul class="list-group">
                 <li class="list-group-item text-muted"><strong>Prestation</strong> <i class="fa fa-dashboard fa-1x"></i></li>
                 <li class="list-group-item text-right"><span class="pull-left">Medecin généraliste</span> </li>
                 <li class="list-group-item text-right"><span class="pull-left">Podologue</span> </li>
                 <li class="list-group-item text-right"><span class="pull-left">Kinésithérapeute</span> </li>
                 <li class="list-group-item text-right"><span class="pull-left">Thérapeute de couple^^</span> </li>
-            </ul>
+            </ul> -->
+            <div class="col-12">
+
+
+                <li class="list-group-item text-muted"><strong>Prestation</strong> </li>
+                <?php
+
+                foreach ($prestations as $prestation) {
+                    extract($prestation);
+                    echo $nom_prestation . '</br>';
+                }
+                ?>
+
+            </div>
 
 
 
@@ -49,9 +63,11 @@ extract($dataPraticien);
         <!--/col-3-->
         <div class="col-sm-9">
             <div class="nav nav-tabs">
-                <button class="col-xs-3"><a data-toggle="tab">Home</a></button>
+                <button class="col-xs-3"><a href="./?controller=praticien&task=profilPraticien">Home</a></button>
                 &nbsp;
-                <button class="col-xs-3"><a data-toggle="tab">Ajouter une prestation</a></button>
+                <button class="col-xs-3"><a href="./?controller=praticien&task=ajoutPrestation">Ajouter une prestation</a></button>
+                &nbsp;
+                <button class="col-xs-3"><a href="./?controller=praticien&task=modifPrestation">Modifier une prestation</a></button>
             </div>
 
 
@@ -264,6 +280,8 @@ extract($dataPraticien);
                                 <br>
                                 <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Sauvegarder</button>
                                 <button class="btn btn-lg" type="submit"><i class="glyphicon glyphicon-repeat"></i> Modifier</button>
+
+
                             </div>
                     </div>
             </form>

@@ -145,14 +145,45 @@ class Praticien extends Controller
         }
     }
 
+
     public function profilPraticien()
     {
         session_start();
+
         $dataPraticien = $this->model->find('id', $_SESSION["id"]);
         $pageTitle = 'Mon Profil';
         $nomPartie = 'Mon Profil';
         $donneesPraticien = $this->model->find('id', $_SESSION['id']);
-        \Renderer::renderEspacePraticien('profilPraticien', compact('pageTitle', 'dataPraticien', 'nomPartie', 'donneesPraticien'));
+        $prestationModel = new \Models\Prestation();
+        $prestations = $prestationModel->findWithFetchAll('id_praticien', $_SESSION['id']);
+        \Renderer::renderEspacePraticien('profilPraticien', compact('pageTitle', 'dataPraticien', 'nomPartie', 'donneesPraticien', 'prestations'));
+    }
+
+    public function ajoutPrestation()
+    {
+        session_start();
+        // $dataPraticien = $this->model->find('id', $_SESSION['id']);;
+        $prestationModel = new \Models\Prestation();
+        $prestations = $prestationModel->findWithFetchAll('id_praticien', $_SESSION['id']);
+
+        $pageTitle = 'Mon Profil';
+        $nomPartie = 'Ajouter une prestation';
+
+
+        \Renderer::renderEspacePraticien('ajoutPrestation', compact('pageTitle', 'nomPartie', 'prestations'));
+    }
+    public function modifPrestation()
+    {
+        session_start();
+        // $dataPraticien = $this->model->find('id', $_SESSION['id']);;
+        $prestationModel = new \Models\Prestation();
+        $prestations = $prestationModel->findWithFetchAll('id_praticien', $_SESSION['id']);
+
+        $pageTitle = 'Mon Profil';
+
+        $nomPartie = 'Modifier une prestation';
+
+        \Renderer::renderEspacePraticien('modifPrestation', compact('pageTitle', 'nomPartie', 'prestations'));
     }
 
 
@@ -166,6 +197,7 @@ class Praticien extends Controller
         $mail = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_EMAIL);
         $tel = filter_input(INPUT_POST, 'tel', FILTER_SANITIZE_NUMBER_INT);
         $num_adelie = filter_input(INPUT_POST, 'num_adelie', FILTER_SANITIZE_SPECIAL_CHARS);
+        $nom_cabinet = filter_input(INPUT_POST, 'nom_cabinet', FILTER_SANITIZE_SPECIAL_CHARS);
 
         $this->model->updatePraticien(
             $id,
@@ -175,10 +207,10 @@ class Praticien extends Controller
             $profession,
             $tel,
             $num_adelie,
+            $nom_cabinet,
         );
         \Http::redirect('?controller=praticien&task=profilPraticien');
     }
-
 
     /**
      * Permet au patient de se déconnecer. Clear les variables de Session & la détruit : 
@@ -226,31 +258,5 @@ class Praticien extends Controller
             $informationsPatients[] = $adresseModel->findAdresseById('patient', $id);
         }
         \Renderer::renderEspacePraticien('rechercherUnPatient', compact('pageTitle', 'nomPartie', 'informationsPatients'));
-    }
-    function pagePatientPdvPraticien()
-    {
-        session_start();
-        $pageTitle = "Mes patients";
-        $nomPartie = "Fiche de";
-        // echo $_POST['id'];
-        // die;
-        $userID = filter_input(INPUT_GET, "id", FILTER_SANITIZE_SPECIAL_CHARS);
-        $patientModel = new \Models\Patient();
-        $donneesPatient = $patientModel->find('id', $userID);
-        // var_dump($donneesPatient);
-        // die;
-        $adresseModel = new \Models\Adresse();
-        foreach ($donneesPatient as $patient) {
-            // extract($patient);
-            $informationPatient[] = $adresseModel->findAdresseById('patient', $userID);
-            $informationPatient = $informationPatient[0][0];
-            // var_dump($informationPatient);
-            // exit;
-        }
-
-        // if (isset($_GET['id'])) $userID = $_GET['id'];
-
-        \Renderer::renderEspacePraticien('afficherFichePatient', compact('pageTitle', 'nomPartie', 'informationPatient'));
-        // \Renderer::renderEspacePatient('fichePatient', compact('pageTitle', 'donneesTablePatient', 'donneesAdresse', 'donneesRdv', 'nomPartie'));
     }
 }

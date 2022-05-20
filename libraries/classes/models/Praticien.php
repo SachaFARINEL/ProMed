@@ -9,13 +9,13 @@ class Praticien extends Model
     protected $table = 'praticien';
 
 
-    public function updatePraticien($id, $nom, $prenom, $mail, $profession, $tel, $num_adelie)
+    public function updatePraticien($id, $nom, $prenom, $mail, $profession, $tel, $num_adelie, $nom_cabinet)
     {
         try {
 
-            $query = $this->pdo->prepare("UPDATE praticien SET  nom= :nom, prenom= :prenom, mail= :mail, profession= :profession, tel= :tel, num_adelie= :num_adelie WHERE id =:id");
+            $query = $this->pdo->prepare("UPDATE praticien SET  nom= :nom, prenom= :prenom, mail= :mail, profession= :profession, tel= :tel, num_adelie= :num_adelie, nom_cabinet= :nom_cabinet WHERE id =:id");
 
-            $query->execute(array('id' => $id, 'nom' => $nom, 'prenom' => $prenom, 'mail' => $mail, 'profession' => $profession, 'tel' => $tel, 'num_adelie' => $num_adelie));
+            $query->execute(array('id' => $id, 'nom' => $nom, 'prenom' => $prenom, 'mail' => $mail, 'profession' => $profession, 'tel' => $tel, 'num_adelie' => $num_adelie, 'nom_cabinet' => $nom_cabinet));
 
 
             echo "$this->table modifié";
