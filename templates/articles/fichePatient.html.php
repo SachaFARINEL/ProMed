@@ -123,5 +123,5 @@ extract($informationPatient);
           </div>
         </div>
         <br>
-        <script src="../../assets/scripts/recherchePatient.js"></script>
+        <!-- <script src="../../assets/scripts/recherchePatient.js"></script> -->
 </section>

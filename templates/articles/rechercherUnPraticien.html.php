@@ -30,5 +30,5 @@
 
 </div>
 
-
-<script src="../../assets/scripts/recherchePraticien.js"></script>
+<!-- <script src="./assets/scripts/recherchePraticien.js"></script> -->
+<!-- <script src="../../assets/scripts/recherchePraticien.js"></script> -->

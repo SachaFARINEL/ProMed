@@ -2,7 +2,7 @@ $(function () {
 
     let allData = $('#listePatients').html();
     $('#content').hide();
-    
+
     $('#search').on('propertychange input', function (e) {
         e.preventDefault();
         $('#listePatients').hide();
@@ -38,7 +38,7 @@ $(function () {
             });
 
         } else {
-            
+
             $('#content').html(allData);
         }
     });
@@ -59,13 +59,13 @@ $(function () {
                 alert('Erreur sur PHP !');
             },
             success: function (res) {
-                
+
                 if (res === 'err') {
                 } else {
                     if (res) {
                         console.log(res)
                     }
-                    
+
                 }
             },
             complete: function () {

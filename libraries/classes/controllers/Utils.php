@@ -113,7 +113,7 @@ class Utils extends Controller
               <?php
               if ($profession) {
               ?>
-                <a href="#ex1" rel=" modal:open">
+                <a href="#ex1" rel="modal:open">
                   <button type="button" class="read_more_btn" id="<?= $id ?>">
                     Prendre un rendez-vous
                   </button>

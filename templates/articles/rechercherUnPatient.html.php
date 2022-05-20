@@ -25,6 +25,3 @@
     </div>
 
 </div>
-
-
-<script src="../../assets/scripts/recherchePatient.js"></script>

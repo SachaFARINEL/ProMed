@@ -67,4 +67,4 @@ foreach ($donnesPraticien as $key => $value) : ?>
     </div>
   </div>
 </form>
-<script src="../../assets//scripts//prestations.js"></script>
+<!-- <script src="./assets/scripts/prestations.js"></script> -->
