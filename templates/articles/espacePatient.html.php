@@ -35,44 +35,46 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="container">
-            <div class="rdv rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif">
-                <h2 class="mesRdv fs-4">Historiques de mes rendez-vous</h2>
-                <div class="row">
 
-                    <?php
-                    // var_dump($allDataRDV);
-                    // exit;
+    <div class="container">
+        <div class="rdv rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif">
+            <h2 class="mesRdv fs-4">Historiques de mes rendez-vous</h2>
+            <div class="row">
 
-                    foreach ($rdvPasses as $items) {
-                        extract($items);
+                <?php
+                // var_dump($allDataRDV);
+                // exit;
 
-                    ?>
-                        <div class="col-4">
-                            <div class="card  my-1" style="min-height: 6rem">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?= $nom ?></h5>
-                                    <p class="card-text"><?= $nom_prestation ?></p>
-                                    <p class="card-text"><?=
+                foreach ($rdvPasses as $items) {
+                    extract($items);
 
-                                                            strftime("%A %d %B %Y <br> %H h %M", strtotime($date));
+                ?>
+                    <div class="col-4">
+                        <div class="card  my-1" style="min-height: 6rem">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $nom ?></h5>
+                                <p class="card-text"><?= $nom_prestation ?></p>
+                                <p class="card-text"><?=
 
-                                                            ?>
+                                                        strftime("%A %d %B %Y <br> %H h %M", strtotime($date));
 
-                                    </p>
-                                </div>
+                                                        ?>
+
+                                </p>
                             </div>
                         </div>
+                    </div>
 
-                    <?php
-                    }
+                <?php
+                }
 
 
-                    ?>
-                </div>
+                ?>
             </div>
         </div>
     </div>
+</div>
 
 </div>

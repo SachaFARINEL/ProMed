@@ -37,57 +37,61 @@ extract($donneesRdv);
           </div>
         </div>
       </div>
+      <div class="col-sm-9">
+        <div class="nav nav-tabs">
+          <button class="col-xs-3"><a href="./?controller=patient&task=updatePatient">Modifier Informations</a></button>
+          &nbsp;
+        </div>
+        <div class="col-lg-8">
 
-
-      <div class="col-lg-8">
-        <div class="card mb-4">
-          <div class="card-body">
-            <div class="row">
-              <h5>Tuteur du Patient :</h5>
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <h5>Tuteur du Patient :</h5>
+                <hr>
+                <div class="col-sm-3">
+                  <p class="mb-0">Nom Prénom</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0"><?= $prenom_tuteur . ' ' . $nom_tuteur ?></p>
+                </div>
+              </div>
               <hr>
-              <div class="col-sm-3">
-                <p class="mb-0">Nom Prénom</p>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Adresse Mail</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0"><?= $mail_tuteur ?></p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Mobile</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0"><?= $tel_tuteur ?></p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Adresse</p>
+                </div>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0"><?= $prenom_tuteur . ' ' . $nom_tuteur ?></p>
+                <p class="text-muted mb-0">
+                  <!--<//?= $numero_tuteur  . ' ' . $adresse_tuteur . ' ' .  $ville_tuteur . ' ' . $code_postal_tuteur ?></p> !-->
               </div>
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Adresse Mail</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0"><?= $mail_tuteur ?></p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Mobile</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0"><?= $tel_tuteur ?></p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Adresse</p>
-              </div>
-            </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0">
-                <!--<//?= $numero_tuteur  . ' ' . $adresse_tuteur . ' ' .  $ville_tuteur . ' ' . $code_postal_tuteur ?></p> !-->
+          </div>
+          <div class="col-lg-12">
+            <div class="card mb-8">
             </div>
           </div>
         </div>
-        <div class="col-lg-12">
-          <div class="card mb-8">
-          </div>
-        </div>
-      </div>
-      <br>
+        <br>
 
 </section>
 <?php

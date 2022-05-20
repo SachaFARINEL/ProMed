@@ -62,12 +62,10 @@
 .solution_card .solu_description button {
   border: 0;
   border-radius: 15px;
-  background: linear-gradient(
-    140deg,
-    #42c3ca 0%,
-    #42c3ca 50%,
-    #42c3cac7 75%
-  ) !important;
+  background: linear-gradient(140deg,
+      #42c3ca 0%,
+      #42c3ca 50%,
+      #42c3cac7 75%) !important;
   color: #fff;
   font-weight: 500;
   font-size: 1rem;
@@ -132,21 +130,25 @@
     flex: auto;
   }
 }
+
 @media only screen and (min-width: 768px) {
   .our_solution_category .solution_cards_box {
     flex: 1;
   }
 }
+
 @media only screen and (min-width: 1024px) {
   .sol_card_top_3 {
     position: relative;
     top: -3rem;
   }
+
   .our_solution_category {
     width: 50%;
     margin: 0 auto;
   }
 }
+
 .nomProfessionModal {
   display: flex;
   flex-direction: column;
@@ -161,24 +163,25 @@
   text-align: center;
   color: #8b9096;
 }
+
 .valider {
   border: 0;
   border-radius: 15px;
-  background: linear-gradient(
-    140deg,
-    #42c3ca 0%,
-    #42c3ca 50%,
-    #42c3cac7 75%
-  ) !important;
+  background: linear-gradient(140deg,
+      #42c3ca 0%,
+      #42c3ca 50%,
+      #42c3cac7 75%) !important;
   color: #fff;
   font-weight: 500;
   font-size: 1rem;
   padding: 5px 16px;
 }
+
 .valider:hover {
   background: #fff !important;
   color: #309df0;
 }
+
 .solu_description h6 {
   font-weight: 400;
   font-family: Lato;

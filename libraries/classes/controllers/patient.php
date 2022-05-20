@@ -261,7 +261,40 @@ class Patient extends Controller
         \Renderer::renderEspacePatient('rechercherUnPraticien', compact('pageTitle', 'nomPartie', 'informationsPraticiens'));
     }
 
+    function updatePatient()
+    {
+        session_start();
+        $id = $_SESSION['id'];
+        $prenom = filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_SPECIAL_CHARS);
+        $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_SPECIAL_CHARS);
+        $mail = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_SPECIAL_CHARS);
+        $tel = filter_input(INPUT_POST, 'tel', FILTER_SANITIZE_SPECIAL_CHARS);
+        $activite = filter_input(INPUT_POST, 'activite', FILTER_SANITIZE_SPECIAL_CHARS);
+        $mutuelle = filter_input(INPUT_POST, 'mutuelle', FILTER_SANITIZE_SPECIAL_CHARS);
+        $caisse = filter_input(INPUT_POST, 'caisse', FILTER_SANITIZE_SPECIAL_CHARS);
+        $nom_tuteur = filter_input(INPUT_POST, 'nom_tuteur', FILTER_SANITIZE_SPECIAL_CHARS);
+        $prenom_tuteur = filter_input(INPUT_POST, 'prenom_tuteur', FILTER_SANITIZE_SPECIAL_CHARS);
+        $mail_tuteur = filter_input(INPUT_POST, 'mail_tuteur', FILTER_SANITIZE_SPECIAL_CHARS);
+        $tel_tuteur = filter_input(INPUT_POST, 'tel_tuteur', FILTER_SANITIZE_SPECIAL_CHARS);
+        $adresse_tuteur = filter_input(INPUT_POST, 'adresse_tuteur', FILTER_SANITIZE_SPECIAL_CHARS);
 
+        $this->model->update(
+            $id,
+            $prenom,
+            $nom,
+            $mail,
+            $tel,
+            $activite,
+            $mutuelle,
+            $caisse,
+            $nom_tuteur,
+            $prenom_tuteur,
+            $mail_tuteur,
+            $tel_tuteur,
+            $adresse_tuteur,
+        );
+        \Http::redirect('?controller=patient&task=profilPatient');
+    }
     // public function update()
     // {
     //     session_start();
