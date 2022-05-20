@@ -162,8 +162,6 @@ abstract class Model
         try {
             $query = $this->pdo->prepare($sql);
             $query->execute($data);
-
-            echo "$this->table ajouté";
         } catch (\PDOException $e) {
 
             die('Erreur : ' . $e->getMessage());

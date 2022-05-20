@@ -2,6 +2,8 @@ $(function () {
 
     let allData = $('#content').html();
 
+
+
     $('#search').on('propertychange input', function (e) {
         e.preventDefault();
 
@@ -149,6 +151,11 @@ $(function () {
             "dateDesiree": $('#' + idInput).val(),
             "idPraticien": idPraticien,
         };
+
+        let dateDecoupee = ($('#' + idInput).val()).split("-");
+        let DateOrdonee = dateDecoupee[2] + "/" + dateDecoupee[1] + "/" + dateDecoupee[0]
+        $('#dateRdv').html(DateOrdonee);
+
         $.ajax({
             type: 'POST',
             url: './?controller=ajax&task=rendezVousDisponibles',
@@ -170,6 +177,93 @@ $(function () {
             }
         });
     });
+
+
+    // $('.testPresta').on('propertychange input', function () {
+    //     console.log('yesy')
+    //     $('select').change(function () {
+    //         alert($(this).children('option:selected').data('id'));
+    //     });
+
+    // });
+    $(document).on('propertychange input', '.prestations', function () {
+        nomPrestation = $(this).find(':selected').text();
+        prixPrestation = $(this).find(':selected').val();
+        prixPrestation = prixPrestation.split('-');
+        if (prixPrestation != 'null') {
+            $('#prestationNom').html(nomPrestation);
+            $('#prestationPrix').html(', ' + prixPrestation[1] + ' €');
+        } else {
+            $('#prestationNom').html("");
+            $('#prestationPrix').html("");
+        }
+        return prixPrestation
+
+    });
+
+    $(document).on('propertychange input', '.heures', function () {
+        heurePrestation = $(this).find(':selected').text();
+        if ($(this).find(':selected').val() != "null") {
+            $('#heureRdv').html(heurePrestation + ", le ");
+        } else {
+            $('#heureRdv').html("");
+        }
+
+
+    });
+
+
+    $(document).on('click', '#sendRdv', function () {
+        valeurPresta = $('#testPresta').find(':selected').val();
+        valeurDate = $('#heures').find(':selected').val();
+
+        if (valeurPresta == 'null' || valeurDate == 'null') {
+            $('#sendRdv').html('Veuillez remplir tous les champs')
+            $('#containerModal').css({ 'border': '2px solid red' })
+
+        } else {
+            $('#containerModal').css({ 'border': '1px solid white' })
+            $('#sendRdv').html('Valider le rendez-vous')
+
+
+            let valeurs = {
+                "idPraticien": $('.inputDate').attr("id").substr(-1),
+                "idPrestation": prixPrestation[0],
+                "date": $('.inputDate').val() + ' ' + $('.heures').val() + ':00',
+                "isAnnule": 0,
+                "is_presentiel": 0,
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: './?controller=ajax&task=enregistrerRdv',
+                data: valeurs,
+                error: function () {
+                    alert('Erreur sur PHP !');
+                },
+                success: function (res) {
+                    $('#containerModal').css({ 'border': '2px solid green' });
+                    $('#sendRdv').html('Rendez-vous programmé')
+                    $('#sendRdv').prop('disabled', true)
+
+                    if (res === 'err') {
+                        $('#resultat').html("Erreur de traitement !");
+                    } else {
+                        if (res) {
+
+                            $('.recap').html(res);
+                        }
+                    }
+                },
+                complete: function () {
+                }
+            });
+
+        }
+    });
+
+
+
 
 
 });
