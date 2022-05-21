@@ -3,6 +3,8 @@
         <h2 class="mesRdv fs-4" style="text-align: center">Mes rendez-vous de la journée</h2>
 
         <?php
+        extract(getdate());
+        $dateDuJour = $mday . '/' . $mon . '/' . $year;
         $compteur = 0;
         foreach ($rdvToday as $items) {
             extract($items);
@@ -29,7 +31,7 @@
                             <?php
                             if (Controllers\Utils::isRDVAnnule($isAnnule)) {
                             ?>
-                                <p><span> Le rendez-vous est annulé <img style="width:3%; margin-left: 0.2rem" src="./assets/images/close.png" </span></p>
+                                <p><span><img style="width:3%; margin-right: 0.2rem; margin-bottom: 0.2rem" src="./assets/images/close.png"> Rendez-vous annulé le <?= $dateDuJour ?> </span></span></p>
                             <?php
                             }
                             ?>
@@ -72,7 +74,7 @@
                                 <?php
                                 if (Controllers\Utils::isRDVAnnule($isAnnule)) {
                                 ?>
-                                    <p><span> Le rendez-vous est annulé <img style="width:3%; margin-left: 0.2rem" src="./assets/images/close.png" </span></p>
+                                    <p><span><img style="width:3%; margin-right: 0.2rem; margin-bottom: 0.2rem" src="./assets/images/close.png"> Rendez-vous annulé le <?= $dateDuJour ?> </span></span></p>
                                 <?php
                                 }
                                 ?>
@@ -117,7 +119,7 @@
                                     <?php
                                     if (Controllers\Utils::isRDVAnnule($isAnnule)) {
                                     ?>
-                                        <p><span> Le rendez-vous est annulé <img style="width:3%; margin-left: 0.2rem" src="./assets/images/close.png" </span></p>
+                                        <p><span><img style="width:3%; margin-right: 0.2rem; margin-bottom: 0.2rem" src="./assets/images/close.png"> Rendez-vous annulé le <?= $dateDuJour ?> </span></span></p>
                                     <?php
                                     }
                                     ?>
