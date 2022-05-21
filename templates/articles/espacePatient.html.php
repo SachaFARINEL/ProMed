@@ -1,80 +1,74 @@
-<div class="row">
-    <div class="main col-12">
-        <div class="container">
-            <div class="rdv rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif">
-                <h2 class="mesRdv fs-4">Vos prochains rendez-vous</h2>
-                <div class="row">
-                    <?php
-                    // var_dump($allDataRDV);
-                    // exit;
+<div class="container col-6">
+    <div class="rdv rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif;height: 80vh; overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column; align-items: center">
+        <h2 class="mesRdv fs-4" style="text-align: center">Vos prochains rendez-vous</h2>
+        <?php
+        // var_dump($allDataRDV);
+        // exit;
 
-                    foreach ($rdvAVenir as $items) {
-                        extract($items);
+        foreach ($rdvAVenir as $items) {
+            extract($items);
 
-                    ?>
-                        <div class="col-4">
-                            <div class="card  my-1" style="min-height: 6rem">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?= $nom ?></h5>
-                                    <p class="card-text"><?= $nom_prestation ?></p>
-                                    <p class="card-text"><?=
+        ?>
+            <div class="col-10">
+                <div class="card  my-1" style="min-height: 6rem">
+                    <div class="card-body" style="display: flex; flex-direction : column; text-align: center; background: #FAFAFF">
+                        <h5 class="card-title">
+                            <bold style="font-weight: 600"><?= strtoupper($nom) . ' ' . $prenom . ', ' . $profession ?></bold>
+                        </h5>
+                        <p class="card-text">Pour : <?= $nom_prestation ?></p>
+                        <p class="card-text">Le <?= strftime("%A %d %B %Y à %H h %M", strtotime($date)) ?>
 
-                                                            strftime("%A %d %B %Y <br> %H h %M", strtotime($date));
-
-                                                            ?>
-
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                    <?php
-                    }
-                    ?>
-
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
+
+        <?php
+        }
+        ?>
+
     </div>
 
+</div>
 
-    <div class="container">
-        <div class="rdv rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif">
-            <h2 class="mesRdv fs-4">Historiques de mes rendez-vous</h2>
-            <div class="row">
 
-                <?php
-                // var_dump($allDataRDV);
-                // exit;
+<div class="container col-6">
+    <div class="rdv rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif;height: 80vh; overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column; align-items: center">
+        <h2 class="mesRdv fs-4" style="text-align: center">Historiques de mes rendez-vous</h2>
 
-                foreach ($rdvPasses as $items) {
-                    extract($items);
 
-                ?>
-                    <div class="col-4">
-                        <div class="card  my-1" style="min-height: 6rem">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= $nom ?></h5>
-                                <p class="card-text"><?= $nom_prestation ?></p>
-                                <p class="card-text"><?=
+        <?php
+        // var_dump($allDataRDV);
+        // exit;
 
-                                                        strftime("%A %d %B %Y <br> %H h %M", strtotime($date));
+        foreach ($rdvPasses as $items) {
+            extract($items);
+            // var_dump($rdvPasses);
+            // exit;
 
-                                                        ?>
+        ?>
+            <div class="col-10">
+                <div class="card  my-1" style="min-height: 6rem">
+                    <div class="card-body" style="display: flex; flex-direction : column; text-align: center; background: #FAFAFF">
+                        <h5 class="card-title">
+                            <bold style="font-weight: 600"><?= strtoupper($nom) . ' ' . $prenom . ', ' . $profession ?></bold>
+                        </h5>
+                        <p class="card-text">Pour : <?= $nom_prestation ?></p>
+                        <p class="card-text">Le <?= strftime("%A %d %B %Y à %H h %M", strtotime($date)) ?>
 
-                                </p>
-                            </div>
-                        </div>
+                        </p>
                     </div>
-
-                <?php
-                }
-
-
-                ?>
+                </div>
             </div>
-        </div>
+
+        <?php
+        }
+
+
+        ?>
+
     </div>
+</div>
 </div>
 
 </div>
