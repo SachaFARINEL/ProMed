@@ -6,13 +6,16 @@ class Ajax extends Controller
 {
     protected $modelName = "Ajax";
 
-
+    /**
+     * Fonction AJAX pour rechercher les praticiens grâce aux premières lettre de la barre de recherche et de les afficher dans une liste de "Cards"
+     * 
+     * @return void
+     */
     public static function rechercherUnPraticien()
     {
         $search = $_POST['userData'];
         $praticienModel = new \Models\Praticien();
         $dataPraticien = $praticienModel->findByName($search);
-
 
         if (isset($dataPraticien) && !empty($dataPraticien)) {
             $adresseModel = new \Models\Adresse();
@@ -24,7 +27,6 @@ class Ajax extends Controller
             echo "<div class='row'>";
             foreach ($informationsPraticiens as $informationPraticien) {
                 foreach ($informationPraticien as $data) {
-
                     extract($data);
                     echo Utils::cartes($id, $nom, $prenom, $tel, $mail, $profession, $numero, $type_de_voie, $adresse, $code_postal, $ville);
                 }
@@ -36,6 +38,11 @@ class Ajax extends Controller
         }
     }
 
+    /**
+     * Fonction AJAX pour rechercher les patients grâce aux premières lettre de la barre de recherche et de les afficher dans une liste de "Cards"
+     * 
+     * @return void
+     */
     public static function rechercherUnPatient()
     {
         $search = $_POST['userData'];
@@ -60,20 +67,11 @@ class Ajax extends Controller
         }
     }
 
-    // public static function prestationsDuPraticien()
-    // {
-    //     $idCible = $_POST['id'];
-    //     $prestationModel = new \Models\Prestation();
-    //     $prestations = $prestationModel->findWithFetchAll('id_praticien', $idCible);
-    //     echo '<select name="prestations" class="prestations" id="prestations' . $idCible . '">';
-    //     echo '<option value="">--Choisir une prestation--</option>';
-    //     foreach ($prestations as $prestation) {
-    //         extract($prestation);
-    //         echo '<option value="' . $prix . '">' . $nom_prestation . '</option>';
-    //     }
-    //     echo '</select>';
-    // }
-
+    /**
+     * Fonction AJAX pour remplir la modal de chaque praticien avec ses informations personnelles, de prestations, et de disponibilités.
+     * 
+     * @return void
+     */
     public static function remplisLaModal()
     {
         $idPraticien = $_POST['id'];
@@ -140,6 +138,11 @@ class Ajax extends Controller
             </div>';
     }
 
+    /**
+     * Fonction AJAX pour rechercher les créneaux disponibles des praticiens en fonction de la date émise par l'utilisateur
+     * 
+     * @return void
+     */
     public static function rendezVousDisponibles()
     {
         $dateDesiree = $_POST['dateDesiree'];
@@ -161,10 +164,13 @@ class Ajax extends Controller
         echo '</div>';
     }
 
+    /**
+     * Fonction AJAX pour enregistrer un rendez-vous en base de donnée
+     * 
+     * @return void
+     */
     public static function enregistrerRdv()
-
     {
-        session_start();
         $id_patient = $_SESSION["id"];
         $id_praticien = $_POST['idPraticien'];
         $id_prestation = $_POST['idPrestation'];
@@ -182,6 +188,12 @@ class Ajax extends Controller
             'is_presentiel'
         ));
     }
+
+    /**
+     * Fonction AJAX pour afficher une fiche patient
+     * 
+     * @return void
+     */
     public static function afficherFichePatient()
     {
         $idBouton = $_POST['id'];
@@ -190,3 +202,17 @@ class Ajax extends Controller
         echo $fichePatient;
     }
 }
+
+// public static function prestationsDuPraticien()
+    // {
+    //     $idCible = $_POST['id'];
+    //     $prestationModel = new \Models\Prestation();
+    //     $prestations = $prestationModel->findWithFetchAll('id_praticien', $idCible);
+    //     echo '<select name="prestations" class="prestations" id="prestations' . $idCible . '">';
+    //     echo '<option value="">--Choisir une prestation--</option>';
+    //     foreach ($prestations as $prestation) {
+    //         extract($prestation);
+    //         echo '<option value="' . $prix . '">' . $nom_prestation . '</option>';
+    //     }
+    //     echo '</select>';
+    // }

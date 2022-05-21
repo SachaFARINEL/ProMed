@@ -9,7 +9,10 @@ class Prestation extends Model
 {
     protected $table = 'prestation';
 
-
+    /** 
+     * à supprimer Elouan s'il te plaît ...
+     * 
+     */
     public function updatePraticien($id, $nom_prestation, $description, $prix)
     {
         try {

@@ -10,6 +10,7 @@ abstract class Controller
 
     public function __construct()
     {
+        session_start();
         $realModelName = "\\Models\\" . $this->modelName;
         $this->model = new $realModelName();
     }

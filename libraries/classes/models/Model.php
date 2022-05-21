@@ -23,10 +23,12 @@ abstract class Model
     }
 
     /** 
-     * Retourne un item grâce à son identifiant
+     * Retourne un résultat d'items grâce à son identifiant et indiquant dans quel colonne nous cherchons l'id
      * 
+     * @param string $colonne
      * @param integer $id
      * 
+     * @return array
      */
     public function find($colonne, int $id)
     {
@@ -41,7 +43,6 @@ abstract class Model
                 throw new Exception("Invalid column name");
                 }
                 */
-
             $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE $colonne = :id");
             // On exécute la requête en précisant le paramètre :id
             $query->execute([':id' => $id]);
@@ -61,39 +62,26 @@ abstract class Model
         }
     }
 
+    /** 
+     * Retourne plusieurs tableaux d'items grâce à son identifiant et indiquant dans quel colonne nous cherchons l'id
+     * 
+     * @param string $colonne
+     * @param integer $id
+     * 
+     * @return array
+     */
     public function findWithFetchAll($colonne, int $id)
     {
-        try { /* Essayer si cela fonctionne */
-
-            /* Afin de sécuriser au maximum notre application, avant d'injecter directement le résultat de la variable colonne,
-            nous pourrions créer une "white list" des posibilités sous la forme : 
-
-                $allowed = ['id', 'nom', ...];
-
-                if (!in_array($colonne, $allowed)) {
-                throw new Exception("Invalid column name");
-                }
-                */
-
+        try {
             $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE $colonne = :id");
-            // On exécute la requête en précisant le paramètre :id
             $query->execute([':id' => $id]);
-
-            //On fouille le résultat pour en extraire les données réelles de la table
             $items = $query->fetchAll();
-
-            // On retourne (principe d'une fonction) ce que l'on à trouvé.
             return $items;
-
-            //On affiche à l'écran un message (pour le développement)
             echo "$this->table trouvé";
-        } catch (\PDOException $e) { /* Sinon afficher l'erreur en question */
-            /* Dans ce cas j'utilise '\PDOException' à la place de 'PDOException' car 
-            nous sommes dans un namespace. PDOException n'est donc pas défini ici*/
+        } catch (\PDOException $e) {
             die('Erreur : ' . $e->getMessage());
         }
     }
-
 
     /**
      * Supprime une entrée dans la base grâce à son identifiant
@@ -101,46 +89,44 @@ abstract class Model
      * @param integer $id
      * @return void
      */
-
     public function delete(int $id): void
     {
         try {
-
             $query = $this->pdo->prepare("DELETE FROM {$this->table} WHERE id =:id");
             $query->execute(['id' => $id]);
-
             echo "$this->table supprimé";
         } catch (\PDOException $e) {
-
             die('Erreur : ' . $e->getMessage());
         }
     }
 
+    /**
+     * Comparer dans la base la ligne ayant le même mail que l'input utilisateur et retourne l'ensemble de cette ligne (afin de comparer les mots de passes)
+     * 
+     * @param string $mail
+     * @return array
+     */
     public function checkAuth(string $mail)
     {
         try {
-
             $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE mail =:mail");
-
             $query->execute(['mail' => $mail]);
-
-            //On fouille le résultat pour en extraire les données réelles de la table
             $item = $query->fetch();
-
-            // On retourne (principe d'une fonction) ce que l'on à trouvé.
             return $item;
-
-
             echo "Requète trouvée";
         } catch (\PDOException $e) {
-
             die('Erreur : ' . $e->getMessage());
         }
     }
 
+    /**
+     * Permet d'insérer dans la base de donnée une array de data
+     * 
+     * @param array $data
+     * @return void
+     */
     public function insert(array $data): void
     {
-
         // 1. Création de la chaine SQL
         // Exemple : INSERT INTO patient (
         $sql = "INSERT INTO {$this->table} (";
@@ -171,108 +157,85 @@ abstract class Model
     /**
      * Retourne la liste des item classés ou non par $order.
      * 
+     * @param string $order
      * @return array
      */
     public function findAll(?string $order = ""): array
     /* ?string signifie variable string non obligatoire, utile ici si l'on n'a pas besoin de classer nos résultats */
     {
         $sql = "SELECT * FROM {$this->table}";
-
         if ($order) {
             $sql .= " ORDER BY " . $order;
         }
         try {
-
             $resultats = $this->pdo->query($sql);
-
-            // On fouille le résultat pour en extraire les données réelles
             $items = $resultats->fetchAll();
-
             return $items;
-
             echo "Toute la table $this->table trouvé";
         } catch (\PDOException $e) {
-
             die('Erreur : ' . $e->getMessage());
         }
     }
 
     /** 
-     * Retourne le dernier id crée
+     * Retourne le dernier id crée (sert dans la création de ligne dans la table adresse pour indiquer l'id_utilisateur)
      * 
-     * @param integer $id
+     * @return integer id
      * 
      */
     public function findLastInsertId()
     {
-        try { /* Essayer si cela fonctionne */
-
+        try {
             $resultat = $this->pdo->query("SELECT LAST_INSERT_ID() as id_user"); //Utilisation d'un alias sinon c'est chiant
-
-            // On exécute la requête en précisant le paramètre :id
-
-            //On fouille le résultat pour en extraire les données réelles de la table
             $item = $resultat->fetch();
-
-            // On retourne (principe d'une fonction) ce que l'on à trouvé.
             return $item;
-
-            //On affiche à l'écran un message (pour le développement)
             echo "$this->table trouvé";
-        } catch (\PDOException $e) { /* Sinon afficher l'erreur en question */
-            /* Dans ce cas j'utilise '\PDOException' à la place de 'PDOException' car 
-            nous sommes dans un namespace. PDOException n'est donc pas défini ici*/
-
+        } catch (\PDOException $e) {
             die('Erreur : ' . $e->getMessage());
         }
     }
 
-
-
+    /** 
+     * Retourne l'ensemble des utilisateurs où le nom commence par $datauser
+     * 
+     * @param string $dataUser
+     * @return array
+     * 
+     */
     public function findByName(string $dataUser)
     {
-        try { /* Essayer si cela fonctionne */
-
+        try {
             $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE nom LIKE '$dataUser%' OR prenom LIKE '$dataUser%' ORDER BY `nom`");
-
-            // On exécute la requête en précisant le paramètre :id
             $query->execute(['dataUser' => $dataUser]);
-
-            //On fouille le résultat pour en extraire les données réelles de la table
             $item = $query->fetchAll();
-            // On retourne (principe d'une fonction) ce que l'on à trouvé.
             return $item;
-            //On affiche à l'écran un message (pour le développement)
             echo "$this->table trouvé";
-        } catch (\PDOException $e) { /* Sinon afficher l'erreur en question */
-            /* Dans ce cas j'utilise '\PDOException' à la place de 'PDOException' car 
-            nous sommes dans un namespace. PDOException n'est donc pas défini ici*/
-
+        } catch (\PDOException $e) {
             die('Erreur : ' . $e->getMessage());
         }
     }
 
+    /** 
+     * Permet de mettre à jour une ligne dans une table
+     * 
+     * @param array $data
+     * @return void
+     * 
+     */
     public function update(array $data)
     {
-
         $setData = [];
         $sql = "UPDATE {$this->table} SET ";
-
         foreach ($data as $key => $value) {
 
             $setData[] .= $key . ' = ' . "'" . $value . "'";
         }
-
         $setData = implode(',', $setData);
         $sql .= $setData . "WHERE id = :id";
-
-
         try {
             $query = $this->pdo->prepare($sql);
-
             $query->execute([':id' => $data['id']]);
         } catch (\PDOException $e) {
-
             die('Erreur :' . $e->getMessage());
         }
     }

@@ -19,6 +19,7 @@ class Application
      */
     public static function process()
     {
+
         $controllerName = self::getControllerName();
         $taskName = self::getTaskName();
 

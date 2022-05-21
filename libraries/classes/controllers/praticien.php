@@ -9,7 +9,7 @@ class Praticien extends Controller
     /**
      * Affiche authentification praticien 
      * 
-     * @return void
+     * @return pageTitle
      */
 
     public function showAuth()
@@ -18,20 +18,24 @@ class Praticien extends Controller
         \Renderer::render('authentificationPraticien', compact('pageTitle'));
     }
 
+    /**
+     * Redirige sur l'espace du praticien
+     * 
+     * @return pageTitle
+     * @return nomPartie
+     */
 
     public function showEspace(): void
     {
-        session_start();
         $pageTitle = 'Mon espace';
         $nomPartie = 'DASHBOARD';
         \Renderer::renderEspacePraticien('espacePraticien', compact('pageTitle', 'nomPartie'));
     }
 
-
     /**
-     * Affiche l'accueil (Reussir à l'utiliser directement sur l'index ? {N'a rien à faire dans le controleur praticien car correspond à nos deux utilisateurs})
+     * Affiche l'accueil quand on clique sur le logo "PROMED"
      * 
-     * @return void
+     * @return pageTitle
      */
     public function index(): void
     {
@@ -42,28 +46,12 @@ class Praticien extends Controller
     /**
      * Affiche le formulaire d'inscription du praticien
      * 
-     * @return void
+     * @return pageTitle
      */
-
     public function inscription(): void
     {
         $pageTitle = "Formulaire d'inscription Praticien";
         \Renderer::renderEspacePraticien('formulairePraticien', compact('pageTitle'));
-    }
-
-    /**
-     * Affiche les données de l'ENSEMBLE des praticiens (Pour choisir lequel affiché, il faudra faire une requète pour avoir l'id de celui qui vient de se connecter, le mettre dans une variable de session, et choisir la requète find et non find all avec ...WHERE id = $_SESSION["id"])
-     * 
-     * @return void
-     */
-    public function afficherMonProfil()
-    {
-        session_start();
-        $donnesPraticien = $this->model->find($_SESSION['id']);
-        $prestationModel = new \Models\Prestation();
-        $donnesPrestations = $prestationModel->find('id_praticien', $_SESSION['id']);
-        $pageTitle = "Profil et prise en charge";
-        \Renderer::render('profilPraticien', compact('pageTitle', 'donnesPraticien', 'donnesPrestations'));
     }
 
     /**
@@ -73,8 +61,7 @@ class Praticien extends Controller
      */
     public function save()
     {
-
-        //Informations personnelles
+        // Récupération des input text remplis lors de l'inscription du praticien
         $prenom = filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_SPECIAL_CHARS);
         $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_SPECIAL_CHARS);
         $profession = filter_input(INPUT_POST, 'profession', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -82,15 +69,13 @@ class Praticien extends Controller
         $tel = filter_input(INPUT_POST, 'tel', FILTER_SANITIZE_NUMBER_INT);
         $num_adelie = filter_input(INPUT_POST, 'num_adelie', FILTER_SANITIZE_SPECIAL_CHARS);
         $nom_cabinet = filter_input(INPUT_POST, 'nom_cabinet', FILTER_SANITIZE_SPECIAL_CHARS);
-
-
         $password = filter_input(INPUT_POST, 'mot_de_passe');
         $password_confirmation = filter_input(INPUT_POST, 'mot_de_passe_confirmation');
+        // Test sur mot de passe et de sa confirmation
         if ($password === $password_confirmation) {
             //Hachage du mot de passe.
             $mot_de_passe = password_hash($password, PASSWORD_DEFAULT);
         } else {
-
             echo 'Les mots de passes ne sont pas indentiques - JS check ?';
         }
 
@@ -110,6 +95,11 @@ class Praticien extends Controller
         \Http::redirect('?controller=praticien&task=showAuth');
     }
 
+    /**
+     * Test de loging et mot de passe lors de l'authentification du praticien
+     * 
+     * @return void
+     */
     public function auth()
     {
         //Récupération des données du formulaire
@@ -122,20 +112,17 @@ class Praticien extends Controller
             // Si c'est mot de passe son identique : 
             if (password_verify($mdp, $mot_de_passe)) {
                 // Si une session n'existe pas on la crée et un ajoute nos variables à la superglobale et on redirige le praticien sur son espace.
-                if (!isset($_SESSION)) {
-                    session_start();
-                    $id_session = session_id();
-                    $praticien = 'praticien';
-                    $_SESSION['id_session'] = $id_session;
-                    $_SESSION['id'] = $id;
-                    $_SESSION['role'] = $praticien;
-                    $_SESSION['nom'] = $nom;
-                    $_SESSION['prenom'] = $prenom;
-                    //Redirection du praticien sur son espace
-                    //\Renderer::render('espacePraticien', compact('pageTitle', 'id_session', 'id', 'praticien', 'donneesPraticien'));
-                    //Praticien::showEspace();
-                    \Http::redirect('?controller=praticien&task=showEspace');
-                }
+                $id_session = session_id();
+                $praticien = 'praticien';
+                $_SESSION['id_session'] = $id_session;
+                $_SESSION['id'] = $id;
+                $_SESSION['role'] = $praticien;
+                $_SESSION['nom'] = $nom;
+                $_SESSION['prenom'] = $prenom;
+                //Redirection du praticien sur son espace
+                //\Renderer::render('espacePraticien', compact('pageTitle', 'id_session', 'id', 'praticien', 'donneesPraticien'));
+                //Praticien::showEspace();
+                \Http::redirect('?controller=praticien&task=showEspace');
                 //Sinon on affiche une erreur.
             } else {
                 echo 'ERR, mot de passe incorrect';
@@ -145,11 +132,17 @@ class Praticien extends Controller
         }
     }
 
-
+    /**
+     * Affiche le profil du praticien
+     * 
+     * @return pageTitle
+     * @return nomPartie
+     * @return dataPraticien
+     * @return donneesPraticien
+     * @return prestations
+     */
     public function profilPraticien()
     {
-        session_start();
-
         $dataPraticien = $this->model->find('id', $_SESSION["id"]);
         $pageTitle = 'Mon Profil';
         $nomPartie = 'Mon Profil';
@@ -159,37 +152,47 @@ class Praticien extends Controller
         \Renderer::renderEspacePraticien('profilPraticien', compact('pageTitle', 'dataPraticien', 'nomPartie', 'donneesPraticien', 'prestations'));
     }
 
+    /**
+     * Ajout d'une prestation par le praticien
+     * 
+     * @return pageTitle
+     * @return nomPartie
+     * @return prestations
+     * 
+     */
     public function ajoutPrestation()
     {
-        session_start();
-        // $dataPraticien = $this->model->find('id', $_SESSION['id']);;
         $prestationModel = new \Models\Prestation();
         $prestations = $prestationModel->findWithFetchAll('id_praticien', $_SESSION['id']);
-
         $pageTitle = 'Mon Profil';
         $nomPartie = 'Ajouter une prestation';
-
-
         \Renderer::renderEspacePraticien('ajoutPrestation', compact('pageTitle', 'nomPartie', 'prestations'));
     }
+
+    /**
+     * Modification des prestations par le praticien
+     * 
+     * @return pageTitle
+     * @return nomPartie
+     * @return prestations
+     * 
+     */
     public function modifPrestation()
     {
-        session_start();
-        // $dataPraticien = $this->model->find('id', $_SESSION['id']);;
         $prestationModel = new \Models\Prestation();
         $prestations = $prestationModel->findWithFetchAll('id_praticien', $_SESSION['id']);
-
         $pageTitle = 'Mon Profil';
-
         $nomPartie = 'Modifier une prestation';
-
         \Renderer::renderEspacePraticien('modifPrestation', compact('pageTitle', 'nomPartie', 'prestations'));
     }
 
-
+    /**
+     * Modification des informations du profil praticien
+     * 
+     * @return void
+     */
     public function update()
     {
-        session_start();
         $id = $_SESSION['id'];
         $prenom = filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_SPECIAL_CHARS);
         $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -213,16 +216,13 @@ class Praticien extends Controller
     }
 
     /**
-     * Permet au patient de se déconnecer. Clear les variables de Session & la détruit : 
+     * Permet au praticien de se déconnecer. Clear les variables de Session & la détruit : 
      * @return void
      */
     function logout()
     {
-        session_start();
-
         // Détruit toutes les variables de session
         $_SESSION = array();
-
         // Si vous voulez détruire complètement la session, effacez également
         // le cookie de session.
         // Note : cela détruira la session et pas seulement les données de session !
@@ -238,20 +238,24 @@ class Praticien extends Controller
                 $params["httponly"]
             );
         }
-
         // Finalement, on détruit la session.
         session_destroy();
         \Http::redirect('?controller=praticien&task=index');
     }
 
+    /**
+     * Permet d'afficher la page afin de rechercher un patient
+     * 
+     * @return pageTitle
+     * @return nomPartie
+     * @return informationsPatients
+     */
     function pagePourRechercherUnPatient()
     {
-        session_start();
         $pageTitle = "Rechercher un patient";
         $nomPartie = "Mes Patients";
         $patientModel = new \Models\Patient();
         $donneesAllPatients = $patientModel->findAll('nom');
-
         $adresseModel = new \Models\Adresse();
         foreach ($donneesAllPatients as $patient) {
             extract($patient);
@@ -260,3 +264,17 @@ class Praticien extends Controller
         \Renderer::renderEspacePraticien('rechercherUnPatient', compact('pageTitle', 'nomPartie', 'informationsPatients'));
     }
 }
+
+/**
+ * Affiche le profil du praticien
+ * 
+ * @return void
+ */
+    // public function afficherMonProfil()
+    // {
+    //     $donnesPraticien = $this->model->find($_SESSION['id']);
+    //     $prestationModel = new \Models\Prestation();
+    //     $donnesPrestations = $prestationModel->find('id_praticien', $_SESSION['id']);
+    //     $pageTitle = "Profil et prise en charge";
+    //     \Renderer::render('profilPraticien', compact('pageTitle', 'donnesPraticien', 'donnesPrestations'));
+    // }

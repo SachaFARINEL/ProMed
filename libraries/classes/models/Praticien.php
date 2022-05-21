@@ -8,7 +8,10 @@ class Praticien extends Model
 {
     protected $table = 'praticien';
 
-
+    /** 
+     * à supprimer Elouan s'il te plaît ...
+     * 
+     */
     public function updatePraticien($id, $nom, $prenom, $mail, $profession, $tel, $num_adelie, $nom_cabinet)
     {
         try {
@@ -26,6 +29,10 @@ class Praticien extends Model
         }
     }
 
+    /** 
+     * à supprimer Elouan s'il te plaît ...
+     * 
+     */
     public function updatePraticien2(array $data): void
     {
 
@@ -57,17 +64,4 @@ class Praticien extends Model
             die('Erreur : ' . $e->getMessage());
         }
     }
-
-    // public function findInfoPraticienAdressePresta(int $id)
-    // {
-    //     $query = $this->pdo->prepare("SELECT * FROM praticien JOIN adresse ON praticien.id=adresse.id_user JOIN prestation ON praticien.id=prestation.id_praticien WHERE role='praticien' AND praticien.id = :id");
-
-    //     $query->execute([':id' => $id]);
-
-    //     $items = $query->fetchAll();
-    //     var_dump($items);
-    //     exit;
-
-    //     return $items;
-    // }
 }

@@ -6,6 +6,11 @@ namespace Controllers;
 class Utils extends Controller
 {
 
+  /**
+   * Permet de convertir une date "anglophone" en date française
+   * 
+   * @return String date
+   */
   public static function dateToFrench($date, $format)
   {
     $english_days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
@@ -15,16 +20,31 @@ class Utils extends Controller
     return str_replace($english_months, $french_months, str_replace($english_days, $french_days, date($format, strtotime($date))));
   }
 
+  /**
+   * Permet de convertir une date de naissance en âge
+   * 
+   * @return String date
+   */
   public static function dateToAge($date)
   {
     return (date_diff(date_create($date), date_create(date("Y-m-d")))->format('%y'));
   }
 
+  /**
+   * Permet de séparer un numéro de téléphone tous les deux chiffres par un point.
+   * 
+   * @return String numeroTelephone
+   */
   public static function espaceTelephone($tel)
   {
     return implode('.', str_split($tel, 2));
   }
 
+  /**
+   * Permet d'éditer simplement des "Cards" à destinations de la recherche de patients ou de praticiens
+   * 
+   * @return String codeHtml
+   */
   public static function cartes($id, $nom, $prenom, $tel, $mail, ?string $profession = "", $numero, $type_de_voie, $adresse, $code_postal, $ville)
   {
 ?>
@@ -91,7 +111,6 @@ class Utils extends Controller
             </div>
             <div class="solu_description">
               <?php
-              // if ($type_de_voie === "Autre" ? " " : $type_de_voie);
               if ($type_de_voie == 'Autre') {
                 $type_de_voie = ' ';
               }
@@ -100,15 +119,6 @@ class Utils extends Controller
               <h6><?= $mail ?></h6>
               <h6> <?= $numero . ' ' . $type_de_voie . ' ' . $adresse ?></h6>
               <h6 class="mb-3"> <?= $code_postal . ', ' . $ville ?></h6>
-              <!-- <a href=<?= '#div' . $id ?> rel=" modal:open">
-                <button type="button" class="read_more_btn" id="<?= $id ?>">
-                  Prendre un rendez-vous
-                </button>
-              </a> -->
-              <!-- <a href="#ex1" rel="modal:open">
-                <button type="button" class="read_more_btn" id="bouton<?= $id ?>">
-                  Prendre un rendez-vous
-                </button> -->
               </a>
               <?php
               if ($profession) {
@@ -122,7 +132,6 @@ class Utils extends Controller
               } else {
               ?>
                 <a href="./?controller=praticien&task=pagePatientPdvPraticien&id=<?= $id ?>">
-
                   <button type=" button" class="read_more_btn" id="<?= $id ?>">
                     Afficher la fiche patient
                   </button>
@@ -135,49 +144,6 @@ class Utils extends Controller
         </div>
       </div>
     </div>
-
-
-    <!-- <div id=<?= 'div' . $id ?> class="modal" style=' height: 100%; overflow: initial; background: #FAFAFF'>
-                  <div class="row d-flex">
-                    <div class="nomProfessionModal col-6">
-                      <h3 class="nomPraticienModal"><?= $nom . ' ' . $prenom ?></h3>
-                      <?php
-                      if ($profession) {
-                        echo '<h5 class="professionModal">' . $profession . '</h5>';
-                      }
-                      ?>
-                    </div>
-                    <div class="col-6" style="text-align: center">
-                      <div>
-                        <h6><?= self::espaceTelephone($tel) ?></h6>
-                        <h6><?= $mail ?></h6>
-                      </div>
-                      <div>
-                        <h6> <?= $numero . ' ' . $type_de_voie . ' ' . $adresse ?></h6>
-                        <h6> <?= $code_postal . '  ' . $ville ?></h6>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="main col-12">
-
-                    <div class="container rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif;text-align: center; height: 50vh">
-                      <div class="mesRdv mb-5" id="<?= 'rdvPossible' . $id ?>"></div>
-                      <div class=" prix"></div>
-
-                      <div class="calendrier">
-                        <input type="date" class="inputDate" id="<?= 'inputDate' . $id ?>">
-                        test
-                      </div>
-                      <div class="resultat" id="<?= 'resultat' . $id ?>">
-
-                      </div>
-                    </div>
-
-
-                  </div>
-                  <button type="button" class="valider">Prendre un rendez-vous</button>
-
-            </div> -->
 
 <?php
   }

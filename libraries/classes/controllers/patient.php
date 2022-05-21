@@ -8,63 +8,58 @@ class Patient extends Controller
     protected $modelName = "Patient";
 
     /**
-     * Affiche authentification patient 
+     * Affiche l'authentification patient
      * 
-     * @return void
+     * @return pageTitle
      */
-
     public function showAuth()
     {
-        session_start();
-        if (!isset($_SESSION['id_session']) || $_SESSION["role"] !== 'patient') {
-            $pageTitle = 'Authentification patient';
-            \Renderer::render('authentificationPatient', compact('pageTitle'));
-        } else {
-            Patient::showEspace();
-        }
+        $pageTitle = 'Authentification patient';
+        \Renderer::render('authentificationPatient', compact('pageTitle'));
     }
 
     /**
      * Affiche le formulaire d'inscription du patient
      * 
-     * @return void
+     * @return pageTitle
+     * @return nomPartie
      */
     public function inscription()
     {
-        session_start();
         $nomPartie = 'Création de la fiche patient';
         $pageTitle = 'Formulaire Patient';
         \Renderer::renderEspacePraticien('formulairePatient', compact('pageTitle', 'nomPartie'));
     }
 
     /**
-     * Redirige le patient sur son espace
+     * Affiche l'espace du patient
      * 
-     * @return void
+     * @return pageTitle
+     * @return rdvAVenir
+     * @return rdvPasses
+     * @return nomPartie
      */
     public function showEspace()
     {
-        session_start();
         $rdvModel = new \Models\Rendez_vous();
-        // $donneesRdv = $rdvModel->findRdv($_SESSION['id']);
-
         $rdvAVenir = $rdvModel->retourneRdvPatient($_SESSION['id'], '>');
         $rdvPasses = $rdvModel->retourneRdvPatient($_SESSION['id'], '<');
-
         $pageTitle = 'Espace patient';
         $nomPartie = 'DASHBOARD';
         \Renderer::renderEspacePatient('espacePatient', compact('pageTitle', 'rdvAVenir', 'rdvPasses', 'nomPartie'));
     }
 
     /**
-     * Affiche les données du patient
+     * Affiche le profil du patient
      * 
      * @return pageTitle
-     * @return donnesPatient
+     * @return nomPartie
+     * @return donneesTablePatient
+     * @return donneesAdresse
+     * @return donneesRdv
      */
     public function profilPatient()
     {
-        session_start();
         $donneesTablePatient = $this->model->find('id', $_SESSION['id']);
         $adresseModel = new \Models\Adresse();
         $rdvModel = new \Models\Rendez_vous();
@@ -74,9 +69,19 @@ class Patient extends Controller
         $nomPartie = 'Mon profil';
         \Renderer::renderEspacePatient('profilPatient', compact('pageTitle', 'donneesTablePatient', 'donneesAdresse', 'donneesRdv', 'nomPartie'));
     }
+
+    /**
+     * Affiche la page de modification du profil patient
+     * 
+     * @return pageTitle
+     * @return nomPartie
+     * @return donneesTablePatient
+     * @return donneesAdresse
+     * @return donneesRdv
+     */
     public function AfficherUpdatePatient()
     {
-        session_start();
+
         $donneesTablePatient = $this->model->find('id', $_SESSION['id']);
         $adresseModel = new \Models\Adresse();
         $rdvModel = new \Models\Rendez_vous();
@@ -90,15 +95,12 @@ class Patient extends Controller
 
 
     /**
-     * Ajouter un patient dans la base de donnée
+     * Ajouter un patient dans la base de donnée, lors de l'inscription
      * 
-     * @return void
+     * @return pageTitle
      */
-
     public function save()
     {
-
-        //Informations personnelles
         $prenom = filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_SPECIAL_CHARS);
         $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_SPECIAL_CHARS);
         $genre = filter_input(INPUT_POST, 'genre', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -106,8 +108,6 @@ class Patient extends Controller
         $activite = filter_input(INPUT_POST, 'activite', FILTER_SANITIZE_SPECIAL_CHARS);
         $mail = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_EMAIL);
         $tel = filter_input(INPUT_POST, 'tel', FILTER_SANITIZE_NUMBER_INT);
-
-
         $password = filter_input(INPUT_POST, 'mot_de_passe');
         $password_confirmation = filter_input(INPUT_POST, 'mot_de_passe_confirmation');
         if ($password === $password_confirmation) {
@@ -117,18 +117,15 @@ class Patient extends Controller
 
             echo 'Les mots de passes ne sont pas indentiques - JS check ?';
         }
-
         //Données liées aux soins
         $num_secu = filter_input(INPUT_POST, 'num_secu', FILTER_SANITIZE_NUMBER_INT);
         $mutuelle = filter_input(INPUT_POST, 'mutuelle', FILTER_SANITIZE_SPECIAL_CHARS);
         $caisse = filter_input(INPUT_POST, 'caisse', FILTER_SANITIZE_SPECIAL_CHARS);
-
         //Contact du tuteur
         $nom_tuteur = filter_input(INPUT_POST, 'nom_tuteur', FILTER_SANITIZE_SPECIAL_CHARS);
         $prenom_tuteur = filter_input(INPUT_POST, 'prenom_tuteur', FILTER_SANITIZE_SPECIAL_CHARS);
         $mail_tuteur = filter_input(INPUT_POST, 'mail_tuteur', FILTER_SANITIZE_EMAIL);
         $tel_tuteur = filter_input(INPUT_POST, 'tel_tuteur', FILTER_SANITIZE_NUMBER_INT);
-
         //Contact du généraliste
         $nom_generaliste = filter_input(INPUT_POST, 'nom_generaliste', FILTER_SANITIZE_SPECIAL_CHARS);
         $prenom_generaliste = filter_input(INPUT_POST, 'prenom_generaliste', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -206,18 +203,18 @@ class Patient extends Controller
             // Si c'est mot de passe son identique : 
             if (password_verify($mdp, $mot_de_passe)) {
                 // Si une session n'existe pas on la crée et un ajoute nos variables à la superglobale et on redirige le patient sur son espace.
-                if (!isset($_SESSION)) {
-                    session_start();
-                    $id_session = session_id();
-                    $role = 'patient';
-                    $_SESSION['id_session'] = $id_session;
-                    $_SESSION["id"] = $id;
-                    $_SESSION["role"] = $role;
-                    $_SESSION["nom"] = $nom;
-                    $_SESSION["prenom"] = $prenom;
-                    //Redirection du patient sur son espace
-                    \Http::redirect('?controller=patient&task=showEspace');
-                }
+                // if (!isset($_SESSION)) {
+
+                $id_session = session_id();
+                $role = 'patient';
+                $_SESSION['id_session'] = $id_session;
+                $_SESSION["id"] = $id;
+                $_SESSION["role"] = $role;
+                $_SESSION["nom"] = $nom;
+                $_SESSION["prenom"] = $prenom;
+                //Redirection du patient sur son espace
+                \Http::redirect('?controller=patient&task=showEspace');
+                // }
                 //Sinon on affiche une erreur.
             } else {
                 echo 'ERR, mot de passe incorrect';
@@ -230,15 +227,13 @@ class Patient extends Controller
 
     /**
      * Permet au patient de se déconnecer. Clear les variables de Session & la détruit : 
+     * 
      * @return void
      */
     function logout()
     {
-        session_start();
-
         // Détruit toutes les variables de session
         $_SESSION = array();
-
         // Si vous voulez détruire complètement la session, effacez également
         // le cookie de session.
         // Note : cela détruira la session et pas seulement les données de session !
@@ -254,15 +249,20 @@ class Patient extends Controller
                 $params["httponly"]
             );
         }
-
         // Finalement, on détruit la session.
         session_destroy();
         \Http::redirect('?controller=praticien&task=index');
     }
 
+    /**
+     * Affiche la page afin de rechercher un praticien
+     * 
+     * @return pageTitle
+     * @return nomPartie
+     * @return informationsPraticiens
+     */
     function pagePourRechercherUnPraticien()
     {
-        session_start();
         $pageTitle = "Rechercher un praticien";
         $nomPartie = "Mes rendez-vous";
         $praticienModel = new \Models\Praticien();
@@ -275,9 +275,13 @@ class Patient extends Controller
         \Renderer::renderEspacePatient('rechercherUnPraticien', compact('pageTitle', 'nomPartie', 'informationsPraticiens'));
     }
 
+    /**
+     * Permet de modifier un patient en base de donnée
+     * 
+     * @return void
+     */
     function updatePatient()
     {
-        session_start();
         $id = $_SESSION['id'];
         $prenom = filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_SPECIAL_CHARS);
         $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -309,9 +313,10 @@ class Patient extends Controller
         );
         \Http::redirect('?controller=patient&task=profilPatient');
     }
-    // public function update()
+}
+// public function update()
     // {
-    //     session_start();
+    //     
     //     $id = $_SESSION['id'];
     //     $prenom = filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_SPECIAL_CHARS);
     //     $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -355,4 +360,3 @@ class Patient extends Controller
     //     ));
     //     \Http::redirect('?controller=patient&task=profilPatient');
     // }
-}
