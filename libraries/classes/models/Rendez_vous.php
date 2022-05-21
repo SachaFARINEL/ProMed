@@ -55,24 +55,57 @@ class Rendez_vous extends Model
     }
 
     /** 
-     * Retourner l'ensemble des rendez-vous du patient grâce à son $_SESSION['id'] et la période désirée (Rendez-vous passés ou à venir, en fonction du signe)
+     * Retourner l'ensemble des rendez-vous de l'utilisateur grâce à son $_SESSION['id'] et la période désirée (Rendez-vous passés ou à venir, en fonction du signe)
      * 
      * @param integer $id
      * @param string $signe
      * 
      * @return array 
      */
-    public function retourneRdvPatient(int $id_patient, $signe)
+    public function retourneRdv($colonne, int $id, $signe)
     {
         try {
             date_default_timezone_set('Europe/Paris');
-            $query = $this->pdo->prepare("SELECT * FROM rendez_vous JOIN praticien 
+            $query = $this->pdo->prepare("SELECT * FROM {$this->table} JOIN praticien 
             ON rendez_vous.id_praticien=praticien.id
             JOIN prestation
             ON rendez_vous.id_prestation=prestation.id
             WHERE date $signe NOW()
-            AND id_patient = :id_patient");
-            $query->execute([':id_patient' => $id_patient]);
+            AND rendez_vous.$colonne = :id");
+            $query->execute([':id' => $id]);
+            $item = $query->fetchAll();
+            return $item;
+        } catch (\PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+    }
+
+    /** 
+     * Retourner l'ensemble des rendez-vous de l'utilisateur grâce à son $_SESSION['id'] et la période désirée (Rendez-vous passés ou à venir, en fonction du signe)
+     * 
+     * @param integer $id
+     * @param string $signe
+     * 
+     * @return array 
+     */
+    public function retourneRdvDuJour(int $id)
+    {
+        try {
+            extract(getdate());
+            $heureMax = $year . '-' . $mon . '-' . $mday . ' ' . '22:00:00';
+
+            date_default_timezone_set('Europe/Paris');
+            $query = $this->pdo->prepare("SELECT * FROM {$this->table} JOIN praticien 
+            ON rendez_vous.id_praticien=praticien.id
+            JOIN prestation
+            ON rendez_vous.id_prestation=prestation.id
+            WHERE rendez_vous.id_praticien = :id
+            AND date BETWEEN NOW() AND '$heureMax'");
+
+            // var_dump($query);
+            // exit;
+
+            $query->execute([':id' => $id]);
             $item = $query->fetchAll();
             return $item;
         } catch (\PDOException $e) {

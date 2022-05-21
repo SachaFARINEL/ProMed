@@ -42,8 +42,8 @@ class Patient extends Controller
     public function showEspace()
     {
         $rdvModel = new \Models\Rendez_vous();
-        $rdvAVenir = $rdvModel->retourneRdvPatient($_SESSION['id'], '>');
-        $rdvPasses = $rdvModel->retourneRdvPatient($_SESSION['id'], '<');
+        $rdvAVenir = $rdvModel->retourneRdv('id_patient', $_SESSION['id'], '>');
+        $rdvPasses = $rdvModel->retourneRdv('id_patient', $_SESSION['id'], '<');
         $pageTitle = 'Espace patient';
         $nomPartie = 'DASHBOARD';
         \Renderer::renderEspacePatient('espacePatient', compact('pageTitle', 'rdvAVenir', 'rdvPasses', 'nomPartie'));

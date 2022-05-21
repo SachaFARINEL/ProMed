@@ -23,13 +23,19 @@ class Praticien extends Controller
      * 
      * @return pageTitle
      * @return nomPartie
+     * @return prestations
      */
 
     public function showEspace(): void
     {
         $pageTitle = 'Mon espace';
         $nomPartie = 'DASHBOARD';
-        \Renderer::renderEspacePraticien('espacePraticien', compact('pageTitle', 'nomPartie'));
+        $rendez_vousModel = new \Models\Rendez_vous();
+        $rdvAVenir = $rendez_vousModel->retourneRdv('id_praticien', $_SESSION['id'], '>');
+        $rdvPasses = $rendez_vousModel->retourneRdv('id_praticien', $_SESSION['id'], '<');
+        $rdvToday = $rendez_vousModel->retourneRdvDuJour($_SESSION['id']);
+
+        \Renderer::renderEspacePraticien('espacePraticien', compact('pageTitle', 'nomPartie', 'rdvAVenir', 'rdvPasses', 'rdvToday'));
     }
 
     /**
