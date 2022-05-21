@@ -21,3 +21,7 @@ img#patient:hover {
 img#praticien:hover {
   transform: translateX(-10%) scale(1.1);
 }
+.annulerRDV:hover {
+  font-weight: 800;
+  cursor: pointer;
+}

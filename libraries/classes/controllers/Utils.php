@@ -40,6 +40,11 @@ class Utils extends Controller
     return implode('.', str_split($tel, 2));
   }
 
+  public static function isRDVAnnule($isAnnule)
+  {
+    return $isAnnule == '1';
+  }
+
   /**
    * Permet d'éditer simplement des "Cards" à destinations de la recherche de patients ou de praticiens
    * 

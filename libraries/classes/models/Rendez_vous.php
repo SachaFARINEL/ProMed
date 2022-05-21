@@ -79,4 +79,22 @@ class Rendez_vous extends Model
             die('Erreur : ' . $e->getMessage());
         }
     }
+
+    /** 
+     * Update un rendez-vous avec l'id patient, l'id praticien et la date désiré
+     * 
+     * @param integer $id
+     * @param string $signe
+     * 
+     * @return array 
+     */
+    public function annulerUnRDV(int $id_patient, int $id_praticien, string $date)
+    {
+        try {
+            $query = $this->pdo->prepare("UPDATE {$this->table} SET `isAnnule` = 1 WHERE id_patient = :id_patient AND id_praticien = :id_praticien AND date = :date");
+            $query->execute([':id_patient' => $id_patient, ':id_praticien' => $id_praticien, ':date' => $date]);
+        } catch (\PDOException $e) {
+            die('Erreur :' . $e->getMessage());
+        }
+    }
 }

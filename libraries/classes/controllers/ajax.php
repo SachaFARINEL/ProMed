@@ -201,6 +201,21 @@ class Ajax extends Controller
         $fichePatient = $fichePatientModel->findWithFetchAll('id_praticien', $idBouton);
         echo $fichePatient;
     }
+
+    /**
+     * Fonction AJAX pour annuler un rendez-vous
+     * 
+     * @return void
+     */
+    public static function annulerRDV()
+    {
+        $id_patient = $_SESSION['id'];
+        $id_praticien = $_POST['id_praticien'];
+        $date = $_POST['date'];
+        $rendezVousModel = new \Models\Rendez_vous();
+        $fichePatient = $rendezVousModel->annulerUnRDV($id_patient, $id_praticien, $date);
+        echo "good";
+    }
 }
 
 // public static function prestationsDuPraticien()
