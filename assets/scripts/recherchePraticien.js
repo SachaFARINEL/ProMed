@@ -169,7 +169,7 @@ $(function () {
                     $('#resultat').html("Erreur de traitement !");
                 } else {
                     if (res) {
-                        $('#resultat').html(res);
+                        $('#selectH').html(res);
                     }
                 }
             },

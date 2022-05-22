@@ -1,5 +1,5 @@
-<style>
-</style>
+<link href="./assets/css/dropdown.css" rel="stylesheet" />
+
 <div class="container d-flex justify-content-center  my-5">
     <div class="input-group rounded" style="width: 30vw">
         <input type="search" id="search" class="form-control rounded" placeholder="Rechercher un praticien" aria-label="Search" aria-describedby="search-addon" />

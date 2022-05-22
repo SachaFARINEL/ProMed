@@ -83,60 +83,71 @@ class Ajax extends Controller
         $dataPrestation = $prestationModel->findWithFetchAll('id_praticien', $idPraticien);
 
         extract($dataPraticien[0]);
-        echo '
+?>
         <div class="row d-flex">
             <div class="nomProfessionModal col-6">
-                <h3 class="nomPraticienModal">' . $nom . " " . $prenom . ' </h3>
-                <h5 class="professionModal">' . $profession . '</h5>
+                <h3 class="nomPraticienModal"><?= $nom . " " . $prenom ?></h3>
+                <h5 class="professionModal"><?= $profession ?></h5>
             </div>
             <div class="col-6" style="text-align: center">
                 <div>
-                <h6>' . Utils::espaceTelephone($tel) . ' </h6>
-                <h6>' . $mail . ' </h6>
+                    <h6><?= Utils::espaceTelephone($tel) ?> </h6>
+                    <h6><?= $mail ?></h6>
                 </div>
                 <div>
-                <h6>' .  $numero . " " . $type_de_voie . " " . $adresse . ' </h6>
-                <h6>' .  $code_postal . "  " . $ville . ' </h6>
+                    <h6><?= $numero . " " . $type_de_voie . " " . $adresse ?></h6>
+                    <h6><?= $code_postal . " " . $ville ?></h6>
                 </div>
             </div>
         </div>
-            <div class="main col-12">
-                <div class="container rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif;text-align: center; height: 50vh" id="containerModal">
-                    <div class="mesPrestation">
-                        <select name="prestations" class="prestations" id="testPresta" style="margin: 1.5rem">
-                            <option value="null"> - Choisir une prestation - </option>';
-        foreach ($dataPrestation as $prestation) {
-            extract($prestation);
-            echo '<option value="' . $id . '-' . $prix . '">' . $nom_prestation . '</option>';
-        }
-        echo '</select>
-                    </div>
-                        <div class="calendrier">
-                            <input type="date" style="margin: 1.5rem" class="inputDate" id="inputDate' . $idPraticien . '">
-                        </div>
-                        <div class="resultat" id="resultat">
-                        <div id="selectH">
-                        <select name="heures" class="heures" id="heures" style="margin: 1.5rem">
-                        <option value="null"> - Choisir une date - </option>
+        <div class="main col-12">
+            <div class="container rounded-3 bg-white shadow mt-4" style="font-family: Lato, sans-serif;text-align: center; height: 50vh" id="containerModal">
+                <div class="mesPrestation" style="margin-top: 1.5rem">
+                    <h4 class="font-monospace">Choisir une prestation</h4>
+                    <select name="prestations" class="prestations form-select" id="testPresta" style="margin: 1.5rem ; width: 90%">
+                        <?php
+                        if (!empty($dataPrestation)) {
+                            echo '<option value="null"> - Choisir - </option>';
+                            foreach ($dataPrestation as $prestation) {
+                                extract($prestation);
+                                echo '<option value="' . $id . '-' . $prix . '">' . $nom_prestation . '</option>';
+                            }
+                        } else {
+                            echo '<option value="null"> Aucune prestation </option>';
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="calendrier">
+                    <h4 class="font-monospace">Choisir un jour</h4>
+                    <input type="date" value="- Choisir -" style=" margin: 1.5rem ; width: 90%" class="inputDate form-control" id="inputDate<?= $idPraticien ?>">
+                </div>
+                <h4 class="font-monospace">Choisir une heure</h4>
+                <div class="resultat" id="resultat">
+                    <div id="selectH">
+                        <select name="heures" class="heures form-select" id="heures" style="margin: 1.5rem ; width: 90%">
+                            <option value="null"> - Choisir un jour - </option>
                         </select>
-                        </div>
-                        </div>
-                        <div class="recap">
-                            <h4>
-                            <span id="prestationNom"></span>
-                            <span id="prestationPrix"></span>
-                            </h4>
-                            <h4>
-                            <span id="heureRdv"></span>
-                            <span id="dateRdv"></span>
-                            </h4>
-                            </div>
-                            </div>
                     </div>
-            <div class="col-12" style="text-align: center">
+                </div>
+                <div class="recap font-monospace">
+                    <h4>
+                        <span id="prestationNom"></span>
+                        <span id="prestationPrix"></span>
+                    </h4>
+                    <h4>
+                        <span id="heureRdv"></span>
+                        <span id="dateRdv"></span>
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-12" style="text-align: center">
             <button type="button" class="valider" id="sendRdv" style="margin: 1.5rem">Valider le rendez-vous</button>
-            </div>';
+        </div>
+    <?php
     }
+
 
     /**
      * Fonction AJAX pour rechercher les créneaux disponibles des praticiens en fonction de la date émise par l'utilisateur
@@ -149,19 +160,20 @@ class Ajax extends Controller
         $idPraticien = $_POST['idPraticien'];
         $rendezVousModel = new \Models\Rendez_vous();
         $heuresDisponibles = $rendezVousModel->findRdvLibreByDateAndIdPraticien($idPraticien, $dateDesiree);
-        echo '<div class="row" style="display:flex; justify-content: center">';
-        echo '<div class="col-2" style="display:flex; justify-content: center">';
-        echo '<select name="heures" class="heures" id="heures" style="margin: 1.5rem">';
-        echo '<option value="null"> - Choisir une heure - </option>';
-
-        foreach ($heuresDisponibles as $heureDisponible) {
-
-            echo '<option value="' . $heureDisponible . '">' . $heureDisponible . '</option>';
-        }
-        echo '</select>';
-
-        echo '</div>';
-        echo '</div>';
+    ?>
+        <div class="row" style="display:flex; justify-content: center">
+            <div class="col-12" style="display:flex; justify-content: center">
+                <select name="heures" class="heures form-select" id="heures" style="margin: 1.5rem ; width:90%">
+                    <?php
+                    echo '<option value="null"> - Choisir - </option>';
+                    foreach ($heuresDisponibles as $heureDisponible) {
+                        echo '<option value="' . $heureDisponible . '">' . $heureDisponible . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+<?php
     }
 
     /**

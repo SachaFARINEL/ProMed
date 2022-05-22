@@ -36,7 +36,7 @@
                             <?php
                             } else {
                             ?>
-                                <p class="pClicked" id="p<?= $compteur ?>"><span class="annulerRDV" id="<?= $id_praticien . '/' . $date ?>"> Annuler ce rendez-vous <img style="width:3%; margin-left: 0.2rem" src="./assets/images/cancel.svg" </span></p>
+                                <p class="pClicked" id="p<?= $compteur ?>"><span class="annulerRDV" id="<?= $id_praticien . '/' . $date ?>"> Annuler ce rendez-vous <img style="width:3%; margin-left: 0.2rem" src="./assets/images/cancel.svg"> </span></p>
                             <?php
                             }
                             ?>
