@@ -39,6 +39,12 @@
 </head>
 
 <body>
+    <nav class="d-flex justify-content-center align-items-center shadow p-3 mb-5 bg-body">
+        <a href="/index.php" class="text-decoration-none text-reset d-flex justify-content-center align-items-center ">
+            <img id='logo' src="assets/images/logoEntete.png" alt="logo" class="w-25 p-3" />
+            <h1 class="fs-2 ">PRO<strong class="fs-1 fw-bold font-monospace">MED</strong></h1>
+        </a>
+    </nav>
     <?= $pageContent ?>
 </body>
 
