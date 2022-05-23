@@ -216,7 +216,7 @@ class Praticien extends Controller
             $profession,
             $tel,
             $num_adelie,
-            $nom_cabinet,
+            $nom_cabinet
         );
         \Http::redirect('?controller=praticien&task=profilPraticien');
     }

@@ -117,7 +117,7 @@ $(function () {
     // });
 
     $(document).on('click', '.read_more_btn', function () {
-        let id = ($(this).attr("id")).substr(-1);
+        let id = ($(this).attr("id"));
         let valeurs = {
             "id": id,
         };
@@ -145,14 +145,17 @@ $(function () {
 
     $(document).on('propertychange input', '.inputDate', function () {
 
-        let idInput = $(this).attr("id");
-        let idPraticien = idInput.substr(-1);
+        // let idInput = $(this).attr("id");
+        // let idPraticien = idInput.substr(-1);
+        idPraticien = ($('.inputDate').attr("id")).split("-");
+        idPraticien = idPraticien[1];
+        console.log($(this).attr("id"))
         let valeurs = {
-            "dateDesiree": $('#' + idInput).val(),
+            "dateDesiree": $('#' + $(this).attr("id")).val(),
             "idPraticien": idPraticien,
         };
 
-        let dateDecoupee = ($('#' + idInput).val()).split("-");
+        let dateDecoupee = ($('#' + $(this).attr("id")).val()).split("-");
         let DateOrdonee = dateDecoupee[2] + "/" + dateDecoupee[1] + "/" + dateDecoupee[0]
         $('#dateRdv').html(DateOrdonee);
 
@@ -224,10 +227,12 @@ $(function () {
         } else {
             $('#containerModal').css({ 'border': '1px solid white' })
             $('#sendRdv').html('Valider le rendez-vous')
+            idPraticien = ($('.inputDate').attr("id")).split("-");
+            idPraticien = idPraticien[1];
 
 
             let valeurs = {
-                "idPraticien": $('.inputDate').attr("id").substr(-1),
+                "idPraticien": idPraticien,
                 "idPrestation": prixPrestation[0],
                 "date": $('.inputDate').val() + ' ' + $('.heures').val() + ':00',
                 "isAnnule": 0,

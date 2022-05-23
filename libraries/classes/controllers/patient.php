@@ -309,7 +309,7 @@ class Patient extends Controller
             $prenom_tuteur,
             $mail_tuteur,
             $tel_tuteur,
-            $adresse_tuteur,
+            $adresse_tuteur
         );
         \Http::redirect('?controller=patient&task=profilPatient');
     }

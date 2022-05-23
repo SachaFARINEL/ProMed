@@ -79,8 +79,10 @@ class Ajax extends Controller
         $adresseModel = new \Models\Adresse();
         $dataPraticien = $adresseModel->findAdresseById('praticien', $idPraticien);
 
+
         $prestationModel = new \Models\Prestation();
         $dataPrestation = $prestationModel->findWithFetchAll('id_praticien', $idPraticien);
+
 
         extract($dataPraticien[0]);
 ?>
@@ -120,7 +122,7 @@ class Ajax extends Controller
                 </div>
                 <div class="calendrier">
                     <h4 class="font-monospace">Choisir un jour</h4>
-                    <input type="date" value="- Choisir -" style=" margin: 1.5rem ; width: 90%" class="inputDate form-control" id="inputDate<?= $idPraticien ?>">
+                    <input type="date" value="- Choisir -" style=" margin: 1.5rem ; width: 90%" class="inputDate form-control" id="inputDate-<?= $idPraticien ?>">
                 </div>
                 <h4 class="font-monospace">Choisir une heure</h4>
                 <div class="resultat" id="resultat">
