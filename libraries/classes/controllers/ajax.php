@@ -45,9 +45,10 @@ class Ajax extends Controller
      */
     public static function rechercherUnPatient()
     {
+        session_start();
         $search = $_POST['userData'];
         $patientModel = new \Models\Patient();
-        $dataPatient = $patientModel->findByName($search);
+        $dataPatient = $patientModel->findMyPatients($search, $_SESSION['id']);
 
         if (isset($dataPatient) && !empty($dataPatient)) {
             $adresseModel = new \Models\Adresse();

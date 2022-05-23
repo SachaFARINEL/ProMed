@@ -269,6 +269,30 @@ class Praticien extends Controller
         }
         \Renderer::renderEspacePraticien('rechercherUnPatient', compact('pageTitle', 'nomPartie', 'informationsPatients'));
     }
+    function pagePatientPdvPraticien()
+    {
+        $pageTitle = "Mes patients";
+        $userID = filter_input(INPUT_GET, "id", FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $patientModel = new \Models\Patient();
+        $donneesPatient = $patientModel->find('id', $userID);
+        // var_dump($donneesPatient);
+        // exit;
+        extract($donneesPatient);
+        $nomPartie = "Fiche de " . strtoupper($nom) . ' ' . $prenom;
+
+        $adresseModel = new \Models\Adresse();
+        foreach ($donneesPatient as $patient) {
+            // extract($patient);
+            $informationPatient[] = $adresseModel->findAdresseById('patient', $userID);
+            $informationPatient = $informationPatient[0][0];
+        }
+
+        // if (isset($_GET['id'])) $userID = $_GET['id'];
+
+        \Renderer::renderEspacePraticien('fichePatient', compact('pageTitle', 'nomPartie', 'informationPatient'));
+        // \Renderer::renderEspacePatient('fichePatient', compact('pageTitle', 'donneesTablePatient', 'donneesAdresse', 'donneesRdv', 'nomPartie'));
+    }
 }
 
 /**

@@ -215,13 +215,30 @@ abstract class Model
         }
     }
 
-    /** 
-     * Permet de mettre à jour une ligne dans une table
-     * 
-     * @param array $data
-     * @return void
-     * 
-     */
+    public function findMyPatients(string $dataUser, int $idUser)
+    {
+        try { /* Essayer si cela fonctionne */
+            // var_dump($dataUser);
+            // var_dump($idUser);
+            // exit;
+            $query = $this->pdo->prepare("SELECT * FROM patient JOIN rendez_vous ON patient.id=rendez_vous.id_patient WHERE 'id_praticien' = :id_praticien AND nom LIKE '$dataUser%' OR prenom LIKE '$dataUser%' ORDER BY `nom`");
+
+            // On exécute la requête en précisant le paramètre :id
+            $query->execute(['id_praticien' => $idUser, 'dataUser' => $dataUser]);
+            //On fouille le résultat pour en extraire les données réelles de la table
+            $item = $query->fetchAll();
+            // On retourne (principe d'une fonction) ce que l'on à trouvé.
+            return $item;
+            //On affiche à l'écran un message (pour le développement)
+            echo "$this->table trouvé";
+        } catch (\PDOException $e) { /* Sinon afficher l'erreur en question */
+            /* Dans ce cas j'utilise '\PDOException' à la place de 'PDOException' car 
+            nous sommes dans un namespace. PDOException n'est donc pas défini ici*/
+
+            die('Erreur : ' . $e->getMessage());
+        }
+    }
+
     public function update(array $data)
     {
         $setData = [];
