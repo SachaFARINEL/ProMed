@@ -262,4 +262,34 @@ abstract class Model
             die('Erreur :' . $e->getMessage());
         }
     }
+
+    /** 
+     * Met à jour les données passée en argument dans la base de donnée avec un ID
+     * 
+     * @param array $data
+     * 
+     * @return void
+     * 
+     */
+    public function updateWithId(array $data, $idUser)
+    {
+        $setData = [];
+        $controller = filter_input(INPUT_GET, 'controller');
+
+        $sql = "UPDATE {$this->table} SET ";
+        foreach ($data as $key => $value) {
+
+            $setData[] .= $key . ' = ' . "'" . $value . "'";
+        }
+        $setData = implode(',', $setData);
+        $sql .= $setData . "WHERE `id_user` = :id AND `role` = '" . $controller . "'";
+        // var_dump($sql);
+        // exit;
+        try {
+            $query = $this->pdo->prepare($sql);
+            $query->execute([':id' => $idUser]);
+        } catch (\PDOException $e) {
+            die('Erreur :' . $e->getMessage());
+        }
+    }
 }
