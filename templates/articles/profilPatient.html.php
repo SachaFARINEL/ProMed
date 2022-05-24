@@ -2,7 +2,7 @@
 extract($donneesTablePatient);
 extract($donneesAdresse);
 extract($donneesRdv);
-
+$isMineur = intval(Controllers\Utils::dateToAge($date_naissance)) < 18;
 $pathPicture = null;
 $genreDate = null;
 
@@ -24,7 +24,7 @@ $dateInscr = Controllers\Utils::dateToFrench($dateInscr[0], 'j F Y');
 
 <div style="display: flex; justify-content: center">
   <section class="col-9" style="background-color: #FAFAFF">
-    <div class="container py-5" style="background-color: #FAFAFF">
+    <div class="container pt-5" style="background-color: #FAFAFF">
       <div class="row">
         <div class="col-lg-3">
           <div class="card mb-3" style='box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px'>
@@ -32,7 +32,7 @@ $dateInscr = Controllers\Utils::dateToFrench($dateInscr[0], 'j F Y');
             <div class="card-body text-center">
               <div>
                 <img src=<?= $pathPicture ?> alt="avatar" class="rounded-circle img-fluid" style="width: 150px">
-                <img style="width : 15% ; position: absolute" src=./assets/images/parametres.png>
+                <img id="parametresFiche" style="width : 15% ; position: absolute" src=./assets/images/parametres.png>
               </div>
               <h5 class="mt-3"><?= $nom . ' ' . $prenom . ', ' . Controllers\Utils::dateToAge($date_naissance) . ' ' . 'ans' ?></h5>
               <p class="text-muted mb-1"> <?= $genreDate . ' ' . 'le' . ' ' . Controllers\Utils::dateToFrench($date_naissance, 'j F Y') ?>
@@ -46,20 +46,28 @@ $dateInscr = Controllers\Utils::dateToFrench($dateInscr[0], 'j F Y');
 
             </div>
           </div>
-          <div class="card mb-3" style='box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px'>
-            <div class="card-body text-center">
-              <h5>Données liées aux soins</h5>
-              <hr>
-              <p class="text-muted mb-1">Numéro de sécurité sociale : <strong><?= $num_secu ?></strong>
-              </p>
-              <p class="text-muted mb-1">
-                <strong><?= $mutuelle ?></strong>
-              </p>
-              <p class="text-muted mb-3">Caisse d'assurance maladie : <strong><?= $caisse ?></strong>
-              </p>
+          <?php
+          if ($isMineur) {
+          ?>
+            <div class="card mb-3" style='box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px'>
+              <div class="card-body text-center">
+                <h5>Données liées aux soins</h5>
+                <hr>
+                <p class="text-muted mb-1">Numéro de sécurité sociale : <strong><?= $num_secu ?></strong>
+                </p>
+                <p class="text-muted mb-1">
+                  <strong><?= $mutuelle ?></strong>
+                </p>
+                <p class="text-muted mb-3">Caisse d'assurance maladie : <strong><?= $caisse ?></strong>
+                </p>
+              </div>
             </div>
-          </div>
+          <?php
+          }
+          ?>
+
         </div>
+
         <div class="col-sm-9">
 
 
@@ -73,7 +81,7 @@ $dateInscr = Controllers\Utils::dateToFrench($dateInscr[0], 'j F Y');
             <div class="card mb-4 font-monospace">
               <div class="card-body">
                 <div class="row">
-                  <h5 style='text-align: center'>Médecin généraliste <img style='width: 5%; margin-left: 2rem' src='./assets/images/doctor.png'></h5>
+                  <h5 style='text-align: center'>Médecin généraliste <img style='width: 5.9%; margin-left: 2rem' src='./assets/images/doctor.png'></h5>
                   <hr>
                   <div class="col-sm-3">
                     <p class="mb-2">Nom Prénom</p>
@@ -107,7 +115,7 @@ $dateInscr = Controllers\Utils::dateToFrench($dateInscr[0], 'j F Y');
 
 
           <?php
-          if (intval(Controllers\Utils::dateToAge($date_naissance)) < 18) {
+          if ($isMineur) {
           ?>
             <div class="col-lg-8 font-monospace" style="margin-bottom: 2.2rem ; box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px">
               <div class="card mb-4">
@@ -152,7 +160,7 @@ $dateInscr = Controllers\Utils::dateToFrench($dateInscr[0], 'j F Y');
             <div class="card mb-4">
               <div class="card-body">
                 <div class="row">
-                  <h5 style='text-align: center'>Quelques chiffres <img style='width: 5%; margin-left: 2rem' src='./assets/images/medal.png'></h5>
+                  <h5 style='text-align: center'>Quelques chiffres <img style='width: 5.8%; margin-left: 2rem' src='./assets/images/medal.png'></h5>
                   <hr>
                   <div class="col-sm-8">
                     <p class="mb-2 font-monospace">Rendez-vous pris</p>
@@ -187,7 +195,29 @@ $dateInscr = Controllers\Utils::dateToFrench($dateInscr[0], 'j F Y');
 
         </div>
       </div>
+      <?php
+      if (!$isMineur) {
+      ?>
+
+        <div class="card col-9 mb-3" style='box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px'>
+          <div class="card-body text-center">
+            <h5>Données liées aux soins</h5>
+            <hr>
+            <p class="text-muted mb-1">Numéro de sécurité sociale : <strong><?= $num_secu ?></strong>
+            </p>
+            <p class="text-muted mb-1">
+              Mutuelle :<strong> <?= $mutuelle ?></strong>
+            </p>
+            <p class="text-muted mb-3">Caisse d'assurance maladie : <strong><?= $caisse ?></strong>
+            </p>
+          </div>
+        </div>
+
+      <?php
+      }
+      ?>
     </div>
+
 
   </section>
 </div>
