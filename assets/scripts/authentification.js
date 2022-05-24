@@ -38,19 +38,10 @@ $(function () {
 
             let searchParams = new URLSearchParams(window.location.search);
             let getParam = searchParams.get('controller');
-            let controller = undefined;
-            let espace = undefined;
-            if (getParam == 'praticien') {
-                controller = './?controller=praticien&task=auth'
-                espace = '?controller=praticien&task=showEspace'
-            } else {
-                controller = './?controller=patient&task=auth'
-                espace = '?controller=patient&task=showEspace'
-            }
 
             $.ajax({
                 type: 'POST',
-                url: controller,
+                url: './?controller=' + getParam + '&task=auth',
                 data: valeurs,
                 error: function () {
                     alert('Erreur sur PHP !');
@@ -69,7 +60,7 @@ $(function () {
                         $('#emailSent').css({ 'border': '1px solid red' });
                         $('#emailSent').attr('placeholder', 'E-mail incorrect');
                     } else {
-                        window.location.href = espace
+                        window.location.href = '?controller=' + getParam + '&task=showEspace';
                     }
                 },
                 complete: function () {
