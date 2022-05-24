@@ -2,6 +2,7 @@
 extract($donneesTablePatient);
 extract($donneesAdresse);
 extract($donneesRdv);
+$controller = filter_input(INPUT_GET, 'controller');
 $isMineur = intval(Controllers\Utils::dateToAge($date_naissance)) < 18;
 $pathPicture = null;
 $genreDate = null;
@@ -32,7 +33,11 @@ $dateInscr = Controllers\Utils::dateToFrench($dateInscr[0], 'j F Y');
             <div class="card-body text-center">
               <div>
                 <img src=<?= $pathPicture ?> alt="avatar" class="rounded-circle img-fluid" style="width: 150px">
-                <img id="parametresFiche" style="width : 15% ; position: absolute" src=./assets/images/parametres.png>
+                <?php
+                if ($controller == 'patient') {
+                  echo '<img id="parametresFiche" style="width : 15% ; position: absolute" src=./assets/images/parametres.png>';
+                }
+                ?>
               </div>
               <h5 class="mt-3"><?= $nom . ' ' . $prenom . ', ' . Controllers\Utils::dateToAge($date_naissance) . ' ' . 'ans' ?></h5>
               <p class="text-muted mb-1"> <?= $genreDate . ' ' . 'le' . ' ' . Controllers\Utils::dateToFrench($date_naissance, 'j F Y') ?>
