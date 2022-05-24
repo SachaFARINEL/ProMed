@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use ArrayObject;
 
 class Patient extends Controller
 {
@@ -65,9 +66,14 @@ class Patient extends Controller
         $rdvModel = new \Models\Rendez_vous();
         $donneesAdresse = $adresseModel->find('id_user', $_SESSION['id']);
         $donneesRdv = $rdvModel->findRdv($_SESSION['id']);
+        $dataOnRdv = new ArrayObject();
+        $dataOnRdv->append($rdvModel->nombreRendezVous('id_patient', $_SESSION['id']));
+        $dataOnRdv->append($rdvModel->nombrePraticienUnique('id_praticien', $_SESSION['id']));
+        $dataOnRdv->append($rdvModel->nombrePraticienUnique('id_prestation', $_SESSION['id']));
+
         $pageTitle = 'Espace patient';
         $nomPartie = 'Mon profil';
-        \Renderer::renderEspacePatient('profilPatient', compact('pageTitle', 'donneesTablePatient', 'donneesAdresse', 'donneesRdv', 'nomPartie'));
+        \Renderer::renderEspacePatient('profilPatient', compact('pageTitle', 'donneesTablePatient', 'donneesAdresse', 'donneesRdv', 'nomPartie', 'dataOnRdv'));
     }
 
     /**

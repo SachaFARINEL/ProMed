@@ -130,4 +130,40 @@ class Rendez_vous extends Model
             die('Erreur :' . $e->getMessage());
         }
     }
+
+    /** 
+     * Retourne le nombre total de rendez-vous effectué
+     * 
+     * @param array $colonne
+     * @param array $idUser
+     * 
+     * @return void
+     * 
+     */
+    public function nombreRendezVous($colonne, $idUser)
+    {
+        $query = $this->pdo->prepare("SELECT COUNT(*) FROM rendez_vous WHERE $colonne = :idUser");
+        $query->execute([':idUser' => $idUser]);
+        $item = $query->fetch();
+
+        return $item;
+    }
+
+    /** 
+     * Retourne le nombre de praticien unique rencontrés
+     * 
+     * @param array $colonne
+     * @param array $idUser
+     * 
+     * @return void
+     * 
+     */
+    public function nombrePraticienUnique($colonne, $idUser)
+    {
+        $query = $this->pdo->prepare("SELECT COUNT(DISTINCT $colonne) FROM rendez_vous WHERE id_patient = :idUser");
+        $query->execute([':idUser' => $idUser]);
+        $item = $query->fetch();
+
+        return $item;
+    }
 }
