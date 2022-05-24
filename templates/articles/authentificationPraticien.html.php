@@ -5,23 +5,24 @@
                 <img src="assets/images/draw2.svg" class="img-fluid" alt="Phone image">
             </div>
             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                <form action=".?controller=praticien&task=auth" method="POST">
-                    <h3 class="py-2">Formulaire Praticien : </h3>
-                    <div class="form-outline mb-4">
-                        <input type="email" name="mail" id="form1Example13" class="form-control form-control-lg" placeholder="Entrez votre adresse e-mail" />
+                <!-- <form action=".?controller=praticien&task=auth" method="POST"> -->
+                <h3 class="py-2">Authentification Praticien : </h3>
+                <div class="form-outline mb-4">
+                    <input type="email" name="mail" id="emailSent" class="form-control form-control-lg" placeholder="Entrez votre adresse e-mail" />
+                </div>
+                <div class="form-outline mb-4">
+                    <input type="password" name="mot_de_passe" id="mdpSent" class="form-control form-control-lg" placeholder="Entrez votre mot de passe" />
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">S'authentifier</button>
+                    <div class="divider d-flex align-items-center my-4 text-center justify-content-center">
+                        <p class="text-center fw-bold mx-3 mb-0 text-muted">OU</p>
                     </div>
-                    <div class="form-outline mb-4">
-                        <input type="password" name="mot_de_passe" id="form1Example23" class="form-control form-control-lg" placeholder="Entrez votre mot de passe" />
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">S'authentifier</button>
-                        <div class="divider d-flex align-items-center my-4 text-center justify-content-center">
-                            <p class="text-center fw-bold mx-3 mb-0 text-muted">OU</p>
-                        </div>
-                        <a type="button" style="background-color: #55acee" class="btn btn-primary btn-lg btn-block" a href="./?controller=praticien&task=inscription">S'inscrire</a>
-                    </div>
-                </form>
+                    <a type="button" style="background-color: #55acee" class="btn btn-primary btn-lg btn-block" a href="./?controller=praticien&task=inscription">S'inscrire</a>
+                </div>
+                <!-- </form> -->
             </div>
         </div>
     </div>
 </section>
+<script src="./assets/scripts/authentification.js"></script>

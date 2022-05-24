@@ -109,13 +109,16 @@ class Praticien extends Controller
     public function auth()
     {
         //Récupération des données du formulaire
-        $mail = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_SPECIAL_CHARS);
-        $mdp = filter_input(INPUT_POST, 'mot_de_passe');
-        if (!empty($mail) && !empty($mdp)) {
-            //Extract de la requète checkAuth avec le mail du praticien (Le méthode extract est expliqué dans le Renderer)
+        // $mail = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_SPECIAL_CHARS);
+        // $mdp = filter_input(INPUT_POST, 'mot_de_passe');
+        $mail = $_POST['mail'];
+        $mdp = $_POST['mot_de_passe'];
+
+        // if (!empty($mail) && !empty($mdp)) {
+        //Extract de la requète checkAuth avec le mail du praticien (Le méthode extract est expliqué dans le Renderer)
+
+        if ($this->model->checkAuth($mail)) {
             extract($this->model->checkAuth($mail));
-            // Compare le mot de passe POST avec le mot de passe trouvé dans le BDD
-            // Si c'est mot de passe son identique : 
             if (password_verify($mdp, $mot_de_passe)) {
                 // Si une session n'existe pas on la crée et un ajoute nos variables à la superglobale et on redirige le praticien sur son espace.
                 $id_session = session_id();
@@ -131,11 +134,17 @@ class Praticien extends Controller
                 \Http::redirect('?controller=praticien&task=showEspace');
                 //Sinon on affiche une erreur.
             } else {
-                echo 'ERR, mot de passe incorrect';
+                echo 'errMDP';
             }
         } else {
-            echo 'Les champs sont vides - JS Check à faire';
+            echo 'errMail';
         }
+        // Compare le mot de passe POST avec le mot de passe trouvé dans le BDD
+        // Si c'est mot de passe son identique : 
+
+        // } else {
+        //     echo 'Les champs sont vides - JS Check à faire';
+        // }
     }
 
     /**

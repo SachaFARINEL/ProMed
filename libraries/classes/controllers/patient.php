@@ -194,33 +194,35 @@ class Patient extends Controller
     public function auth()
     {
         //Récupération des données du formulaire
-        $mail = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_SPECIAL_CHARS);
-        $mdp = filter_input(INPUT_POST, 'mot_de_passe');
-        if (!empty($mail) && !empty($mdp)) {
-            //Extract de la requète checkAuth avec le mail du patient (Le méthode extract est expliqué dans le Renderer)
-            extract($this->model->checkAuth($mail));
-            // Compare le mot de passe POST avec le mot de passe trouvé dans le BDD
-            // Si c'est mot de passe son identique : 
-            if (password_verify($mdp, $mot_de_passe)) {
-                // Si une session n'existe pas on la crée et un ajoute nos variables à la superglobale et on redirige le patient sur son espace.
-                // if (!isset($_SESSION)) {
+        // $mail = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_SPECIAL_CHARS);
+        // $mdp = filter_input(INPUT_POST, 'mot_de_passe');
+        $mail = $_POST['mail'];
+        $mdp = $_POST['mot_de_passe'];
 
+        // if (!empty($mail) && !empty($mdp)) {
+        //Extract de la requète checkAuth avec le mail du praticien (Le méthode extract est expliqué dans le Renderer)
+
+        if ($this->model->checkAuth($mail)) {
+            extract($this->model->checkAuth($mail));
+            if (password_verify($mdp, $mot_de_passe)) {
+                // Si une session n'existe pas on la crée et un ajoute nos variables à la superglobale et on redirige le praticien sur son espace.
                 $id_session = session_id();
-                $role = 'patient';
+                $patient = 'patient';
                 $_SESSION['id_session'] = $id_session;
-                $_SESSION["id"] = $id;
-                $_SESSION["role"] = $role;
-                $_SESSION["nom"] = $nom;
-                $_SESSION["prenom"] = $prenom;
-                //Redirection du patient sur son espace
-                \Http::redirect('?controller=patient&task=showEspace');
-                // }
+                $_SESSION['id'] = $id;
+                $_SESSION['role'] = $patient;
+                $_SESSION['nom'] = $nom;
+                $_SESSION['prenom'] = $prenom;
+                //Redirection du praticien sur son espace
+                //\Renderer::render('espacePraticien', compact('pageTitle', 'id_session', 'id', 'praticien', 'donneesPraticien'));
+                //Praticien::showEspace();
+                // \Http::redirect('?controller=praticien&task=showEspace');
                 //Sinon on affiche une erreur.
             } else {
-                echo 'ERR, mot de passe incorrect';
+                echo 'errMDP';
             }
         } else {
-            echo 'Les champs sont vides - JS Check à faire';
+            echo 'errMail';
         }
     }
 
