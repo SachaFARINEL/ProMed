@@ -23,10 +23,10 @@ $dateInscr = Controllers\Utils::dateToFrench($dateInscr[0], 'j F Y');
 ?>
 
 <div style="display: flex; justify-content: center">
-  <section class="col-9" style="background-color: #FAFAFF">
+  <section class="col-lg-9 col-md-12" style="background-color: #FAFAFF">
     <div class="container pt-5" style="background-color: #FAFAFF">
       <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-3 col-md-5">
           <div class="card mb-3" style='box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px'>
 
             <div class="card-body text-center">

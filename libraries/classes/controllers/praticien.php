@@ -2,6 +2,8 @@
 
 namespace Controllers;
 
+use ArrayObject;
+
 class Praticien extends Controller
 {
     protected $modelName = "Praticien";
@@ -278,42 +280,42 @@ class Praticien extends Controller
         }
         \Renderer::renderEspacePraticien('rechercherUnPatient', compact('pageTitle', 'nomPartie', 'informationsPatients'));
     }
+
     function pagePatientPdvPraticien()
     {
-        $pageTitle = "Mes patients";
-        $userID = filter_input(INPUT_GET, "id", FILTER_SANITIZE_SPECIAL_CHARS);
+        // $pageTitle = "Mes patients";
 
-        $patientModel = new \Models\Patient();
-        $donneesPatient = $patientModel->find('id', $userID);
+        // $donneesPatient = $patientModel->find('id', $userID);
         // var_dump($donneesPatient);
-        // exit;
-        extract($donneesPatient);
-        $nomPartie = "Fiche de " . strtoupper($nom) . ' ' . $prenom;
+        //  exit;
+        // extract($donneesPatient);
+        // $nomPartie = "Fiche de " . strtoupper($nom) . ' ' . $prenom;
 
+        // $adresseModel = new \Models\Adresse();
+        // foreach ($donneesPatient as $patient) {
+        //     extract($patient);
+        //     $informationPatient[] = $adresseModel->findAdresseById('patient', $userID);
+        //     $informationPatient = $informationPatient[0][0];
+        // }
+
+        //  if (isset($_GET['id'])) $userID = $_GET['id'];
+        // \Renderer::renderEspacePraticien('fichePatient', compact('pageTitle', 'nomPartie', 'informationPatient'));
+
+        $userID = filter_input(INPUT_GET, "id", FILTER_SANITIZE_SPECIAL_CHARS);
+        $patientModel = new \Models\Patient();
+
+        $donneesTablePatient = $patientModel->find('id', $userID);
         $adresseModel = new \Models\Adresse();
-        foreach ($donneesPatient as $patient) {
-            // extract($patient);
-            $informationPatient[] = $adresseModel->findAdresseById('patient', $userID);
-            $informationPatient = $informationPatient[0][0];
-        }
+        $rdvModel = new \Models\Rendez_vous();
+        $donneesAdresse = $adresseModel->find('id_user', $userID);
+        $donneesRdv = $rdvModel->findRdv($userID);
+        $dataOnRdv = new ArrayObject();
+        $dataOnRdv->append($rdvModel->nombreRendezVous('id_patient', $userID));
+        $dataOnRdv->append($rdvModel->nombrePraticienUnique('id_praticien', $userID));
+        $dataOnRdv->append($rdvModel->nombrePraticienUnique('id_prestation', $userID));
 
-        // if (isset($_GET['id'])) $userID = $_GET['id'];
-
-        \Renderer::renderEspacePraticien('fichePatient', compact('pageTitle', 'nomPartie', 'informationPatient'));
-        // \Renderer::renderEspacePatient('fichePatient', compact('pageTitle', 'donneesTablePatient', 'donneesAdresse', 'donneesRdv', 'nomPartie'));
+        $pageTitle = 'Espace patient';
+        $nomPartie = 'Profil de ' . $donneesTablePatient['nom'] . ' ' . $donneesTablePatient['prenom'];
+        \Renderer::renderEspacePraticien('profilPatient', compact('pageTitle', 'donneesTablePatient', 'donneesAdresse', 'donneesRdv', 'nomPartie', 'dataOnRdv'));
     }
 }
-
-/**
- * Affiche le profil du praticien
- * 
- * @return void
- */
-    // public function afficherMonProfil()
-    // {
-    //     $donnesPraticien = $this->model->find($_SESSION['id']);
-    //     $prestationModel = new \Models\Prestation();
-    //     $donnesPrestations = $prestationModel->find('id_praticien', $_SESSION['id']);
-    //     $pageTitle = "Profil et prise en charge";
-    //     \Renderer::render('profilPraticien', compact('pageTitle', 'donnesPraticien', 'donnesPrestations'));
-    // }
