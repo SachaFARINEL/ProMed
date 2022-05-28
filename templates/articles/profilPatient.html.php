@@ -35,7 +35,7 @@ $dateInscr = Controllers\Utils::dateToFrench($dateInscr[0], 'j F Y');
                 <img src=<?= $pathPicture ?> alt="avatar" class="rounded-circle img-fluid" style="width: 150px">
                 <?php
                 if ($controller == 'patient') {
-                  echo '<a href="/?controller=patient&task=afficherModificationProfilPatient"><img id="parametresFiche" style="width : 15% ; position: absolute" src=./assets/images/parametres.png></a>';
+                  echo '<a href=".?controller=patient&task=afficherModificationProfilPatient"><img id="parametresFiche" style="width : 15% ; position: absolute" src=./assets/images/parametres.png></a>';
                 }
                 ?>
               </div>
