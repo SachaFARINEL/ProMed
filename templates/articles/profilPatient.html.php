@@ -1,6 +1,6 @@
 <?php
 extract($donneesTablePatient);
-extract($donneesAdresse);
+extract($donneesAdresse[0]);
 extract($donneesRdv);
 $controller = filter_input(INPUT_GET, 'controller');
 $isMineur = intval(Controllers\Utils::dateToAge($date_naissance)) < 18;
@@ -24,7 +24,7 @@ $dateInscr = Controllers\Utils::dateToFrench($dateInscr[0], 'j F Y');
 ?>
 
 <div style="display: flex; justify-content: center">
-  <section class="col-lg-9" style="background-color: #FAFAFF">
+  <section class="col-lg-9-md-12" style="background-color: #FAFAFF">
     <div class="container pt-5" style="background-color: #FAFAFF">
       <div class="row">
         <div class="col-lg-3">
@@ -35,7 +35,7 @@ $dateInscr = Controllers\Utils::dateToFrench($dateInscr[0], 'j F Y');
                 <img src=<?= $pathPicture ?> alt="avatar" class="rounded-circle img-fluid" style="width: 150px">
                 <?php
                 if ($controller == 'patient') {
-                  echo '<a href=".?controller=patient&task=afficherModificationProfilPatient"><img id="parametresFiche" style="width : 15% ; position: absolute" src=./assets/images/parametres.png></a>';
+                  echo '<a href=".?controller=patient&task=afficherModificationProfilPatient"><img class="parametresFiche" style="width : 15% ; position: absolute" src=./assets/images/parametres.png></a>';
                 }
                 ?>
               </div>

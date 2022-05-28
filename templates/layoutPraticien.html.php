@@ -55,8 +55,13 @@
                                     <span class="w-75 text-start fs-6">Mon espace</span>
                                 </div>
                             </a>
-
                             <a class="liensEspace" href="./?controller=praticien&task=profilPraticien">
+                                <div class="menuSideBar w-100 d-flex justify-content-center align-items-center p-3">
+                                    <i class="bi bi-person-circle  w-25 text-start"></i>
+                                    <span class="w-75 text-start fs-6">Mon profil (Elouan)</span>
+                                </div>
+                            </a>
+                            <a class="liensEspace" href="./?controller=praticien&task=profilPraticienRefonte">
                                 <div class="menuSideBar w-100 d-flex justify-content-center align-items-center p-3">
                                     <i class="bi bi-person-circle  w-25 text-start"></i>
                                     <span class="w-75 text-start fs-6">Mon profil</span>

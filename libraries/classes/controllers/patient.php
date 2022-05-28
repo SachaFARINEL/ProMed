@@ -64,7 +64,7 @@ class Patient extends Controller
         $donneesTablePatient = $this->model->find('id', $_SESSION['id']);
         $adresseModel = new \Models\Adresse();
         $rdvModel = new \Models\Rendez_vous();
-        $donneesAdresse = $adresseModel->find('id_user', $_SESSION['id']);
+        $donneesAdresse = $adresseModel->findAdresseWithRole('patient', $_SESSION['id']);
         $donneesRdv = $rdvModel->findRdv($_SESSION['id']);
         $dataOnRdv = new ArrayObject();
         $dataOnRdv->append($rdvModel->nombreRendezVous('id_patient', $_SESSION['id']));

@@ -23,7 +23,18 @@ class Adresse extends Model
             $query->execute([':id' => $id, 'role' => $role]);
             $items = $query->fetchAll();
             return $items;
-            echo "$this->table trouvé";
+        } catch (\PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+    }
+
+    public function findAdresseWithRole($role, int $id)
+    {
+        try {
+            $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE `id_user`=:id AND role = :role");
+            $query->execute([':id' => $id, 'role' => $role]);
+            $items = $query->fetchAll();
+            return $items;
         } catch (\PDOException $e) {
             die('Erreur : ' . $e->getMessage());
         }

@@ -168,6 +168,47 @@ class Praticien extends Controller
         $prestations = $prestationModel->findWithFetchAll('id_praticien', $_SESSION['id']);
         \Renderer::renderEspacePraticien('profilPraticien', compact('pageTitle', 'dataPraticien', 'nomPartie', 'donneesPraticien', 'prestations'));
     }
+    /**
+     * Affiche le profil du praticien refonte
+     * 
+     * @return pageTitle
+     * @return nomPartie
+     * @return dataPraticien
+     * @return donneesPraticien
+     * @return prestations
+     */
+    public function profilPraticienRefonte()
+    {
+        $pageTitle = 'Voir mon profil';
+        $nomPartie = 'Mon Profil';
+        $dataPraticien = $this->model->find('id', $_SESSION["id"]);
+        $prestationModel = new \Models\Prestation();
+        $prestations = $prestationModel->findWithFetchAll('id_praticien', $_SESSION['id']);
+        $adresseModel = new \Models\Adresse();
+        $adressePraticien = $adresseModel->findAdresseWithRole('praticien', $_SESSION['id']);
+
+        \Renderer::renderEspacePraticien('profilPraticienRefonte', compact('pageTitle', 'dataPraticien', 'nomPartie', 'prestations', 'adressePraticien'));
+    }
+
+    /**
+     * Affiche les paramètre de modifications du praticien
+     * 
+     * @return pageTitle
+     * @return nomPartie
+     * @return dataPraticien
+     * @return donneesPraticien
+     * @return prestations
+     */
+    public function afficherModificationProfilPraticien()
+    {
+        $pageTitle = 'Modifier mon profil';
+        $nomPartie = 'Modifier mon profil';
+        $dataPraticien = $this->model->find('id', $_SESSION["id"]);
+        $adresseModel = new \Models\Adresse();
+        $adressePraticien = $adresseModel->findAdresseWithRole('praticien', $_SESSION['id']);
+
+        \Renderer::renderEspacePraticien('modificationProfilPraticien', compact('pageTitle', 'dataPraticien', 'nomPartie', 'adressePraticien'));
+    }
 
     /**
      * Ajout d'une prestation par le praticien
@@ -307,7 +348,7 @@ class Praticien extends Controller
         $donneesTablePatient = $patientModel->find('id', $userID);
         $adresseModel = new \Models\Adresse();
         $rdvModel = new \Models\Rendez_vous();
-        $donneesAdresse = $adresseModel->find('id_user', $userID);
+        $donneesAdresse = $adresseModel->findAdresseWithRole('patient', $userID);
         $donneesRdv = $rdvModel->findRdv($userID);
         $dataOnRdv = new ArrayObject();
         $dataOnRdv->append($rdvModel->nombreRendezVous('id_patient', $userID));

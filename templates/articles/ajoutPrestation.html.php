@@ -83,7 +83,7 @@
                                     <div class="card shadow my-3" style="min-height: 7rem">
                                         <div class="card-body">
                                             <label for="description">
-                                                <h4>Déscription</h4>
+                                                <h4>Description</h4>
                                             </label>
                                             <input type="text" class="form-control" name="description" id="description" placeholder="Ex: " required>
 
