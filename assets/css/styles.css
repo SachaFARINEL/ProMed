@@ -32,3 +32,10 @@ img#praticien:hover {
 .parametresFiche:hover {
   transform: scale(1.3);
 }
+.editPresta {
+  transition: transform 0.5s ease-in-out;
+  cursor: pointer;
+}
+.editPresta:hover {
+  transform: scale(1.2);
+}

@@ -1,7 +1,6 @@
 $(function () {
 
     $('#sendButton').on('click', function () {
-
         nom = $('#nom').val();
         prenom = $('#prenom').val();
         profession = $('#profession').val();
@@ -151,7 +150,6 @@ $(function () {
                 'departement': departement,
                 'pays': pays
             };
-            console.log(valeurs)
 
             $.ajax({
                 type: 'POST',
@@ -170,9 +168,89 @@ $(function () {
 
         }
 
-
-
     })
+
+
+    $(document).on('click', '.editPresta', function () {
+        let id = (($(this).attr("id")).split("-"))[1];
+        let libelle = $('#libelle-' + id).text();
+        let prix = $('#prix-' + id).text();
+        let description = $('#description-' + id).text();
+        let oldPresta = $('#presta-' + id).html();
+
+        $('#presta-' + id).empty()
+        $('#presta-' + id).html(
+            `<h6>
+                <span class="text-muted" style="text-decoration: underline"> Libelle</span> :
+                <input type="text" id="newLibelle-${id}" value="${libelle}">
+            </h6>
+            <h6>
+                <span class="text-muted" style="text-decoration: underline"> Prix</span> :
+                <input type="text" id="newPrix-${id}" value="${prix}"> 
+            </h6>
+            <h6>
+                <span class="text-muted" style="text-decoration: underline"> Description</span> :
+                <input type="text" id="newDescription-${id}" value="${description}">
+            </h6>
+            <h6 style="text-align: center">
+                <img src="./assets/images/check.png" alt="avatar" id="check-${id}" class="parametresFiche img-fluid" style="width: 5%">
+                <img src="./assets/images/close.png" alt="avatar" id="close-${id}" class="parametresFiche img-fluid" style="width: 5%"></img>
+            </h6>
+            `
+        );
+
+        $("#close-" + id).on('click', function () {
+            $('#presta-' + id).empty()
+            $('#presta-' + id).html(oldPresta)
+        })
+
+        $("#check-" + id).on('click', function () {
+            newLibelle = $('#newLibelle-' + id).val();
+            newPrix = $('#newPrix-' + id).val();
+            newDescription = $('#newDescription-' + id).val();
+
+            let valeurs = {
+                'id': id,
+                'nom_prestation': newLibelle,
+                'prix': newPrix,
+                'description': newDescription
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: './?controller=ajax&task=updatePrestation',
+                data: valeurs,
+                error: function () {
+                    alert('Erreur sur PHP !');
+                },
+                success: function (res) {
+                    $('#presta-' + id).html(
+                        `<h6>
+                            <span class="text-muted" style="text-decoration: underline"> Libelle</span> :
+                            <span id="libelle-${id}">${newLibelle}</span>
+                            <img src="./assets/images/editPresta.png" alt="avatar" id="imgPresta-${id}" class="editPresta img-fluid" style="width: 5%">
+                        </h6>
+                        <h6>
+                            <span class="text-muted" style="text-decoration: underline"> Prix</span> :
+                            <span id="prix-${id}">${newPrix}</span> €
+                        </h6>
+                        <h6>
+                            <span class="text-muted" style="text-decoration: underline"> Description</span> :
+                            <span id="description-${id}">${newDescription}</span>
+                        </h6>
+                        `
+                    );
+
+                },
+                complete: function () {
+                }
+            });
+
+        })
+
+    });
+
+
 
 
 

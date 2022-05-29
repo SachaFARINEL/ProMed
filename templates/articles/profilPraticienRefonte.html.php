@@ -42,10 +42,21 @@ extract($adressePraticien[0]);
                     extract($prestation);
                 ?>
                     <div class="mb-3" style='box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; background: #FAFAFF'>
-
-                        <h6 style="margin-right: 0.5rem; margin-left: 0.5rem"><span class="text-muted" style="text-decoration: underline"> Libelle</span> : <?= $nom_prestation ?></h6>
-                        <h6 style="margin-right: 0.5rem; margin-left: 0.5rem"><span class="text-muted" style="text-decoration: underline"> Prix</span> : <?= $prix ?> €</h6>
-                        <h6 style="margin-right: 0.5rem; margin-left: 0.5rem"><span class="text-muted" style="text-decoration: underline"> Description</span> : <?= $description ?></h6>
+                        <div style="padding: 1rem" class="boxPresta" id="presta-<?= $prestation['id'] ?>">
+                            <h6>
+                                <span class="text-muted" style="text-decoration: underline"> Libelle</span> :
+                                <span id="libelle-<?= $prestation['id'] ?>"><?= $nom_prestation ?></span>
+                                <img src="./assets/images/editPresta.png" alt="avatar" id="imgPresta-<?= $prestation['id'] ?>" class="editPresta img-fluid" style="width: 5%">
+                            </h6>
+                            <h6>
+                                <span class="text-muted" style="text-decoration: underline"> Prix</span> :
+                                <span id="prix-<?= $prestation['id'] ?>"><?= $prix ?></span> €
+                            </h6>
+                            <h6>
+                                <span class="text-muted" style="text-decoration: underline"> Description</span> :
+                                <span id="description-<?= $prestation['id'] ?>"><?= $description ?></span>
+                            </h6>
+                        </div>
                     </div>
                 <?php
                 }
@@ -53,3 +64,5 @@ extract($adressePraticien[0]);
             </div>
         </div>
     </div>
+
+    <script src="./assets/scripts/modificationProfilPraticien.js"></script>
