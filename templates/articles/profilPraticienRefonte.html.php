@@ -35,34 +35,38 @@ extract($adressePraticien[0]);
     <div class="col-lg-3">
         <div class="card mb-3" style='box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px ; margin-left: 0.5rem; height: 35rem '>
             <div class="card-body font-monospace" style="overflow-y: auto">
-                <h4 class="mt-3" style="display: flex; justify-content: space-between">Mes prestations <img src="./assets/images/add.png" alt="avatar" class="parametresFiche rounded-circle img-fluid" style="width: 8%"></h4>
+                <h4 class="mt-3" style="display: flex; justify-content: space-between">Mes prestations <img src="./assets/images/add.png" alt="avatar" class="parametresFiche rounded-circle img-fluid" id="addPresta" style="width: 8%"></h4>
                 <hr>
-                <?php
-                foreach ($prestations as $prestation) {
-                    extract($prestation);
-                ?>
-                    <div class="mb-3" style='box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; background: #FAFAFF'>
-                        <div style="padding: 1rem" class="boxPresta" id="presta-<?= $prestation['id'] ?>">
-                            <h6>
-                                <span class="text-muted" style="text-decoration: underline"> Libelle</span> :
-                                <span id="libelle-<?= $prestation['id'] ?>"><?= $nom_prestation ?></span>
-                                <img src="./assets/images/editPresta.png" alt="avatar" id="imgPresta-<?= $prestation['id'] ?>" class="editPresta img-fluid" style="width: 5%">
-                            </h6>
-                            <h6>
-                                <span class="text-muted" style="text-decoration: underline"> Prix</span> :
-                                <span id="prix-<?= $prestation['id'] ?>"><?= $prix ?></span> €
-                            </h6>
-                            <h6>
-                                <span class="text-muted" style="text-decoration: underline"> Description</span> :
-                                <span id="description-<?= $prestation['id'] ?>"><?= $description ?></span>
-                            </h6>
+                <div id="containerPresta">
+                    <div class="divAddPresta mb-3" style='box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; background: #FAFAFF'></div>
+                    <?php
+                    foreach ($prestations as $prestation) {
+                        extract($prestation);
+                    ?>
+                        <div class="mb-3" style='box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; background: #FAFAFF'>
+                            <div style="padding: 1rem" class="boxPresta" id="presta-<?= $prestation['id'] ?>">
+                                <h6>
+                                    <span class="text-muted" style="text-decoration: underline"> Libelle</span> :
+                                    <span id="libelle-<?= $prestation['id'] ?>"><?= $nom_prestation ?></span>
+                                    <img src="./assets/images/editPresta.png" alt="avatar" id="imgPresta-<?= $prestation['id'] ?>" class="editPresta img-fluid" style="width: 5%">
+                                </h6>
+                                <h6>
+                                    <span class="text-muted" style="text-decoration: underline"> Prix</span> :
+                                    <span id="prix-<?= $prestation['id'] ?>"><?= $prix ?></span> €
+                                </h6>
+                                <h6>
+                                    <span class="text-muted" style="text-decoration: underline"> Description</span> :
+                                    <span id="description-<?= $prestation['id'] ?>"><?= $description ?></span>
+                                </h6>
+                            </div>
                         </div>
-                    </div>
-                <?php
-                }
-                ?>
+                    <?php
+                    }
+                    ?>
+                </div>
             </div>
         </div>
     </div>
+    <h1 id="test"></h1>
 
     <script src="./assets/scripts/modificationProfilPraticien.js"></script>

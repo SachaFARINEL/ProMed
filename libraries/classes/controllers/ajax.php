@@ -176,7 +176,7 @@ class Ajax extends Controller
                 </select>
             </div>
         </div>
-<?php
+    <?php
     }
 
     /**
@@ -294,6 +294,56 @@ class Ajax extends Controller
             'departement',
             'pays'
         ), $id, 'praticien');
+    }
+
+    /**
+     * Fonction AJAX pour crée une prestation
+     * 
+     * @return void
+     */
+    public static function createPrestation()
+    {
+        $id_praticien = $_SESSION['id'];
+        $nom_prestation = $_POST['nom_prestation'];
+        $prix = $_POST['prix'];
+        $description = $_POST['description'];
+        $prestationModel = new \Models\Prestation();
+
+        $prestationModel->insert(compact(
+            'id_praticien',
+            'nom_prestation',
+            'prix',
+            'description'
+        ));
+
+    ?>
+        <div class="divAddPresta mb-3" style='box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; background: #FAFAFF'></div>
+        <?php
+        $prestations = $prestationModel->findWithFetchAll('id_praticien', $_SESSION['id']);
+        foreach ($prestations as $prestation) {
+            extract($prestation);
+        ?>
+            <div class="mb-3" style='box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; background: #FAFAFF'>
+                <div style="padding: 1rem" class="boxPresta" id="presta-<?= $prestation['id'] ?>">
+                    <h6>
+                        <span class="text-muted" style="text-decoration: underline"> Libelle</span> :
+                        <span id="libelle-<?= $prestation['id'] ?>"><?= $nom_prestation ?></span>
+                        <img src="./assets/images/editPresta.png" alt="avatar" id="imgPresta-<?= $prestation['id'] ?>" class="editPresta img-fluid" style="width: 5%">
+                    </h6>
+                    <h6>
+                        <span class="text-muted" style="text-decoration: underline"> Prix</span> :
+                        <span id="prix-<?= $prestation['id'] ?>"><?= $prix ?></span> €
+                    </h6>
+                    <h6>
+                        <span class="text-muted" style="text-decoration: underline"> Description</span> :
+                        <span id="description-<?= $prestation['id'] ?>"><?= $description ?></span>
+                    </h6>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
+<?php
     }
 
     /**

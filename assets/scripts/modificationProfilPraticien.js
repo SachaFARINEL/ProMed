@@ -190,7 +190,7 @@ $(function () {
             </h6>
             <h6>
                 <span class="text-muted" style="text-decoration: underline"> Description</span> :
-                <input type="text" id="newDescription-${id}" value="${description}">
+                <textarea id="newDescription-${id}" style="width: 100%">${description}</textarea>
             </h6>
             <h6 style="text-align: center">
                 <img src="./assets/images/check.png" alt="avatar" id="check-${id}" class="parametresFiche img-fluid" style="width: 5%">
@@ -249,6 +249,60 @@ $(function () {
         })
 
     });
+
+
+    $('#addPresta').on('click', function () {
+        $('.divAddPresta').html(
+            `<div style="padding: 1rem" class="boxPresta" id="presta">
+                <h6>
+                    <span class="text-muted" style="text-decoration: underline">Libelle</span> :
+                    <input type="text" id="libelle">
+                </h6>
+                <h6>
+                    <span class="text-muted" style="text-decoration: underline">Prix</span> :
+                    <input type="text" id="prix"> €
+                </h6>
+                <h6>
+                    <span class="text-muted" style="text-decoration: underline">Description</span> :
+                    <textarea id="description" style="width: 100%"></textarea>
+                </h6>
+                <h6 style="text-align: center">
+                    <img src="./assets/images/check.png" alt="avatar" id="check" class="parametresFiche img-fluid" style="width: 5%">
+                    <img src="./assets/images/close.png" alt="avatar" id="close" class="parametresFiche img-fluid" style="width: 5%"></img>
+                </h6>
+            </div>`
+        )
+        $('#close').on('click', function () {
+            $('.divAddPresta').empty();
+        })
+        $('#check').on('click', function () {
+            let libelle = $('#libelle').val();
+            let prix = $('#prix').val();
+            let description = $('#description').val();
+
+            let valeurs = {
+                'nom_prestation': libelle,
+                'prix': prix,
+                'description': description
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: './?controller=ajax&task=createPrestation',
+                data: valeurs,
+                error: function () {
+                    alert('Erreur sur PHP !');
+                },
+                success: function (res) {
+                    $('#containerPresta').empty()
+                    $('#containerPresta').html(res)
+                },
+                complete: function () {
+                }
+            });
+        })
+
+    })
 
 
 
