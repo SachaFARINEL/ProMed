@@ -382,7 +382,7 @@ class Patient extends Controller
                 'nom_generaliste',
                 'prenom_generaliste',
                 'mail_generaliste',
-                'tel_generaliste',
+                'tel_generaliste'
 
             ));
         } else {
@@ -408,7 +408,7 @@ class Patient extends Controller
                     'nom_generaliste',
                     'prenom_generaliste',
                     'mail_generaliste',
-                    'tel_generaliste',
+                    'tel_generaliste'
 
                 ));
             } else {
