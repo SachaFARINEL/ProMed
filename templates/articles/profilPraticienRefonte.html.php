@@ -49,6 +49,7 @@ extract($adressePraticien[0]);
                                     <span class="text-muted" style="text-decoration: underline"> Libelle</span> :
                                     <span id="libelle-<?= $prestation['id'] ?>"><?= $nom_prestation ?></span>
                                     <img src="./assets/images/editPresta.png" alt="avatar" id="imgPresta-<?= $prestation['id'] ?>" class="editPresta img-fluid" style="width: 5%">
+                                    <img src="./assets/images/deletePresta.png" alt="avatar" id="deletePresta-<?= $prestation['id'] ?>" class="deletePresta img-fluid" style="width: 5%">
                                 </h6>
                                 <h6>
                                     <span class="text-muted" style="text-decoration: underline"> Prix</span> :

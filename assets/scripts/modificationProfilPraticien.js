@@ -194,7 +194,7 @@ $(function () {
             </h6>
             <h6 style="text-align: center">
                 <img src="./assets/images/check.png" alt="avatar" id="check-${id}" class="parametresFiche img-fluid" style="width: 5%">
-                <img src="./assets/images/close.png" alt="avatar" id="close-${id}" class="parametresFiche img-fluid" style="width: 5%"></img>
+                <img src="./assets/images/close.png" alt="avatar" id="close-${id}" class="parametresFiche img-fluid" style="width: 5%">
             </h6>
             `
         );
@@ -268,7 +268,7 @@ $(function () {
                 </h6>
                 <h6 style="text-align: center">
                     <img src="./assets/images/check.png" alt="avatar" id="check" class="parametresFiche img-fluid" style="width: 5%">
-                    <img src="./assets/images/close.png" alt="avatar" id="close" class="parametresFiche img-fluid" style="width: 5%"></img>
+                    <img src="./assets/images/close.png" alt="avatar" id="close" class="parametresFiche img-fluid" style="width: 5%">
                 </h6>
             </div>`
         )
@@ -304,7 +304,45 @@ $(function () {
 
     })
 
+    $(document).on('click', '.deletePresta', function () {
+        let id = (($(this).attr("id")).split("-"))[1];
+        let oldBoxPresta = $('#presta-' + id).html();
+        let nomPresta = $('#libelle-' + id).text();
 
+        $('#presta-' + id).empty();
+        $('#presta-' + id).html(`
+        <h6 class="text-muted" style="text-align: center">Êtes-vous sûr de vouloir supprimer la prestation <span style="font-weight: bold">${nomPresta}</span> ?</h6>
+        <h6 style="text-align: center">
+            <img src="./assets/images/check.png" alt="avatar" id="check-${id}" class="parametresFiche img-fluid" style="width: 5%">
+            <img src="./assets/images/close.png" alt="avatar" id="close-${id}" class="parametresFiche img-fluid" style="width: 5%">
+        </h6>
+        `)
+        $('#close-' + id).on('click', function () {
+            $('#presta-' + id).empty();
+            $('#presta-' + id).html(oldBoxPresta);
+        })
+        $('#check-' + id).on('click', function () {
+
+            let valeurs = {
+                'id': id
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: './?controller=ajax&task=deletePrestation',
+                data: valeurs,
+                error: function () {
+                    alert('Erreur sur PHP !');
+                },
+                success: function (res) {
+                    $('#presta-' + id).remove();
+                },
+                complete: function () {
+                }
+            });
+        })
+
+    });
 
 
 

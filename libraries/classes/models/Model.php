@@ -94,7 +94,6 @@ abstract class Model
         try {
             $query = $this->pdo->prepare("DELETE FROM {$this->table} WHERE id =:id");
             $query->execute(['id' => $id]);
-            echo "$this->table supprimé";
         } catch (\PDOException $e) {
             die('Erreur : ' . $e->getMessage());
         }
