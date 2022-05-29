@@ -230,6 +230,5 @@ extract($adressePraticien[0]);
             <button class="w-100 btn btn-primary btn-lg mb-2" type="submit" id="sendButton">Modifier mes informations</button>
         </div>
     </div>
-    <h1 id="test"></h1>
 
     <script src="./assets/scripts/modificationProfilPraticien.js"></script>

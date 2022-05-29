@@ -252,13 +252,14 @@ abstract class Model
         $sql = "UPDATE {$this->table} SET ";
         foreach ($data as $key => $value) {
 
-            $setData[] .= $key . ' = ' . "'" . $value . "'";
+            $setData[] .= $key . ' = ' . '"' . $value . '"';
         }
         $setData = implode(',', $setData);
-        $sql .= $setData . "WHERE id = :id";
+        $sql .= $setData . " WHERE id = :id";
         try {
             $query = $this->pdo->prepare($sql);
             $query->execute([':id' => $data['id']]);
+
             $isUpdated = true;
         } catch (\PDOException $e) {
             $isUpdated = false;

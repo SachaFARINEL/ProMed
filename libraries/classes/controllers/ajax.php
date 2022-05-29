@@ -295,4 +295,31 @@ class Ajax extends Controller
             'pays'
         ), $id, 'praticien');
     }
+
+    /**
+     * Fonction AJAX pour mettre à jour les données d'une prestation
+     * 
+     * @return void
+     */
+    public static function updatePrestation()
+    {
+        $id = $_POST['id'];
+        $id_praticien = $_SESSION['id'];
+        $nom_prestation = $_POST['nom_prestation'];
+        $prix = $_POST['prix'];
+        $description = $_POST['description'];
+        $prestationModel = new \Models\Prestation();
+
+        if ($prestationModel->update(compact(
+            'id',
+            'id_praticien',
+            'nom_prestation',
+            'prix',
+            'description'
+        ))) {
+            echo 'bien';
+        } else {
+            echo 'pas bien';
+        }
+    }
 }
