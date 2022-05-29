@@ -247,6 +247,7 @@ abstract class Model
      */
     public function update(array $data)
     {
+        $isUpdated = null;
         $setData = [];
         $sql = "UPDATE {$this->table} SET ";
         foreach ($data as $key => $value) {
@@ -258,9 +259,12 @@ abstract class Model
         try {
             $query = $this->pdo->prepare($sql);
             $query->execute([':id' => $data['id']]);
+            $isUpdated = true;
         } catch (\PDOException $e) {
+            $isUpdated = false;
             die('Erreur :' . $e->getMessage());
         }
+        return $isUpdated;
     }
 
     /** 
@@ -271,10 +275,10 @@ abstract class Model
      * @return void
      * 
      */
-    public function updateWithId(array $data, $idUser)
+    public function updateWithId(array $data, $idUser, $role)
     {
+        $isUpdated = null;
         $setData = [];
-        $controller = filter_input(INPUT_GET, 'controller');
 
         $sql = "UPDATE {$this->table} SET ";
         foreach ($data as $key => $value) {
@@ -282,14 +286,17 @@ abstract class Model
             $setData[] .= $key . ' = ' . "'" . $value . "'";
         }
         $setData = implode(',', $setData);
-        $sql .= $setData . "WHERE `id_user` = :id AND `role` = '" . $controller . "'";
+        $sql .= $setData . " WHERE `id_user` = :id AND `role` = '" . $role . "'";
         // var_dump($sql);
         // exit;
         try {
             $query = $this->pdo->prepare($sql);
             $query->execute([':id' => $idUser]);
+            $isUpdated = true;
         } catch (\PDOException $e) {
+            $isUpdated = false;
             die('Erreur :' . $e->getMessage());
         }
+        return $isUpdated;
     }
 }

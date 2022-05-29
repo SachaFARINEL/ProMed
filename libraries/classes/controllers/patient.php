@@ -435,7 +435,7 @@ class Patient extends Controller
             'departement',
             'pays'
 
-        ), $_SESSION['id']);
+        ), $_SESSION['id'], 'patient');
 
 
 

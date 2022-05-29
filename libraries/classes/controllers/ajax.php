@@ -231,18 +231,68 @@ class Ajax extends Controller
         $fichePatient = $rendezVousModel->annulerUnRDV($id_patient, $id_praticien, $date);
         echo "good";
     }
-}
 
-// public static function prestationsDuPraticien()
-    // {
-    //     $idCible = $_POST['id'];
-    //     $prestationModel = new \Models\Prestation();
-    //     $prestations = $prestationModel->findWithFetchAll('id_praticien', $idCible);
-    //     echo '<select name="prestations" class="prestations" id="prestations' . $idCible . '">';
-    //     echo '<option value="">--Choisir une prestation--</option>';
-    //     foreach ($prestations as $prestation) {
-    //         extract($prestation);
-    //         echo '<option value="' . $prix . '">' . $nom_prestation . '</option>';
-    //     }
-    //     echo '</select>';
-    // }
+    /**
+     * Fonction AJAX pour mettre à jour les données modifier du profil praticien
+     * 
+     * @return void
+     */
+    public static function updateProfilPraticien()
+    {
+        $id = $_SESSION['id'];
+        $nom = $_POST['nom'];
+        $prenom = $_POST['prenom'];
+        $profession = $_POST['profession'];
+        $num_adelie = $_POST['num_adelie'];
+        $tel = $_POST['tel'];
+        $mail = $_POST['mail'];
+        $mot_de_passe = $_POST['mot_de_passe'];
+        $nom_cabinet = $_POST['nom_cabinet'];
+        $numero = $_POST['numero'];
+        $type_de_voie = $_POST['type_de_voie'];
+        $adresse = $_POST['adresse'];
+        $code_postal = $_POST['code_postal'];
+        $ville = $_POST['ville'];
+        $departement = $_POST['departement'];
+        $pays = $_POST['pays'];
+
+        $praticienModel = new \Models\Praticien();
+        $adresseModel = new \Models\Adresse();
+        if (empty($mot_de_passe)) {
+            $praticienModel->update(compact(
+                'id',
+                'nom',
+                'prenom',
+                'profession',
+                'num_adelie',
+                'tel',
+                'mail',
+                'nom_cabinet'
+
+            ));
+        } else {
+            $mot_de_passe = password_hash($mot_de_passe, PASSWORD_DEFAULT);
+            $praticienModel->update(compact(
+                'id',
+                'nom',
+                'prenom',
+                'profession',
+                'num_adelie',
+                'tel',
+                'mail',
+                'mot_de_passe',
+                'nom_cabinet'
+
+            ));
+        }
+        $adresseModel->updateWithId(compact(
+            'numero',
+            'type_de_voie',
+            'adresse',
+            'code_postal',
+            'ville',
+            'departement',
+            'pays'
+        ), $id, 'praticien');
+    }
+}
